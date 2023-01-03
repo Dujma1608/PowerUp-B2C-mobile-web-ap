@@ -1,0 +1,31 @@
+<ion-content [fullscreen]="true">
+
+  <div class="floating-search-bar">
+    <div class="floating-search-bar-container">
+      <div class="center-flex">
+        <img src="assets/img/icons/ic_search.svg" alt="">
+      </div>
+      <ion-input class="ion-margin-horizontal" placeholder="Search for a charger point"></ion-input>
+      <div class="center-flex">
+        <img src="assets/img/icons/ic_filter.svg" alt="">
+      </div>
+    </div>
+  </div>
+
+  <div class="leaflet" leaflet
+       [leafletOptions]="options"
+       (leafletMapReady)="onMapReady($event)">
+  </div>
+
+
+
+  <div class="floating-menu">
+    <div class="floating-menu-container">
+      <img src="assets/img/maps/menu_ic_pin.svg" alt="">
+      <img src="assets/img/maps/menu_ic_zap.svg" alt="">
+      <img class="scan-button-overlap-fix" src="assets/img/maps/menu_scan_button.svg" alt="">
+      <img src="assets/img/maps/menu_ic_car.svg" alt="">
+      <img src="assets/img/maps/menu_ic_profile.svg" alt="">
+    </div>
+  </div>
+</ion-content>

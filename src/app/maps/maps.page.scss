@@ -1,0 +1,61 @@
+.leaflet {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  z-index: 0;
+}
+
+.floating-search-bar {
+  position: absolute;
+  top: 2em;
+  left:1em;
+  right: 1em;
+  background-color: white;
+  z-index: 1;
+  height: 3em;
+  border-radius: 0.75em;
+}
+
+.floating-search-bar-container {
+  height: 100%;
+  display: flex;
+  border-radius: 0.75em;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1.5em;
+}
+
+.floating-menu {
+  position: absolute;
+  bottom: 2em;
+  left:1.5em;
+  right: 1.5em;
+  background-color: white;
+  z-index: 1;
+  height: 3.5em;
+  border-radius: 1.75em;
+}
+
+.floating-menu-container {
+  height: 100%;
+  display: flex;
+  border-radius: 1.75em;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 0.5em;
+}
+
+.scan-button-overlap-fix {
+  margin-bottom: 2.5em;
+}
+
+
+.center-flex {
+  display: flex;
+  align-items: center;
+}
+
+ion-input {
+  --ion-font-family: 'Inter'
+}
+
