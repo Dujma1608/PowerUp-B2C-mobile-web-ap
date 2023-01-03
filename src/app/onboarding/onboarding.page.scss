@@ -1,0 +1,30 @@
+.onboarding-title {
+  font-family: 'Inter';
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.onboarding-subtitle {
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  /* identical to box height */
+
+  display: flex;
+  align-items: center;
+  text-align: center;
+
+  /* Gray 100 */
+
+  color: #828282;
+}
+
+.container{
+  height: 100%;
+  justify-content: space-around;
+  display: flex;
+  flex-direction: column;
+  //padding-top: 10em;
+}
