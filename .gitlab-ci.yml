@@ -1,0 +1,23 @@
+image: node:alpine
+
+cache:
+    paths:
+        - node_modules
+
+stages:
+    - deploy
+pages:
+    stage: deploy
+    script:
+        - npm install -g @angular/cli
+        - npm uninstall -g ionic
+        - npm install -g @ionic/cli
+        - npm install
+        - ng add @angular/pwa
+        - CI='' ionic build --prod
+        - mv www public
+    artifacts:
+        paths:
+            - public
+        only:
+            - develop
