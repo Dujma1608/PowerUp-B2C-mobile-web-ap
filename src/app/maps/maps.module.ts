@@ -8,6 +8,8 @@ import {MapsPageRoutingModule} from './maps-routing.module';
 
 import {MapsPage} from './maps.page';
 import {LeafletModule} from '@asymmetrik/ngx-leaflet';
+import {LeafletMarkerClusterModule} from "@asymmetrik/ngx-leaflet-markercluster";
+import {NgxLeafletLocateModule} from "@runette/ngx-leaflet-locate";
 
 @NgModule({
   imports: [
@@ -16,6 +18,8 @@ import {LeafletModule} from '@asymmetrik/ngx-leaflet';
     IonicModule,
     LeafletModule,
     MapsPageRoutingModule,
+    LeafletMarkerClusterModule,
+    NgxLeafletLocateModule
 
   ],
   declarations: [MapsPage]

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-onboarding1',
@@ -21,7 +22,7 @@ export class OnboardingPage implements OnInit {
     "Use your phone to scan QR code displayed on charger to start charging",
     "You can monitor charging status from \n anywhere within mobile app"
   ]
-  constructor() { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
   }
@@ -32,6 +33,7 @@ export class OnboardingPage implements OnInit {
     if(this.currentPage == this.onboardingTitles.length+1) {
       this.currentPage =1
     }
+
   }
 
 }

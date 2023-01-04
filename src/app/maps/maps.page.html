@@ -1,5 +1,44 @@
 <ion-content [fullscreen]="true">
 
+  <div class="firsTimeModal" [style.display]="toggleModal">
+    <div class="firstTimeModalContainer">
+      <div
+        style="width: 80%;height: 50%;background-color: white;display: flex; flex-direction: column; justify-content: space-between; border-radius: 0.75em; padding: 1em 2em 1em 2em">
+        <div style="display: flex;width: 100%;justify-content: end">
+          <img (click)="closeModal()" src="assets/img/icons/ic_close.svg" alt="">
+        </div>
+
+        <div style="display: flex;width: 100%;justify-content: center">
+          <img src="assets/img/maps/letter_illustration.svg" alt="">
+        </div>
+
+        <div style="width: 100%;display: flex;justify-content: center">
+          <p class="ion-text-center firsTimeModalTitle">Enter Email <br>receive your invoices</p>
+        </div>
+
+        <div style="border: 0.5px solid #828282; border-radius: 0.3em;" class="ion-padding-horizontal">
+          <ion-input class="" placeholder="Email"></ion-input>
+        </div>
+
+        <div style="width: 100%;display: flex;justify-content: center">
+          <div style="
+              background: #0AB051;
+              height: 2em;
+              width: 6em;
+              border-radius: 5px;
+              color: white;
+              font-family: Inter;
+              display:flex;
+              justify-content: center;
+              align-items: center"
+          >
+            <p>SAVE</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="floating-search-bar">
     <div class="floating-search-bar-container">
       <div class="center-flex">
@@ -12,11 +51,13 @@
     </div>
   </div>
 
-  <div class="leaflet" leaflet
+  <div id="map" class="leaflet" leaflet
        [leafletOptions]="options"
+       [leafletMarkerCluster]="mockMapData"
+       [leafletLayer]="currentLocationLayer"
+       [leafletMarkerClusterOptions]="markerClusterOptions"
        (leafletMapReady)="onMapReady($event)">
   </div>
-
 
 
   <div class="floating-menu">

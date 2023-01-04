@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { Onboarding1PageRoutingModule } from './onboarding1-routing.module';
+import { Onboarding1PageRoutingModule } from './onboarding-routing.module';
 
 import { OnboardingPage } from './onboarding.page';
 
