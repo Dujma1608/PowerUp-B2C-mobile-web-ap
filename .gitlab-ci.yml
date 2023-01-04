@@ -9,12 +9,9 @@ build-pwa:
         - npm uninstall -g ionic
         - npm install -g @ionic/cli
         - npm install
-        - ng add @angular/pwa
         - CI='' ionic build --prod
-  artifacts:
+    artifacts:
         paths:
             - public
-  only:
+    only:
         - develop
-
-
