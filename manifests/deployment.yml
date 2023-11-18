@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: powerupionic 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: powerupionic
+  template:
+    metadata:
+      labels:
+        app: powerupionic 
+    spec:
+      containers:
+        - name: powerupionic 
+          image: powerupdevcr.azurecr.io/powerupionic
+          ports:
+          - containerPort: 8080
