@@ -1,0 +1,29 @@
+stages:
+  - build
+
+build-pwa:
+  stage: build
+  image: node:18.10.0
+  before_script:
+  - apt-get update -qq
+  - apt-get install -qq git
+  # Setup SSH deploy keys
+  - 'which ssh-agent || ( apt-get install -qq openssh-client )'
+  - eval $(ssh-agent -s)
+  - ssh-add <(echo "$SSH_PRIVATE_KEY")
+  - mkdir -p ~/.ssh
+  - '[[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config'
+  script:
+        - npm install -g @angular/cli
+        - npm uninstall -g ionic
+        - npm install -g @ionic/cli
+        - npm install
+        - CI='' ionic build --prod
+        - rsync -a --progress --human-readable --delete
+          --exclude-from '.gitignore'
+          --exclude .gitignore
+         --exclude .git
+         /www
+         bitnami@54.196.221.232:/opt/bitnami/nginx/html/
+  only:
+      - develop

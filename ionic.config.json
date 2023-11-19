@@ -1,0 +1,7 @@
+{
+  "name": "cpms",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
