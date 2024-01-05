@@ -12,7 +12,7 @@ variables:
 
   # Container registry service connection established during pipeline creation
   dockerRegistryServiceConnection: '1039aee0-0b60-4ef9-9b8f-0ce471a5447e'
-  imageRepository: 'powerupfrontendbc'
+  imageRepository: 'powerupionic'
   containerRegistry: 'powerupacr.azurecr.io'
   dockerfilePath: '**/Dockerfile'
   tag: '$(Build.BuildId)'
