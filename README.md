@@ -7,6 +7,8 @@ There are also Dockerfiles available for running the webapp in a containerized e
 
 Webapp is running on port 8100
 
+CURRENT LIVE VERSION IS AVAILABLE AT http://20.76.171.185:8100/showroom
+
 ### Prerequisites
 
 - [NodeJS/npm](https://nodejs.org/en/download) installed
