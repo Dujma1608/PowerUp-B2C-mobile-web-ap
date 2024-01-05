@@ -15,6 +15,6 @@ spec:
     spec:
       containers:
         - name: powerupionic 
-          image: powerupdevcr.azurecr.io/powerupionic
+          image: powerupacr.azurecr.io/powerupionic
           ports:
           - containerPort: 8100
