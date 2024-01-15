@@ -1,0 +1,7 @@
+{
+  "name": "PowerUp.Frontend.B2C",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react-vite"
+}
