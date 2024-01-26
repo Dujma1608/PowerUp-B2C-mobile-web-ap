@@ -68,10 +68,6 @@
     text-align: center;
 }
 @media (min-width: 1366px) and (max-width: 1920px) {
-    .slider-container {
-            /* Adjust the height or other properties as needed for larger screens */
-            height: 100vh;
-        }
     
         .slider-slide {
             max-width: 30%;

@@ -20,13 +20,18 @@
 *{
     font-family: 'Montserrat', sans-serif;
 }
+ion-button{
+    text-transform: none;
+}
 .w200 {
     font-weight: 200;
 }
 .w400 {
     font-weight: 400;
 }
-
+.w500{
+    font-weight: 500;
+}
 .w600 {
     font-weight: 600;
 }

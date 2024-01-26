@@ -1,0 +1,27 @@
+.input ion-label{
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--ion-color-title)
+}
+.validator-message{
+    color: var(--red_01, #EA574B);
+    font-size: 10px;
+    font-weight: 400;
+}
+
+.input-login{
+    --placeholder-color: #A6A6A6;
+    --border-bottom: #A6A6A6;
+    --border-bottom: 2px solid var(--Gray_03, #F2F2F2);
+    
+    font-size: 12px;
+    border-bottom: var(--border-bottom);   
+}
+
+.error-message{
+    margin-top: 5px;
+    display: flex;
+    height: 10px;
+    align-items: center;
+}
+
