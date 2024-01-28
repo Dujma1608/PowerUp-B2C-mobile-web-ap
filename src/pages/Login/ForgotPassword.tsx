@@ -8,7 +8,12 @@ import { useHistory } from "react-router-dom";
 import "./ForgotPassword.css";
 import { arrowBackOutline } from "ionicons/icons";
 
-const ForgotPassword: React.FC = () => {
+interface Props {
+  handleNext: () => void;
+  setUserEmail: (email: string) => void;
+}
+
+const ForgotPassword: React.FC<Props> = ({ handleNext, setUserEmail }) => {
   const validationSchema = Yup.object({
     email: Yup.string()
       .required("Email is required")
@@ -24,7 +29,8 @@ const ForgotPassword: React.FC = () => {
       initialValues={{ email: "" }}
       onSubmit={(values) => {
         if (validationSchema.isValidSync(values)) {
-          history.push("/login/reset-password");
+          setUserEmail(values.email);
+          handleNext();
         }
       }}
     >
@@ -43,7 +49,12 @@ const ForgotPassword: React.FC = () => {
           </div>
           <div className="reset-container">
             <IonLabel className="title">Password reset</IonLabel>
-            <MyTextInput placeholder="Email" name="email" type="email" />
+            <MyTextInput
+              placeholder="Email"
+              name="email"
+              type="email"
+              handleChange={handleChange}
+            />
             <div className="buttons-container-next">
               <IonButton type="submit" className="login-button">
                 <span>Next</span>

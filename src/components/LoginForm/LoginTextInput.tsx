@@ -8,7 +8,6 @@ interface Props {
   placeholder: string;
   name: string;
   type?: "password" | "email";
-  value: string;
   showPasswordToggle?: boolean;
   handleChange: (e: any) => void;
 }
@@ -19,7 +18,6 @@ const LoginTextInput: React.FC<Props> = ({
   type,
   showPasswordToggle = true,
   handleChange,
-  value,
 }) => {
   const [field, meta, helpers] = useField(name);
   const [showPassword, setShowPassword] = useState(false);
@@ -35,10 +33,11 @@ const LoginTextInput: React.FC<Props> = ({
   return (
     <div className="input">
       <IonInput
+        id="loginInput"
         type={showPassword ? "text" : type}
         placeholder={placeholder}
-        value={value}
-        onIonChange={(e) => handleChange(e)}
+        {...field}
+        onIonInput={handleChange}
         className="input-login"
       >
         {type === "password" && showPasswordToggle && (

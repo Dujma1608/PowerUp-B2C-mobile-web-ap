@@ -4,7 +4,7 @@ import "./Register.css";
 
 const Register: React.FC = () => {
   return (
-    <IonPage>
+    <IonPage style={{ height: "100vh" }}>
       <IonContent>
         <RegisterForm />
       </IonContent>

@@ -8,16 +8,35 @@ import {
   IonLabel,
   IonText,
 } from "@ionic/react";
-import { Form, Formik } from "formik";
+import { Field, Form, Formik } from "formik";
 import MyTextInput from "../../app/common/form/MyTextInput";
 import * as Yup from "yup";
 import "./RegisterForm.css";
 import { Link, useHistory } from "react-router-dom";
 import { arrowBackOutline } from "ionicons/icons";
 import { registerValidation } from "../../utils/validation/FormValidation";
+import { useState } from "react";
 
 const RegisterForm: React.FC = () => {
+  const [initialValues, setInitialValues] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    confirmPassword: "",
+    agreeToTerms: false,
+  });
   const history = useHistory();
+
+  const handleChangeChecked = (e: any) => {
+    const { name, checked } = e.target;
+    console.log(checked);
+    console.log(name);
+    setInitialValues((prevValues) => ({
+      ...prevValues,
+      [name]: checked,
+    }));
+  };
 
   return (
     <Formik
@@ -29,10 +48,11 @@ const RegisterForm: React.FC = () => {
         email: "",
         password: "",
         confirmPassword: "",
+        agreeToTerms: false,
       }}
       onSubmit={(values) => console.log(values)}
     >
-      {({ values, handleChange, handleSubmit, touched, errors }) => (
+      {({ values, handleChange, handleSubmit, isValid, dirty }) => (
         <Form
           className="register-form"
           autoComplete="off"
@@ -56,15 +76,13 @@ const RegisterForm: React.FC = () => {
               placeholder="First Name"
               name="firstName"
               type="text"
-              value={values.firstName}
               handleChange={handleChange}
             />
             <MyTextInput
               label="Last Name (optional)"
               placeholder="Last Name"
-              name="firstName"
+              name="lastName"
               type="text"
-              value={values.lastName}
               handleChange={handleChange}
             />
             <MyTextInput
@@ -72,7 +90,7 @@ const RegisterForm: React.FC = () => {
               type="email"
               name="email"
               placeholder="Email"
-              value={values.email}
+              showGreenTick={true}
               handleChange={handleChange}
             />
             <MyTextInput
@@ -81,7 +99,6 @@ const RegisterForm: React.FC = () => {
               name="password"
               type="password"
               showGreenTick={true}
-              value={values.password}
               handleChange={handleChange}
             />
             <MyTextInput
@@ -90,13 +107,18 @@ const RegisterForm: React.FC = () => {
               placeholder="Confirm Password"
               name="confirmPassword"
               showGreenTick={true}
-              value={values.confirmPassword}
               handleChange={handleChange}
             />
           </div>
           <div className="bottom-container">
             <div className="checkbox-container">
-              <IonCheckbox />
+              <Field
+                style={{ width: "16px", height: "16px", marginRight: "8px" }}
+                type="checkbox"
+                name="agreeToTerms"
+                checked={values.agreeToTerms}
+                value={values.agreeToTerms}
+              />
               <IonText>
                 I agree to the{" "}
                 <Link className="blue-no-underline" to="/termsAndConditions">
@@ -106,7 +128,11 @@ const RegisterForm: React.FC = () => {
               </IonText>
             </div>
             <div>
-              <IonButton className="register-button" type="submit">
+              <IonButton
+                className="register-button"
+                type="submit"
+                disabled={!isValid || !dirty}
+              >
                 <span>Continue</span>
               </IonButton>
             </div>
