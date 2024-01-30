@@ -1,0 +1,32 @@
+.modal-container{
+    padding: 0px 32px;
+    height: 100%;
+}
+.header-flex{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+.flex-row{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.flex-row p{
+    margin: 0;
+    padding: 0;
+}
+.line-item-divider {
+    border-top: 1px solid #F2F2F2;
+    margin: 5px 0;
+}
+.energize-title{
+    font-size: 16px;
+    font-weight: 700;
+    margin-top: 32px;
+    margin-bottom: 0;
+}
+.address{
+    font-size: 14px;
+    color: #A6A6A6;
+}

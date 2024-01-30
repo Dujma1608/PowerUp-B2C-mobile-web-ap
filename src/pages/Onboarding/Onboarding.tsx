@@ -57,6 +57,7 @@ const Onboarding: React.FC = () => {
             </Link>
           )}
         </div>
+        <Link to="/home">GO TO HOME</Link>
       </div>
     </IonPage>
   );

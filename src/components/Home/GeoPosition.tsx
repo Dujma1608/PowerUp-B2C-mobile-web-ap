@@ -15,10 +15,9 @@ const GeoPosition: React.FC<Props> = ({ onLocationChange }) => {
       try {
         const currentPosition = await Geolocation.getCurrentPosition();
         const { latitude, longitude } = currentPosition.coords;
-        console.log("Visin", latitude);
-        console.log("sirina", longitude);
+        // console.log("Visin", latitude);
+        // console.log("sirina", longitude);
 
-        // Update the position state with the current coordinates
         setPosition([latitude, longitude]);
         onLocationChange([latitude, longitude]);
       } catch (error) {

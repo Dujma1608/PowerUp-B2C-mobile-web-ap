@@ -1,0 +1,22 @@
+.flex{
+    display: flex;
+    justify-content: space-between;
+}
+.flex-little{
+    display: flex;
+    align-items:baseline;
+    gap: 10px;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+.title{
+    font-size: 12px;
+    font-weight: 400;
+    color: #021F0E;
+}
+.availability{
+    font-size: 10px;
+    color: #A6A6A6;
+}

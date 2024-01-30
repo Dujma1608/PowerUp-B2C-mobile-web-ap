@@ -17,15 +17,27 @@ import {
 import "./Home.css";
 import { location, person } from "ionicons/icons";
 import { Redirect, Route } from "react-router";
-import Map from "../../components/Home/Map";
+import Map from "../../components/Home/MyMap";
 import { useState } from "react";
 import "./Home.css";
 import mainIcon from "../../assets/images/MainButtonIcon.png";
+import MyMap from "../../components/Home/MyMap";
+import MarkerModal from "../../components/Home/MarkerModal/MarkerModal";
 
 const Home: React.FC = () => {
   const [activeTab, setActiveTab] = useState("location");
+  const [popupVisible, setPopupVisible] = useState(false);
+
+  const handleMarkerClick = () => {
+    setPopupVisible(true);
+  };
+
+  const handleClosePopup = () => {
+    setPopupVisible(false);
+  };
+
   return (
-    <IonPage className="home-page">
+    <IonPage>
       <IonSearchbar
         placeholder="Search anything"
         style={{
@@ -37,8 +49,9 @@ const Home: React.FC = () => {
           "--border-radius": "10px",
         }}
       />
-      <IonContent className="home-screen">
-        <Map />
+      <IonContent fullscreen>
+        <MyMap onMarkerClick={handleMarkerClick} />
+        {popupVisible && <MarkerModal onClose={handleClosePopup} />}
         <div
           style={{
             position: "fixed",
@@ -75,31 +88,3 @@ const Home: React.FC = () => {
 };
 
 export default Home;
-
-{
-  /* <IonTabs>
-  <IonTabBar slot="bottom">
-
-    <IonTabButton
-      tab="location"
-      href="/location"
-      onClick={() => setActiveTab("location")}
-      selected={activeTab === "location"}
-    >
-
-      <IonIcon name="location"></IonIcon>
-    </IonTabButton>
-
-
-    <IonTabButton
-      tab="user"
-      href="/user"
-      onClick={() => setActiveTab("user")}
-      selected={activeTab === "user"}
-    >
-
-      <IonIcon name="person"></IonIcon>
-    </IonTabButton>
-  </IonTabBar>
-</IonTabs> */
-}
