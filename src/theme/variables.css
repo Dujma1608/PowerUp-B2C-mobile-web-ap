@@ -3,8 +3,10 @@ http://ionicframework.com/docs/theming/ */
 
 /* Default Dark Theme Styles */
 :root {
+  --ion-color-title: #021F0E;
+  --ion-color-subtitle: #A6A6A6;
   /** primary **/
-  --ion-color-primary: #3880ff;
+  --ion-color-primary: #0AB051;
   --ion-color-primary-rgb: 56, 128, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -78,7 +80,7 @@ http://ionicframework.com/docs/theming/ */
 
 /* Light Theme Styles */
 body {
-  --ion-color-primary: #428cff;
+  --ion-color-primary: #0AB051;
   --ion-color-primary-rgb: 66, 140, 255;
   --ion-color-primary-contrast: #ffffff;
   --ion-color-primary-contrast-rgb: 255, 255, 255;
@@ -144,11 +146,7 @@ body {
 
 /* Additional Dark Theme Styles (if needed) */
 @media (prefers-color-scheme: dark) {
-  :root,
-  body {
-      --ion-color-primary: #428cff;
-      --ion-color-primary-rgb: 66, 140, 255;
-    }
+  :root{}
 }
 
 /* Additional Light Theme Styles (if needed) */

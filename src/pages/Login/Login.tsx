@@ -1,12 +1,14 @@
 import React from "react";
-import { IonPage, IonText } from "@ionic/react";
+import { IonContent, IonPage } from "@ionic/react";
+import "./Login.css";
+import LoginForm from "../../components/LoginForm/LoginForm";
 
 const Login: React.FC = () => {
   return (
     <IonPage>
-      <IonText>
-        <h1>Login Page</h1>
-      </IonText>
+      <IonContent>
+        <LoginForm />
+      </IonContent>
     </IonPage>
   );
 };
