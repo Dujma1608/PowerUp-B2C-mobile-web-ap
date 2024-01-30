@@ -1,6 +1,6 @@
 import { IonButton, IonIcon, IonInput, IonLabel, IonText } from "@ionic/react";
 import { Field, useField } from "formik";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./MyTextInput.css";
 import { eyeOffOutline, eyeOutline, checkmarkSharp } from "ionicons/icons";
 
@@ -8,7 +8,6 @@ interface Props {
   placeholder: string;
   name: string;
   label?: string;
-  value: string;
   type?: "text" | "password" | "email";
   showGreenTick?: boolean;
   handleChange: (e: any) => void;
@@ -20,7 +19,6 @@ const MyTextInput: React.FC<Props> = ({
   label,
   type,
   showGreenTick,
-  value,
   handleChange,
 }) => {
   const [field, meta, helpers] = useField(name);
@@ -32,17 +30,28 @@ const MyTextInput: React.FC<Props> = ({
         type={type}
         placeholder={placeholder}
         {...field}
-        value={value}
-        onIonChange={(e) => handleChange(e)}
+        onIonInput={handleChange}
         className="input-login"
       >
-        {showGreenTick && meta.error && field.value && (
-          <IonIcon
-            style={{ color: "#0AB051", fontSize: "24px" }}
-            icon={checkmarkSharp}
-            slot="end"
-          />
-        )}
+        <IonButton
+          fill="clear"
+          disabled={true}
+          style={{
+            margin: 0,
+            padding: 0,
+            border: "none",
+            background: "none",
+          }}
+          slot="end"
+        >
+          {showGreenTick && !meta.error ? (
+            <IonIcon
+              style={{ color: "#0AB051", fontSize: "24px" }}
+              icon={checkmarkSharp}
+              slot="end"
+            />
+          ) : null}
+        </IonButton>
       </IonInput>
       <div className="error-message">
         {meta.touched && meta.error ? (

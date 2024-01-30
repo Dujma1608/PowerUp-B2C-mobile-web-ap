@@ -8,13 +8,22 @@ import { useHistory } from "react-router-dom";
 import "./ForgotPassword.css";
 import { arrowBackOutline } from "ionicons/icons";
 import "./NewPassword.css";
+import LoginTextInput from "../../components/LoginForm/LoginTextInput";
 
-const NewPassword: React.FC = () => {
+interface Props {
+  userEmail: string;
+  goBack: () => void;
+}
+
+const NewPassword: React.FC<Props> = ({ userEmail, goBack }) => {
   const validationSchema = Yup.object({
     email: Yup.string()
       .required("Email is required")
       .email("Incorrect email or password"),
     password: Yup.string().required("Password is required"),
+    confirmPassword: Yup.string()
+      .oneOf([Yup.ref("password")], "Passwords must match")
+      .required("Confirm password is required"),
   });
 
   const isFormSubmittedRef = useRef(false);
@@ -23,27 +32,24 @@ const NewPassword: React.FC = () => {
   return (
     <Formik
       validationSchema={validationSchema}
-      validateOnMount={false}
-      initialValues={{ email: "", password: "" }}
-      onSubmit={(values, { setSubmitting, submitForm }) => {
-        if (!isFormSubmittedRef.current) {
-          // Manually trigger validation
-          isFormSubmittedRef.current = true;
-          setSubmitting(false);
+      validateOnMount={true}
+      initialValues={{
+        email: userEmail,
+        password: "",
+        confirmPassword: "",
+      }}
+      onSubmit={(values) => {
+        if (validationSchema.isValidSync(values)) {
+          console.log(values);
+          history.push("/login");
         }
-        // Handle further submission logic if needed
-        console.log(values);
       }}
     >
       {({ values, handleChange, handleSubmit }) => (
         <Form className="reset-form" autoComplete="off">
           <div>
             <div className="back-container">
-              <IonButton
-                className="backButton"
-                slot="start"
-                onClick={() => history.push("/login/forgot-password")}
-              >
+              <IonButton className="backButton" slot="start" onClick={goBack}>
                 <IonIcon icon={arrowBackOutline} />
               </IonButton>
             </div>
@@ -51,20 +57,24 @@ const NewPassword: React.FC = () => {
           <div className="reset-container">
             <IonLabel className="title">Set new password for</IonLabel>
             <div className="reset-input-container">
-              <MyTextInput placeholder="Email" name="email" type="email" />
               <MyTextInput
-                label="Password"
+                type="email"
+                name="email"
+                placeholder="Email"
+                showGreenTick={true}
+                handleChange={handleChange}
+              />
+              <LoginTextInput
                 placeholder="Password"
                 name="password"
                 type="password"
-                showPasswordToggle={false}
+                handleChange={handleChange}
               />
-              <MyTextInput
-                label="Confirm Password"
+              <LoginTextInput
                 type="password"
                 placeholder="Confirm Password"
-                name="password"
-                showPasswordToggle={false}
+                name="confirmPassword"
+                handleChange={handleChange}
               />
             </div>
             <div className="reset-button">

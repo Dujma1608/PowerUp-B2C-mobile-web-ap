@@ -1,8 +1,8 @@
-import { IonButton, IonInput, IonLabel, IonText } from "@ionic/react";
+import { IonButton, IonLabel, IonText } from "@ionic/react";
 import "../../pages/Login/Login.css";
-import { useRef, useState } from "react";
-import { ErrorMessage, Form, Formik } from "formik";
-import { Link, useHistory } from "react-router-dom";
+import { useState } from "react";
+import { Form, Formik } from "formik";
+import { Link } from "react-router-dom";
 import { useStore } from "../../app/stores/store";
 import { loginValidation } from "../../utils/validation/FormValidation";
 import LoginTextInput from "./LoginTextInput";
@@ -16,15 +16,13 @@ const LoginForm: React.FC = () => {
     password: "",
   };
 
-  const history = useHistory();
-
   return (
     <Formik
       validationSchema={loginValidation}
       initialValues={initialValues}
       onSubmit={(values) => console.log(values)}
     >
-      {({ handleSubmit, values, handleChange }) => (
+      {({ handleSubmit, handleChange }) => (
         <Form className="login-form" autoComplete="off" onSubmit={handleSubmit}>
           <div className="titles-container">
             <IonLabel className="title">Login to your account</IonLabel>
@@ -37,14 +35,12 @@ const LoginForm: React.FC = () => {
               placeholder="Email"
               name="email"
               type="email"
-              value={values.email}
               handleChange={handleChange}
             />
             <LoginTextInput
               type="password"
               placeholder="Password"
               name="password"
-              value={values.password}
               handleChange={handleChange}
             />
           </div>
@@ -56,7 +52,7 @@ const LoginForm: React.FC = () => {
             <IonText className="forgot-password">
               <Link
                 style={{ textDecoration: "none", color: "#021F0E" }}
-                to="/login/forgot-password"
+                to="/login/password-reset"
               >
                 Forgot Password?
               </Link>
@@ -66,10 +62,7 @@ const LoginForm: React.FC = () => {
               <div className="divider-line"></div>
               <div className="or-text">or</div>
             </div>
-            <IonButton
-              className="create-account-button"
-              onClick={() => history.push("/register")}
-            >
+            <IonButton className="create-account-button" href="/register">
               <span>Create an Account</span>
             </IonButton>
           </div>
