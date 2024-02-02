@@ -1,4 +1,3 @@
-import { IonButton, IonLoading } from "@ionic/react";
 import { useEffect, useState } from "react";
 import { Geolocation } from "@capacitor/geolocation";
 import { Marker } from "react-leaflet";

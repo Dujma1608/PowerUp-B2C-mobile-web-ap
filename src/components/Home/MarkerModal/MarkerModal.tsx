@@ -1,21 +1,12 @@
 import React, { useRef, useState } from "react";
-import {
-  IonButton,
-  IonModal,
-  IonContent,
-  IonTitle,
-  IonGrid,
-  IonRow,
-  IonCol,
-  IonItem,
-  IonText,
-} from "@ionic/react";
-import { close } from "ionicons/icons";
+import { IonButton, IonModal, IonContent } from "@ionic/react";
 import "./MarkerModal.css"; // Import your CSS file for styling
 import ChargerTable from "./ChargerTable";
 
 interface Props {
   onClose: () => void;
+  geoCode: [number, number];
+  connectorsNumber: number;
 }
 
 const MarkerModal: React.FC<Props> = ({ onClose }) => {
@@ -56,7 +47,8 @@ const MarkerModal: React.FC<Props> = ({ onClose }) => {
           <ChargerTable />
           <ChargerTable />
           <IonButton
-            style={{ marginTop: "20px", width: "100%" }}
+            className="login-button"
+            style={{ marginTop: "32px", width: "100%" }}
             onClick={onClose}
           >
             Go to Maps

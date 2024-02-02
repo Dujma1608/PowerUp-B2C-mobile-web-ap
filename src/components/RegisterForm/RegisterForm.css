@@ -60,6 +60,11 @@
     --border-radius: 10px;
     height: 48px;
 }
+[type="checkbox"]:checked {
+    background-color: #3ACE7A;
+    appearance: none;
+    /* Set your desired color */
+}
 /* .register-button[disabled]{
     --background: #F2F2F2;
 }

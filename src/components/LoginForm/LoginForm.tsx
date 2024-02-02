@@ -2,14 +2,15 @@ import { IonButton, IonLabel, IonText } from "@ionic/react";
 import "../../pages/Login/Login.css";
 import { useState } from "react";
 import { Form, Formik } from "formik";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useStore } from "../../app/stores/store";
-import { loginValidation } from "../../utils/validation/FormValidation";
+import { loginValidation } from "../FormUtils/Validation";
 import LoginTextInput from "./LoginTextInput";
 
 const LoginForm: React.FC = () => {
   const { userStore } = useStore();
   const [showPassword, setShowPassword] = useState(false);
+  const history = useHistory();
 
   const initialValues = {
     email: "",
@@ -20,12 +21,17 @@ const LoginForm: React.FC = () => {
     <Formik
       validationSchema={loginValidation}
       initialValues={initialValues}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={(values) => {
+        if (loginValidation.isValidSync(values)) {
+          console.log(values);
+          history.push("/home");
+        }
+      }}
     >
       {({ handleSubmit, handleChange }) => (
         <Form className="login-form" autoComplete="off" onSubmit={handleSubmit}>
           <div className="titles-container">
-            <IonLabel className="title">Login to your account</IonLabel>
+            <IonLabel className="title-login">Login to your account</IonLabel>
             <IonText className="login-subtitle">
               Please enter your credentials to proceed
             </IonText>

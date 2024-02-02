@@ -9,6 +9,7 @@ const ChargerTable: React.FC = () => {
       <div>
         <Connector />
         <Connector />
+        <Connector />
       </div>
     </div>
   );

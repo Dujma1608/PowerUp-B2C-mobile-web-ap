@@ -17,23 +17,24 @@ import {
 import "./Home.css";
 import { location, person } from "ionicons/icons";
 import { Redirect, Route } from "react-router";
-import Map from "../../components/Home/MyMap";
+import Map from "../../components/Home/Map/MyMap";
 import { useState } from "react";
 import "./Home.css";
 import mainIcon from "../../assets/images/MainButtonIcon.png";
-import MyMap from "../../components/Home/MyMap";
+import MyMap from "../../components/Home/Map/MyMap";
 import MarkerModal from "../../components/Home/MarkerModal/MarkerModal";
+import BarcodeScanner from "../../components/Home/QR Scanner/BarcodeScanner";
 
 const Home: React.FC = () => {
   const [activeTab, setActiveTab] = useState("location");
-  const [popupVisible, setPopupVisible] = useState(false);
+  const [showScannerModal, setShowScannerModal] = useState(false);
 
-  const handleMarkerClick = () => {
-    setPopupVisible(true);
+  const openScannerModal = () => {
+    setShowScannerModal(true);
   };
 
-  const handleClosePopup = () => {
-    setPopupVisible(false);
+  const closeScannerModal = () => {
+    setShowScannerModal(false);
   };
 
   return (
@@ -50,8 +51,7 @@ const Home: React.FC = () => {
         }}
       />
       <IonContent fullscreen>
-        <MyMap onMarkerClick={handleMarkerClick} />
-        {popupVisible && <MarkerModal onClose={handleClosePopup} />}
+        <MyMap />
         <div
           style={{
             position: "fixed",
@@ -78,11 +78,16 @@ const Home: React.FC = () => {
               </IonTabButton>
             </IonTabBar>
           </IonTabs>
-          <IonButton className="circular-button" style={{ zIndex: 1000 }}>
+          <IonButton
+            className="circular-button"
+            style={{ zIndex: 1000 }}
+            onClick={openScannerModal}
+          >
             <img src={mainIcon} />
           </IonButton>
         </div>
       </IonContent>
+      {showScannerModal && <BarcodeScanner onClose={closeScannerModal} />}
     </IonPage>
   );
 };

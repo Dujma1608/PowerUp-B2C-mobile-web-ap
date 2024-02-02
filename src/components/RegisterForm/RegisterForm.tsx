@@ -14,7 +14,7 @@ import * as Yup from "yup";
 import "./RegisterForm.css";
 import { Link, useHistory } from "react-router-dom";
 import { arrowBackOutline } from "ionicons/icons";
-import { registerValidation } from "../../utils/validation/FormValidation";
+import { registerValidation } from "../FormUtils/Validation";
 import { useState } from "react";
 
 const RegisterForm: React.FC = () => {
@@ -50,7 +50,12 @@ const RegisterForm: React.FC = () => {
         confirmPassword: "",
         agreeToTerms: false,
       }}
-      onSubmit={(values) => console.log(values)}
+      onSubmit={(values) => {
+        if (registerValidation.isValidSync(values)) {
+          console.log(values);
+          history.push("/home");
+        }
+      }}
     >
       {({ values, handleChange, handleSubmit, isValid, dirty }) => (
         <Form
@@ -68,7 +73,9 @@ const RegisterForm: React.FC = () => {
             </IonButton>
           </div>
           <div className="titles-container">
-            <IonLabel className="title">Please enter your details</IonLabel>
+            <IonLabel className="title-login">
+              Please enter your details
+            </IonLabel>
           </div>
           <div className="input-container">
             <MyTextInput
@@ -113,7 +120,11 @@ const RegisterForm: React.FC = () => {
           <div className="bottom-container">
             <div className="checkbox-container">
               <Field
-                style={{ width: "16px", height: "16px", marginRight: "8px" }}
+                style={{
+                  width: "16px",
+                  height: "16px",
+                  marginRight: "8px",
+                }}
                 type="checkbox"
                 name="agreeToTerms"
                 checked={values.agreeToTerms}
