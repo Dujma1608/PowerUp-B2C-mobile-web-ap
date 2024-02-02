@@ -15,9 +15,7 @@ interface Props {
 
 const ForgotPassword: React.FC<Props> = ({ handleNext, setUserEmail }) => {
   const validationSchema = Yup.object({
-    email: Yup.string()
-      .required("Email is required")
-      .email("Incorrect email or password"),
+    email: Yup.string().required("Email is required").email("Incorrect email"),
   });
 
   const isFormSubmittedRef = useRef(false);
@@ -48,7 +46,7 @@ const ForgotPassword: React.FC<Props> = ({ handleNext, setUserEmail }) => {
             </div>
           </div>
           <div className="reset-container">
-            <IonLabel className="title">Password reset</IonLabel>
+            <IonLabel className="title-login">Password reset</IonLabel>
             <MyTextInput
               placeholder="Email"
               name="email"

@@ -1,0 +1,44 @@
+/* ScannerComponent.css */
+.scanner-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 100px;
+    background-color: black;
+    /* Adjust height as needed */
+}
+
+.black-background {
+    background-color: black;
+    padding: 16px;
+    /* Add padding to give space around the square */
+}
+
+.square-border {
+    border: 2px solid white;
+    /* White borders around the square */
+    width: 200px;
+    /* Adjust the width of the square as needed */
+    height: 200px;
+    /* Adjust the height of the square as needed */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.text-container{
+    padding: 10px;
+    text-align: center;
+}
+.scan-title{
+    color: white;
+    font-size: 18px;
+    font-weight: 600;
+}
+.text-container p{
+    color: gray;
+    width: 60%;
+    margin: 0 auto;
+    font-size: 10px;
+}

@@ -10,6 +10,7 @@
 .flex-column{
     display: flex;
     flex-direction: column;
+    justify-content: center;
 }
 .title{
     font-size: 12px;
@@ -19,4 +20,11 @@
 .availability{
     font-size: 10px;
     color: #A6A6A6;
+    margin-bottom: 15px;
+}
+.marginzero{
+    margin: 0;
+}
+p{
+    margin: 0;
 }

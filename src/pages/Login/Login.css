@@ -13,7 +13,7 @@
     align-items: flex-start;
     gap: 10px;
 }
-.title {
+.title-login {
     --font-size: 18px;
     --font-weight: 600;
 

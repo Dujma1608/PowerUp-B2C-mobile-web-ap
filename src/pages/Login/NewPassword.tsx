@@ -20,7 +20,9 @@ const NewPassword: React.FC<Props> = ({ userEmail, goBack }) => {
     email: Yup.string()
       .required("Email is required")
       .email("Incorrect email or password"),
-    password: Yup.string().required("Password is required"),
+    password: Yup.string()
+      .min(6, "Password must be at least 6 characters")
+      .required("Password is required"),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password")], "Passwords must match")
       .required("Confirm password is required"),
@@ -55,7 +57,7 @@ const NewPassword: React.FC<Props> = ({ userEmail, goBack }) => {
             </div>
           </div>
           <div className="reset-container">
-            <IonLabel className="title">Set new password for</IonLabel>
+            <IonLabel className="title-login">Set new password for</IonLabel>
             <div className="reset-input-container">
               <MyTextInput
                 type="email"
