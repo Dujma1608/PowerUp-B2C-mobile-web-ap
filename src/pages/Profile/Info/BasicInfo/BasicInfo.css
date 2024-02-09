@@ -1,0 +1,13 @@
+.basic-input{
+    width: 100%;
+    
+    --placeholder-color: #A6A6A6;
+    --border-bottom: #A6A6A6;
+     --border-bottom: 2px solid #F2F2F2;
+    
+    font-size: 12px;
+    border-bottom: var(--border-bottom);
+}
+.close-button{
+    --color: transparent;
+}

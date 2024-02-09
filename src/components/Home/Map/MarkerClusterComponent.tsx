@@ -1,13 +1,14 @@
 import L from "leaflet";
 import { useEffect, useState } from "react";
 import { useMap } from "react-leaflet";
-import { MyMarker, markers } from "../utils/utils";
+import { MyMarker, markers } from "../../utils/utils";
 import "leaflet.markercluster/dist/leaflet.markercluster";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
-import { CustomMarkerIcon } from "../utils/utils";
+import { CustomMarkerIcon } from "../../utils/utils";
 import { CustomMarker, CustomMarkerOptions } from "./CustomMarkerClass";
 import MarkerModal from "../MarkerModal/MarkerModal";
+import ConfirmInfo from "../../Charging/ConfirmInfoModal/ConfirmInfo";
 
 const MarkerClusterComponent: React.FC = () => {
   const map = useMap();
@@ -60,14 +61,15 @@ const MarkerClusterComponent: React.FC = () => {
 
   return (
     <>
-      {/* Render the MarkerModal when a marker is selected */}
-      {selectedMarker && (
-        <MarkerModal
-          onClose={closeMarkerModal}
-          geoCode={selectedMarker.geoCode}
-          connectorsNumber={selectedMarker.connectorsNumber}
-        />
-      )}
+      {selectedMarker && <ConfirmInfo />}
+      {/* {selectedMarker && <MarkerModal onClose={closeMarkerModal} />} */}
+      <style>
+        {`
+          .leaflet-cluster-spiderfy {
+            box-shadow: none !important;
+          }
+        `}
+      </style>
     </>
   );
 };

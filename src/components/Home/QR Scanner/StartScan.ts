@@ -1,18 +1,36 @@
-import { BarcodeScanner } from "@capacitor-community/barcode-scanner";
+import {
+  BarcodeScanner,
+  SupportedFormat,
+} from "@capacitor-community/barcode-scanner";
+import { useHistory } from "react-router";
 
-export const startScan = async () => {
-  // Check camera permission
-  // This is just a simple example, check out the better checks below
-  await BarcodeScanner.checkPermission({ force: true });
+export const handleScan = async () => {
+  const history = useHistory();
+  try {
+    const result = await BarcodeScanner.startScan({
+      targetedFormats: [SupportedFormat.QR_CODE],
+    });
 
-  // make background of WebView transparent
-  // note: if you are using ionic this might not be enough, check below
-  BarcodeScanner.hideBackground();
+    if (!result.hasContent) {
+      console.log("Scan cancelled");
+    } else {
+      console.log("QR Code scanned:", result.content);
 
-  const result = await BarcodeScanner.startScan(); // start scanning and wait for a result
+      history.push("/home");
+    }
+  } catch (error) {
+    console.error("Error scanning QR Code:", error);
+  }
+};
 
-  // if the result has content
-  if (result.hasContent) {
-    console.log(result.content); // log the raw scanned content
+const checkPermission = async () => {
+  try {
+    const status = await BarcodeScanner.checkPermission({ force: true });
+    if (status.granted) {
+      return true;
+    }
+    return false;
+  } catch (error) {
+    console.log("Permission error", error);
   }
 };

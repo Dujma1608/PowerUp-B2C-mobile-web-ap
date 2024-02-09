@@ -3,8 +3,9 @@ import { MapContainer, TileLayer } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 import "./Map.css";
 import "./MarkerNumber.css";
-import { MAP_URL } from "../utils/utils";
+import { MAP_URL } from "../../utils/utils";
 import MarkerClusterComponent from "./MarkerClusterComponent";
+import GeoPosition from "./GeoPosition";
 
 const MyMap: React.FC = () => {
   const center: [number, number] = [45.778, 15.9151];
@@ -35,7 +36,7 @@ const MyMap: React.FC = () => {
       />
       <MarkerClusterComponent />
       {/* Display current location marker */}
-      {/* <GeoPosition onLocationChange={handleLocationChange} /> */}
+      <GeoPosition onLocationChange={handleLocationChange} />
     </MapContainer>
   );
 };

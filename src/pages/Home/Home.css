@@ -1,6 +1,6 @@
 .circular-button {
-    position: absolute;
-    bottom: 0px;
+    position: relative;
+    bottom: 75px;
     left: 50%;
     transform: translateX(-50%);
     --background: transparent;
@@ -8,9 +8,21 @@
     padding: 15px;
     --box-shadow: 0;
 }
+.tab-bar{
+    height: 100%;
+}
+.tab-button{
+    max-width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .circular-button img{
-    width: 92px;
-    height: 92px;
+    width: 95px;
+    height: 95px;
+}
+.scanMode{
+    display: none;
 }
 @media (min-width: 1366px) and (max-width: 1920px) {
 

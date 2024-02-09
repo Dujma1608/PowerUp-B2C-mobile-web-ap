@@ -42,12 +42,14 @@ const LoginForm: React.FC = () => {
               name="email"
               type="email"
               handleChange={handleChange}
+              isLogin={false}
             />
             <LoginTextInput
               type="password"
               placeholder="Password"
               name="password"
               handleChange={handleChange}
+              isLogin={false}
             />
           </div>
           <div className="buttons-container-login">
