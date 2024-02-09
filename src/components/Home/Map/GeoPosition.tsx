@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Geolocation } from "@capacitor/geolocation";
-import { Marker } from "react-leaflet";
+import { CircleMarker, Marker, ZoomControl } from "react-leaflet";
 
 interface Props {
   onLocationChange: (location: [number, number]) => void;
@@ -18,6 +18,7 @@ const GeoPosition: React.FC<Props> = ({ onLocationChange }) => {
         // console.log("sirina", longitude);
 
         setPosition([latitude, longitude]);
+        console.log([latitude, longitude]);
         onLocationChange([latitude, longitude]);
       } catch (error) {
         console.error("Error getting location:", error);
@@ -27,6 +28,10 @@ const GeoPosition: React.FC<Props> = ({ onLocationChange }) => {
     getLocation();
   }, []);
 
-  return position ? <Marker position={position}></Marker> : null;
+  return position ? (
+    <>
+      <Marker position={position}></Marker>
+    </>
+  ) : null;
 };
 export default GeoPosition;

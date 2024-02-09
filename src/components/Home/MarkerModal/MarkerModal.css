@@ -2,6 +2,9 @@
     padding: 0px 32px;
     height: 100%;
 }
+.custom-modal {
+    --border-radius: 12px;
+}
 .header-flex{
     display: flex;
     flex-direction: column;
@@ -26,7 +29,7 @@
     margin-top: 32px;
     margin-bottom: 0;
 }
-.address{
+.address-this{
     font-size: 14px;
     color: #A6A6A6;
     margin-top: 10px;

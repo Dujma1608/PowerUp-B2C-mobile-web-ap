@@ -1,0 +1,37 @@
+.payment-input{
+    --placeholder-color: #A6A6A6;
+    --border-bottom: #A6A6A6;
+    --border-bottom: 2px solid #F2F2F2;
+    
+    font-size: 12px;
+    font-weight: 500;
+    border-bottom: var(--border-bottom);
+    margin: 10px 0px;
+}
+.flex-payment{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.input-width{
+    width: 45%;
+}
+/* Custom styling for the select */
+.custom-select {
+    width: 100%;
+    padding: 10px 35px;
+    border: none;
+    color: #000000;
+    border-bottom: 2px solid #F2F2F2;
+    background-color: #fff;
+    font-size: 12px;
+    background-image: url('../../../assets/images/croatia.png');
+        /* Path to Croatia flag image */
+    background-repeat: no-repeat;
+    background-position: 10px center;
+    background-size: 20px;
+}
+.custom-select:disabled{
+    opacity: 1;
+}
+

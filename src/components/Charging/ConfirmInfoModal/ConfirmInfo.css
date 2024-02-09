@@ -1,0 +1,64 @@
+.confirm-info-container{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 15px 20px;
+}
+p{
+    padding: 10px 0;
+    margin: 5px 0;
+}
+.header-container{
+    margin-bottom: 35px;
+}
+.custom-modal {
+    --border-radius: 12px;
+}
+.confirm-line-item-divider {
+    border-top: 2px solid #F2F2F2;
+    margin: 5px 0;
+}
+.container{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.flex{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #F2F2F2;
+}
+
+.category{
+    font-size: 12px;
+    color: #A6A6A6;
+}
+.address{
+    font-size: 16px;
+    color: #021F0E;
+}
+.buttons-info-container{
+    box-shadow: 0px -3px 10px 0px rgb(0, 0, 0, 0.04);
+    width: 90%;
+    margin: 0 auto;
+}
+ion-button.payment-button{
+    width: 100%;
+    --background: transparent;
+    --box-shadow: none;
+    color: black;
+    border-radius: 8px;
+    padding-top: 6px;
+    padding-bottom: 6px;
+    border: 1px solid #F2F2F2;
+}
+ion-button.stop-button {
+    width: 100%;
+    --background: #F2F2F2;
+    --color: #A6A6A6;
+    --box-shadow: none;
+    --padding-top: 20px;
+    --padding-bottom: 20px;
+    --border-radius: 8px;
+}

@@ -1,0 +1,35 @@
+.flex-column{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 40px;
+    padding: 10px 25px;
+}
+.text-flex{
+    text-align: center;
+    max-width: 100%;
+    margin: 20px auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.title-header{
+    font-size: 32px;
+    color: #021F0E;
+}
+.subtitle{
+    font-size: 14px;
+    color: #A6A6A6;
+}
+.connect-car{
+    
+}
+.spinner{
+    
+}
+ion-spinner {
+    width: 50px;
+    height: 50px;
+}

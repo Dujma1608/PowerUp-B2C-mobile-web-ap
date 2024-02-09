@@ -1,0 +1,57 @@
+.accountInfo-header {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 0 auto;
+    padding: 10px;
+    position: relative;
+}
+
+.circle-info{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background: #F2F2F2;
+    margin-top: 20px;
+    width: 92px;
+    height: 92px;
+    position: relative;
+}
+.account-info-buttons{
+    width: 90%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+.small-circle{
+    position: absolute;
+    top: 55%;
+    right: calc(23% + 14vw);
+    transform: translate(0%, 60%);
+    background: #FFFFFF;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    box-shadow: 0px 4px 4px 0px rgb(0, 0, 0, 0.1);
+}
+.delete{
+    width: 100%;
+    --color: black;
+    --border-radius: 8px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    --background: transparent;
+    --box-shadow: none;
+}
+.backButton{
+    width: 17%;
+    --background: transparent;
+    --box-shadow: none;
+    margin-top: 10px;
+    margin-bottom: 35px;
+}

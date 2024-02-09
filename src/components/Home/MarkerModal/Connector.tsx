@@ -12,7 +12,7 @@ const Connector: React.FC = () => {
           <p className="title w700">DC</p>
           <p className="availability w400 marginzero">Occupied</p>
         </div>
-        <p className="availability">May Power: 300kW</p>
+        <p className="availability">Max Power: 300kW</p>
       </div>
     </div>
   );

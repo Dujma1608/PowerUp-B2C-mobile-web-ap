@@ -1,35 +1,48 @@
-/* ScannerComponent.css */
-.scanner-container {
+.startScanner-container{
+    height: 100vh;
+    background-color: black;
+}
+/* .displayNone{
+    background: transparent;
+    width: 90%;
+    height: 380px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 180px;
+} */
+.flex-container{
+    height: 100%;
     display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 25px 20px;
+}
+.square-border {
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.8);
+    height: 50%;
+    width: 100%;
+    display: flex;
+    background: black;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
-    gap: 100px;
-    background-color: black;
-    /* Adjust height as needed */
+    margin-bottom: 180px;
 }
-
-.black-background {
-    background-color: black;
-    padding: 16px;
-    /* Add padding to give space around the square */
+.transparent{
+    background: transparent;
 }
-
-.square-border {
-    border: 2px solid white;
-    /* White borders around the square */
-    width: 200px;
-    /* Adjust the width of the square as needed */
-    height: 200px;
-    /* Adjust the height of the square as needed */
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.barcode-img{
+    width: 44.5px;
+    height: 44.5px;
 }
 .text-container{
+    position: absolute;
+    z-index: 100;
     padding: 10px;
     text-align: center;
+    margin-top: 50px;
+    width: 100%;
 }
 .scan-title{
     color: white;
@@ -38,7 +51,22 @@
 }
 .text-container p{
     color: gray;
-    width: 60%;
+    width: 66%;
     margin: 0 auto;
     font-size: 10px;
+    
+}
+
+.scannerBack {
+    --background: transparent;
+    margin: 0;
+    --box-shadow: none;
+    z-index: 100;
+}
+
+.scannerBack ion-icon {
+    color: white;
+    width: 40px;
+    height: 30px;
+    
 }

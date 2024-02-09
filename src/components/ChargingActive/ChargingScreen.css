@@ -1,0 +1,110 @@
+.flex-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 20px;
+    padding: 10px 25px;
+}
+.exit{
+    align-self: flex-start;
+    --background: transparent;
+    margin: 0;
+    --box-shadow: none;
+    --color: black;
+    
+}
+.charge-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+.header-charging {
+    text-align: center;
+    max-width: 100%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.icon-status {
+    display: flex;
+    gap: 5px;
+    align-items: baseline;
+    justify-content: center;
+}
+.icon-status h3{
+    font-size: 20px;
+    color: #021F0E;
+    margin: 0px;
+}
+.f14-green{
+    font-size: 14px;
+    color: #021F0E;
+}
+.header-charging .address{
+    font-size: 14px;
+    color: #a6a6a6;
+}
+.info-active{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.info-active .power{
+    font-size: 24px;
+    color: #021F0E;
+}
+.info-active .price{
+    font-size: 10px;
+    color: #a6a6a6;
+
+}
+.text{
+    font-size: 10px;
+    color: #021F0E;
+}
+.charger-info-container{
+    display: flex;
+    gap: 35px;
+}
+p{
+    padding: 5px 0;
+}
+.footer-container{
+    padding: 25px 25px;
+    width: 100%;
+    display: flex;
+    gap: 60px;
+    box-shadow: 0px -3px 10px 0px rgb(0, 0, 0, 0.04);
+}
+.flex-alling{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+.color3E{
+    color: #3E3E3E
+}
+.currentBill{
+    padding: 0;
+    margin-bottom: 5px;
+}
+.priceBill{
+    padding: 0;
+    margin: 0;
+}
+.stop{
+    margin-top: 5px;
+    width: 145px;
+    height: 48px;
+    color: #FFF;
+    font-size: 12px;
+    font-weight: 600;
+    background: #EA574B;
+    border-radius: 10px;
+}
