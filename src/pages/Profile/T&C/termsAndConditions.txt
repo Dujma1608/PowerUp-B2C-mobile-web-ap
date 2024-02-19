@@ -1,0 +1,62 @@
+Title:I. OPĆE ODREDBE
+Subtitle: Članak 1.
+Power Up Vam omogućuje korištenje usluga i sadržaja svog portala koje je podložno niže navedenim Uvjetima korištenja. Uvjeti korištenja primjenjuju se na sve sadržaje i usluge aplikacije Power Up.
+Subtitle: Članak 2.
+Korištenjem aplikacije Power Up smatra se da ste u potpunosti pročitali i razumjeli te da ste suglasni s ovdje navedenim Uvjetima korištenja / Uvjetima prodaje. Ukoliko se s istima ne slažete i ne prihvaćate ih, molimo vas da se ne koristite ovom aplikacijom.
+Title:II. DEFINICIJE OSNOVNIH IZRAZA
+Subtitle: Članak 3.
+1. Koncesionar je, u smislu ovih Uvjeta korištenja, pravna osoba koja putem Power Up sustava prodaje električnu energiju.
+
+2. Kupac je, u smislu ovih Uvjeta korištenja, svaki posjetitelj aplikacije Power Up koji je došao na navedenu aplikaciju sa namjerom da se informira i/ili kupi proizvod/uslugu ponuđenu na Power Up aplikaciji.
+
+3. Korisnik je, u smislu ovih Uvjeta korištenja, svaki posjetitelj aplikacije Power Up, uključujući Koncesionara i Kupca.
+Title:III. OPIS USLUGA
+Subtitle: Članak 4.
+Osnovna namjena aplikacije Power Up je posredovanje u prodaji električne energije od strane Koncesionara. Infinite Loop IT j.d.o.o omogućava i provodi prodaju proizvoda/usluga kao posrednik u ime i za račun Koncesionara putem aplikacije Power Up i povezanih stranica. 
+
+Aplikacija omogućava Korisnicima plaćanje potrošene električne energije.
+
+Opći uvjeti korištenja i uvjeti kupnje električne energije definirani su općim i posebnim uvjetima svakog od Koncesionara, a Power Up ih preuzima bez njihove izmjene. Koncesionar je odgovoran za definiranje i isticanje općih uvjeta korištenja električne energije te informiranje Korisnika o načinu i uvjetima korištenja putem svojih kanala ili putem aplikacije Power Up. Korištenjem mobilne aplikacije Power Up, Korisnici imaju uvid u status svoje kupljene električne energije, pregled statusa potrošnje, te mogućnost kupnje ponuđenih električnih paketa.
+Title:IV. REGISTRACIJA KORISNIČKOG PROFILA
+Subtitle: Članak 5.
+Prije kupnje električne energije putem aplikacije Power Up, Korisnik mora kroz proces registracije registrirati valjanu bankovnu karticu za naplatu.
+Subtitle: Članak 6.
+Prilikom registracije na aplikaciju Power Up, Korisnik je dužan unijeti svoje osobne podatke koji moraju biti točni te ih Korisnik mora redovito provjeravati i ažurirati. Ukoliko postoji sumnja da Korisnikovi podaci nisu istiniti ili ažurirani, Power Up zadržava pravo suspendirati Korisnikov račun i daljnje korištenje aplikacije.
+Title:V. KORIŠTENJE APLIKACIJE POWER UP
+Subtitle: Članak 7.
+Korisnik se obvezuje da neće pokušati na bilo koji način ometati ili pokušati omesti rad aplikacije Power Up.
+Subtitle: Članak 8.
+Također, Korisnik se obvezuje na neće pokušati doći do izvornog koda aplikacije Power Up ni preprodavati ili iznajmljivati bilo koji dio aplikacije Power Up te da će stranicu koristiti samo u svrhu vlastitog informiranja, provjere svojeg statusa u punjenju električnog vozila ili kupnji električne energije Koncesionara.
+Title:VI. SADRŽAJ NA APLIKACIJI POWER UP I PONAŠANJE KORISNIKA
+Subtitle: Članak 9.
+Svi materijali koji se nalaze na aplikaciji Power Up ekskluzivno su pravo Infinite Loop IT j.d.o.o i Koncesionara ili se koriste uz izričito odobrenje nositelja autorskih prava te nositelja prava na žigove i/ili dizajn. Svako kopiranje, distribucija, prijenos, objavljivanje, povezivanje, dubinsko povezivanje, ili mijenjanje na drugi način aplikacije Power Up bez izričitog pismenog odobrenja Infinite Loop IT j.d.o.o strogo je zabranjeno.
+Subtitle: Članak 10.
+U slučaju kršenja uvjeta iz prethodnog članka protiv počinitelja može se pokrenuti parnica i/ili kazneni progon.
+Title:VII. PONAŠANJE KORISNIKA
+Subtitle: Članak 11.
+Pri korištenju aplikacije Power Up Korisnik će imati mogućnost unosa podataka koje će na njemu kasnije biti prikazane. Svi podaci koje Korisnik unese moraju biti u skladu s ovim Uvjetima korištenja.
+Subtitle: Članak 12.
+Korisnik je suglasan da neće unositi podatke koji:
+
+- bi mogli nauditi ili uvrijediti drugu osobu,- su netočni ili promoviraju ilegalne aktivnosti,
+- su ilegalna kopija nečijeg autorskog rada,
+- uključuju pornografske materijale,- potpomažu ilegalne aktivnosti,- krše ove Uvjete korištenja ili bilo koji zakon Republike Hrvatske.
+Subtitle: Članak 13.
+Objavom na ili putem aplikacije Power Up Korisnik je Infinite Loop IT-u dao besplatnu, pravno valjanu, nepovratnu i neekskluzivnu licencu za uporabu, reprodukciju, mijenjanje, objavljivanje, prilagođavanje, prevođenje, distribuciju, provođenje i prikazivanje te komunikacije, same ili kao dijela veće cjeline, u bilo kojem obliku, na bilo kojem mediju ili putem bilo koje tehnologije, bilo poznate ili kasnije razvijene, te dijeljenje takvih prava s višestrukim djeliteljima te licence.
+Title:VIII. NAKNADA ŠTETE
+Subtitle: Članak 14.
+Korisnik se slaže da neće smatrati odgovornim Infinite Loop IT j.d.o.o, njene podružnice, njihove odgovorne osobe, zaposlenike i agente, od svih zahtjeva za naknadom štete i troškova, uključujući troškove pravnog zastupanja, a koji mogu nastati uporabom aplikacije Power Up od strane Korisnika.
+Title:IX. PREKID POSLOVNOG ODNOSA
+Subtitle: Članak 15.
+Infinite Loop IT j.d.o.o zadržava pravo ukinuti ili uskratiti mogućnost korištenja Vašeg korisničkog računa i/ili jedne ili više usluga za koju ste registrirani, a bez prethodne najave i/ili obrazloženja. Infinite Loop IT j.d.o.o ne snosi odgovornost za bilo kakvu štetu nastalu ukidanjem korisničkog računa.
+Title:X. PROMJENE UVJETA KORIŠTENJA
+Subtitle: Članak 16.
+Infinite Loop IT j.d.o.o zadržava pravo promjene Uvjeta korištenja u bilo kojem trenutku te neće biti odgovorna za moguće posljedice koje su proizašle iz takvih promjena. Promjene stupaju na snagu objavljivanjem na aplikaciji Power Up te se podrazumijeva da je Korisnik nove Uvjete u cijelosti pročitao, razumio i prihvatio.
+Title:XI. OSTALO
+Subtitle: Članak 17.
+Ukoliko bilo koja strana ne iskoristi svoja prava iz ovog Uvjeta, to se neće smatrati odricanjem ili gubitkom tih prava.
+Subtitle: Članak 18.
+Sjedište tvrtke: Infinite Loop IT j.d.o.o Ulica Ivana Meštrovića 35, Sesvete (Grad Zagreb).
+
+Pravni sporovi koji mogu nastati, kao posljedica korištenja stranice Power Up (osim ako posebnim ugovorom nije drugačije navedeno) u nadležnosti su suda u Zagrebu, i rješavaju se u skladu s pozitivnim propisima Republike Hrvatske.
+

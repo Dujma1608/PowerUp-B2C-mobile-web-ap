@@ -54,7 +54,7 @@ const LoginForm: React.FC = () => {
           </div>
           <div className="buttons-container-login">
             <IonButton className="login-button" type="submit">
-              <span>Login</span>
+              <span className="buttonText">Login</span>
             </IonButton>
 
             <IonText className="forgot-password">
@@ -71,7 +71,7 @@ const LoginForm: React.FC = () => {
               <div className="or-text">or</div>
             </div>
             <IonButton className="create-account-button" href="/register">
-              <span>Create an Account</span>
+              <span className="buttonText">Create an Account</span>
             </IonButton>
           </div>
         </Form>

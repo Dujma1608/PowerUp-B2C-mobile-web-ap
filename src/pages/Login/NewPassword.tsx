@@ -9,6 +9,7 @@ import "./ForgotPassword.css";
 import { arrowBackOutline } from "ionicons/icons";
 import "./NewPassword.css";
 import LoginTextInput from "../../components/LoginForm/LoginTextInput";
+import BackArrow from "../../app/common/BackArrow";
 
 interface Props {
   userEmail: string;
@@ -50,11 +51,7 @@ const NewPassword: React.FC<Props> = ({ userEmail, goBack }) => {
       {({ values, handleChange, handleSubmit }) => (
         <Form className="reset-form" autoComplete="off">
           <div>
-            <div className="back-container">
-              <IonButton className="backButton" slot="start" onClick={goBack}>
-                <IonIcon icon={arrowBackOutline} />
-              </IonButton>
-            </div>
+            <BackArrow setClose={() => history.goBack()} />
           </div>
           <div className="reset-container">
             <IonLabel className="title-login">Set new password for</IonLabel>

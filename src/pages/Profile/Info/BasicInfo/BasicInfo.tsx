@@ -12,6 +12,7 @@ import { useHistory } from "react-router";
 import * as Yup from "yup";
 import "./BasicInfo.css";
 import InfoInput from "./InfoInput";
+import BackArrow from "../../../../app/common/BackArrow";
 
 const BasicInfo: React.FC = () => {
   const validation = Yup.object({
@@ -26,12 +27,9 @@ const BasicInfo: React.FC = () => {
 
   return (
     <IonPage style={{ padding: "30px 15px" }}>
-      <IonButton className="backButton" slot="start" onClick={handleBack}>
-        <IonIcon
-          icon={arrowBackOutline}
-          style={{ color: "#000", fontSize: "24px" }}
-        />
-      </IonButton>
+      <div style={{ marginBottom: "20px" }}>
+        <BackArrow setClose={handleBack} />
+      </div>
       <IonContent className="ion-padding">
         <Formik
           initialValues={{ firstName: "", lastName: "" }}

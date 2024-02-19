@@ -10,7 +10,8 @@
 .exit{
     align-self: flex-start;
     --background: transparent;
-    margin: 0;
+    margin-top: 20px;
+    margin-left: 10px;
     --box-shadow: none;
     --color: black;
     
@@ -69,7 +70,7 @@
 }
 .charger-info-container{
     display: flex;
-    gap: 35px;
+    gap: 25px;
 }
 p{
     padding: 5px 0;
@@ -78,7 +79,7 @@ p{
     padding: 25px 25px;
     width: 100%;
     display: flex;
-    gap: 60px;
+    justify-content: space-between;
     box-shadow: 0px -3px 10px 0px rgb(0, 0, 0, 0.04);
 }
 .flex-alling{

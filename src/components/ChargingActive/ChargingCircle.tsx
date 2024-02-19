@@ -49,14 +49,6 @@ const ChargingCircle: React.FC<Props> = ({ percentage, setPercentage }) => {
           Battery
         </text>
       </svg>
-      {/* <div className="inner-circle">
-        <div className="inner-inner-circle">
-          <div className="flex-circle">
-            <p className="percentage">80%</p>
-            <p className="battery">Battery</p>
-          </div>
-        </div>
-      </div> */}
     </div>
   );
 };

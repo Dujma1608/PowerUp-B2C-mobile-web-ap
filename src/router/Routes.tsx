@@ -21,6 +21,10 @@ import BasicInfo from "../pages/Profile/Info/BasicInfo/BasicInfo";
 import Email from "../pages/Profile/Info/BasicInfo/Email";
 import PaymentMethods from "../pages/Profile/PaymentMethods/PaymentMethods";
 import Card from "../pages/Profile/PaymentMethods/Detail/Card";
+import PaymentHistory from "../pages/Profile/PaymentHistory/PaymentHistory";
+import InfoPage from "../pages/Profile/T&C/InfoPage";
+import TermsAndConditions from "../pages/Profile/T&C/TermsAndCondition";
+import DataProtection from "../pages/Profile/T&C/DataProtection";
 // import Home from "../pages/Home/Home";
 
 const Routes: React.FC = () => (
@@ -49,6 +53,22 @@ const Routes: React.FC = () => (
     />
     <Route path="/profile/payment" component={PaymentMethods} exact={true} />
     <Route path="/profile/payment/:id" component={Card} exact={true} />
+    <Route
+      path="/profile/payment-history"
+      component={PaymentHistory}
+      exact={true}
+    />
+    <Route path="/profile/info" component={InfoPage} exact={true} />
+    <Route
+      path="/profile/info/terms&conditions"
+      component={TermsAndConditions}
+      exact={true}
+    />
+    <Route
+      path="/profile/info/data-protection"
+      component={DataProtection}
+      exact={true}
+    />
   </>
 );
 

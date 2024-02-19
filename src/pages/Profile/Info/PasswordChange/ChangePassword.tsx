@@ -13,6 +13,7 @@ import { useHistory } from "react-router";
 import { passwordValidation } from "../../../../components/FormUtils/Validation";
 import LoginTextInput from "../../../../components/LoginForm/LoginTextInput";
 import "./ChangePassword.css";
+import BackArrow from "../../../../app/common/BackArrow";
 
 const ChangePassword: React.FC = () => {
   const history = useHistory();
@@ -22,12 +23,9 @@ const ChangePassword: React.FC = () => {
   };
   return (
     <IonPage style={{ padding: "30px 15px" }}>
-      <IonButton className="backButton" slot="start" onClick={handleBack}>
-        <IonIcon
-          icon={arrowBackOutline}
-          style={{ color: "#000", fontSize: "24px" }}
-        />
-      </IonButton>
+      <div style={{ marginBottom: "20px" }}>
+        <BackArrow setClose={handleBack} />
+      </div>
       <IonContent className="ion-padding">
         <Formik
           initialValues={{ password: "", confirmPassword: "" }}

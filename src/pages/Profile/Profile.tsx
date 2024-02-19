@@ -16,12 +16,9 @@ const Profile: React.FC = () => {
   const handleUserClick = () => {
     history.push("/profile/account");
   };
-  const handlePaymentMethods = () => {
-    history.push("/profile/payment");
-  };
   return (
-    <IonPage style={{ padding: "20px 25px 20px 5px" }}>
-      <IonList>
+    <IonPage>
+      <IonList style={{ padding: "20px 25px 20px 5px" }}>
         <IonItem style={{ margin: "15px 0", padding: "10px 0" }}>
           <div className="profile-header" onClick={handleUserClick}>
             <IonText className="font18 w600 color021">Josip Dujmović</IonText>
@@ -34,7 +31,7 @@ const Profile: React.FC = () => {
             </div>
           </div>
         </IonItem>
-        <IonItem style={{ padding: "10px 0" }} onClick={handlePaymentMethods}>
+        <IonItem style={{ padding: "10px 0" }} routerLink={"/profile/payment"}>
           <IonIcon
             icon={cardOutline}
             style={{ color: "#021F0E", marginRight: "8px" }}
@@ -48,7 +45,10 @@ const Profile: React.FC = () => {
             slot="end"
           />
         </IonItem>
-        <IonItem style={{ padding: "10px 0" }}>
+        <IonItem
+          routerLink={"/profile/payment-history"}
+          style={{ padding: "10px 0" }}
+        >
           <IonIcon
             icon={receiptOutline}
             style={{ color: "#021F0E", marginRight: "8px" }}
@@ -62,7 +62,7 @@ const Profile: React.FC = () => {
             slot="end"
           />
         </IonItem>
-        <IonItem style={{ padding: "10px 0" }}>
+        <IonItem style={{ padding: "10px 0" }} routerLink={"/profile/info"}>
           <IonIcon
             icon={settingsOutline}
             style={{ color: "#021F0E", marginRight: "8px" }}

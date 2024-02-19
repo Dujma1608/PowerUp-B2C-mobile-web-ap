@@ -7,7 +7,7 @@ interface Props {
   cardNo: string;
 }
 
-const CardListItem: React.FC<Props> = ({ cardNo }) => {
+const PaymentMethodItem: React.FC<Props> = ({ cardNo }) => {
   const handleEditCard = () => {};
 
   const getCardType = (cardNo: string): "visa" | "mastercard" | null => {
@@ -49,4 +49,4 @@ const CardListItem: React.FC<Props> = ({ cardNo }) => {
   );
 };
 
-export default CardListItem;
+export default PaymentMethodItem;

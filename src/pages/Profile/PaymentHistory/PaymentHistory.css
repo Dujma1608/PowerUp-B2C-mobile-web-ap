@@ -1,0 +1,21 @@
+.flex-price{
+    display: flex;
+    align-items: baseline;
+}
+.flex-price p{
+    color: #A6A6A6;
+}
+.flex-price .price{
+    font-size: 11px;
+    font-weight: 500;
+    margin-right: 5px;
+}
+.green-circle{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    width: 26px;
+    height: 26px;
+    background: #0AB051;
+}

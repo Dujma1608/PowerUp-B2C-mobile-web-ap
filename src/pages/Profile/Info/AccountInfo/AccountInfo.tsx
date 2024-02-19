@@ -16,6 +16,7 @@ import {
 } from "ionicons/icons";
 import "./AccountInfo.css";
 import { Router, useHistory } from "react-router";
+import BackArrow from "../../../../app/common/BackArrow";
 
 const AccountInfo: React.FC = () => {
   const history = useHistory();
@@ -34,12 +35,9 @@ const AccountInfo: React.FC = () => {
   };
   return (
     <IonPage style={{ padding: "30px 15px" }}>
-      <IonButton className="backButton" slot="start" onClick={handleBack}>
-        <IonIcon
-          icon={arrowBackOutline}
-          style={{ color: "#000", fontSize: "24px" }}
-        />
-      </IonButton>
+      <div style={{ marginBottom: "20px" }}>
+        <BackArrow setClose={handleBack} />
+      </div>
       <IonContent>
         <IonList>
           <IonItem lines="none" style={{ margin: "15px 0", padding: "10px 0" }}>

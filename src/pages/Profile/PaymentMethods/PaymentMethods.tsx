@@ -18,9 +18,11 @@ import {
 import { useState } from "react";
 import { Router, useHistory } from "react-router";
 import AddPayment from "./AddPayment";
-import Card from "./CardListItem";
-import CardListItem from "./CardListItem";
+import Card from "./PaymentMethodItem";
+import CardListItem from "./PaymentMethodItem";
 import { cards } from "../../../components/utils/utils";
+import PaymentMethodItem from "./PaymentMethodItem";
+import BackArrow from "../../../app/common/BackArrow";
 
 const PaymentMethods: React.FC = () => {
   const [openPaymentModal, setOpenPaymentModal] = useState(false);
@@ -40,12 +42,9 @@ const PaymentMethods: React.FC = () => {
   };
   return (
     <IonPage style={{ padding: "30px 15px" }}>
-      <IonButton className="backButton" slot="start" onClick={handleBack}>
-        <IonIcon
-          icon={arrowBackOutline}
-          style={{ color: "#000", fontSize: "24px" }}
-        />
-      </IonButton>
+      <div style={{ marginBottom: "20px" }}>
+        <BackArrow setClose={handleBack} />
+      </div>
       <IonContent>
         <IonList>
           <IonItem lines="none">
@@ -63,15 +62,23 @@ const PaymentMethods: React.FC = () => {
               button
               routerLink={`/profile/payment/${card.id}`}
               lines="full"
-              style={{ padding: "10px 0", marginLeft: "10px" }}
+              style={{
+                padding: "10px 0",
+                marginLeft: "10px",
+                marginRight: "15px",
+              }}
             >
-              <CardListItem cardNo={card.cardNumber} />
+              <PaymentMethodItem cardNo={card.cardNumber} />
             </IonItem>
           ))}
           <IonItem
             onClick={handleAddPayment}
             lines="full"
-            style={{ padding: "10px 0", marginLeft: "10px" }}
+            style={{
+              padding: "10px 0",
+              marginLeft: "10px",
+              marginRight: "15px",
+            }}
           >
             <IonText className="font12 w500">Add Payment Method</IonText>
             <IonIcon

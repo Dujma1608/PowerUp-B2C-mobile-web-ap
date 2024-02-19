@@ -49,9 +49,9 @@
     --box-shadow: none;
 }
 .backButton{
-    width: 17%;
+    width: 16%;
     --background: transparent;
     --box-shadow: none;
     margin-top: 10px;
-    margin-bottom: 35px;
+    margin-bottom: 20px;
 }

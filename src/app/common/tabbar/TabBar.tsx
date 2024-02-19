@@ -9,11 +9,17 @@ import {
 import { person, location } from "ionicons/icons";
 import { Redirect, Route, useHistory } from "react-router";
 import MainIcon from "../../../assets/images/MainButtonIcon.png";
+import ChargingMapCircle from "../../../components/ChargingActive/ChargingMapCircle";
+import { BarcodeScanner } from "@capacitor-community/barcode-scanner";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../stores/store";
 
-const TabBar: React.FC = () => {
+const TabBar: React.FC = observer(() => {
   const history = useHistory();
+  const { regularStore } = useStore();
 
   const handleMainButton = () => {
+    BarcodeScanner.prepare();
     history.push("/camera");
   };
 
@@ -54,15 +60,20 @@ const TabBar: React.FC = () => {
           </IonTabButton>
         </IonTabBar>
       </IonTabs>
-      <IonButton
-        className="circular-button"
-        style={{ zIndex: 1000 }}
-        onClick={handleMainButton}
-      >
-        <img src={MainIcon} />
-      </IonButton>
+      {regularStore.isCharging ? (
+        <div
+          className="circular-button"
+          onClick={() => history.push("/charging")}
+        >
+          <ChargingMapCircle />
+        </div>
+      ) : (
+        <IonButton className="circular-button" onClick={handleMainButton}>
+          <img src={MainIcon} />
+        </IonButton>
+      )}
     </div>
   );
-};
+});
 
 export default TabBar;
