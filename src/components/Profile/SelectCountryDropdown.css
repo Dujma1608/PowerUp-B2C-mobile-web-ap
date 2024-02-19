@@ -1,0 +1,36 @@
+.menu-flags{
+    margin-top: 10px;
+}
+.menu-flags #rfs-btn{
+    border: none;
+    padding: 10px 0px;
+    border-bottom: 2px solid #F2F2F2;
+}
+.menu-flags-button:focus{
+    border-bottom: 3px solid #0ab051;
+}
+.menu-flags-button span{
+    font-weight: 500;
+    color: #021F0E;
+}
+.menu-flags-button svg{
+    width: 30px;
+    height: 20px;
+}
+.menu-flags .ReactFlagsSelect-module_selectOptions__3LNBJ{
+    border: 1px solid #F2F2F2;
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.menu-flags .ReactFlagsSelect-module_label__27pw9{
+    color: #021F0E;
+    font-weight: 500;
+}
+.menu-flags .ReactFlagsSelect-module_filterBox__3m8EU input{
+    border: none;
+    border-bottom: 2px solid #F2F2F2;
+}
+.menu-flags .ReactFlagsSelect-module_filterBox__3m8EU input::placeholder {
+    font-weight: 400;
+    color: #A6A6A6;
+}

@@ -1,25 +1,20 @@
 import {
   IonButton,
   IonContent,
-  IonIcon,
-  IonInput,
-  IonItem,
+  IonFooter,
   IonModal,
   IonPage,
-  IonSelect,
-  IonSelectOption,
-  useIonViewDidEnter,
 } from "@ionic/react";
 import { Form, Formik } from "formik";
 import { cardValidation } from "../../../components/FormUtils/Validation";
-import { arrowBackOutline, card } from "ionicons/icons";
-import { useEffect, useRef } from "react";
 import "./AddPayment.css";
-import croatia from "../../../assets/images/flag.png";
 import PaymentInput from "./PaymentInput";
-import { h } from "ionicons/dist/types/stencil-public-runtime";
 import CardNumberInput from "./CardNumberInput";
-import BackArrow from "../BackArrow";
+import BackArrow from "../../../app/common/BackArrow";
+import SelectCountryDropdown from "../../../components/Profile/SelectCountryDropdown";
+import { useEffect, useState } from "react";
+import { Keyboard } from "@capacitor/keyboard";
+import { Capacitor } from "@capacitor/core";
 
 interface Props {
   isOpen: boolean;
@@ -27,29 +22,60 @@ interface Props {
 }
 
 const AddPayment: React.FC<Props> = ({ isOpen, setClose }) => {
-  const cardTypes = {
-    visa: /^4/,
-    mastercard: /^5[1-5]/,
-    amex: /^3[47]/,
-    discover: /^6(?:011|5)/,
-  };
+  const [isClickedSelect, setIsClickedSelect] = useState(false);
+  const [selectValue, setSelectValue] = useState("");
+  const [isSelectTouched, setIsSelectTouched] = useState(false);
+  const [selectNoError, setSelectNoError] = useState(false);
+
+  const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
+
+  useEffect(() => {
+    // Check if running in Capacitor environment
+    if (Capacitor.getPlatform() !== "web") {
+      const showHandler = Keyboard.addListener("keyboardDidShow", () =>
+        setIsKeyboardVisible(true)
+      );
+      const hideHandler = Keyboard.addListener("keyboardDidHide", () =>
+        setIsKeyboardVisible(false)
+      );
+
+      return () => {
+        showHandler.remove();
+        hideHandler.remove();
+      };
+    }
+  }, []);
+
+  useEffect(() => {
+    if (selectValue !== "") {
+      setSelectNoError(true);
+    }
+  }, [selectValue]);
 
   const initialValues = {
     cardNumber: "",
     expirationDate: "",
     cvv: "",
   };
-  const handleBack = (e: any) => {
-    e.preventDefault();
+  const handleBack = () => {
     setClose();
+    setSelectValue("");
+    setIsClickedSelect(false);
+    setIsSelectTouched(false);
   };
 
   return (
-    <IonModal isOpen={isOpen} onWillDismiss={setClose}>
-      <IonPage style={{ padding: "30px 15px" }}>
-        <BackArrow setClose={setClose} />
+    <IonModal isOpen={isOpen} onIonModalDidDismiss={handleBack}>
+      <IonPage
+        style={{ padding: "30px 15px" }}
+        onClick={() => setIsClickedSelect(true)}
+      >
+        <div style={{ marginBottom: "20px" }}>
+          <BackArrow setClose={setClose} />
+        </div>
+
         <IonContent className="ion-padding">
-          <p className="font20 w600 color021 marginBottom">
+          <p className="font20 w600 color021" style={{ marginBottom: "35px" }}>
             Add payment method
           </p>
           <Formik
@@ -59,48 +85,57 @@ const AddPayment: React.FC<Props> = ({ isOpen, setClose }) => {
           >
             {({ handleChange, isValid, dirty }) => (
               <Form>
-                <CardNumberInput
-                  placeholder="0000 0000 0000 0000"
-                  name="cardNumber"
-                  handleChange={handleChange}
-                  label="Card Number"
-                />
-                <div className="flex-payment">
-                  <div className="input-width">
-                    <PaymentInput
-                      placeholder="MM/GG"
-                      name="expiryDate"
-                      handleChange={handleChange}
-                      label="Expiry Date"
-                      isDate
-                    />
-                  </div>
-                  <div className="input-width">
-                    <PaymentInput
-                      name="cvv"
-                      placeholder="123"
-                      handleChange={handleChange}
-                      label="CVV"
-                      isCVV
-                    />
-                  </div>
-                </div>
                 <div>
-                  <label style={{ fontSize: "12px", fontWeight: "600" }}>
-                    Country
-                  </label>
-                  <select disabled className="custom-select" value="croatia">
-                    <option value="croatia">Croatia</option>
-                  </select>
+                  <CardNumberInput
+                    placeholder="0000 0000 0000 0000"
+                    name="cardNumber"
+                    handleChange={handleChange}
+                    label="Card Number"
+                  />
+                  <div className="flex-payment">
+                    <div className="input-width">
+                      <PaymentInput
+                        placeholder="MM/GG"
+                        name="expiryDate"
+                        handleChange={handleChange}
+                        label="Expiry Date"
+                        isDate
+                      />
+                    </div>
+                    <div className="input-width">
+                      <PaymentInput
+                        name="cvv"
+                        placeholder="123"
+                        handleChange={handleChange}
+                        label="CVV"
+                        isCVV
+                      />
+                    </div>
+                  </div>
+                  <SelectCountryDropdown
+                    isTouched={isSelectTouched}
+                    setIsTouched={setIsSelectTouched}
+                    isClickedSelect={isClickedSelect}
+                    selectValue={selectValue}
+                    setSelectValue={setSelectValue}
+                  />
                 </div>
-                <IonButton
+                <div
                   className={
-                    !isValid || !dirty ? "update-disabled" : "update-button"
+                    isKeyboardVisible ? "keyboard-visible" : "keyboard-hidden"
                   }
-                  disabled={!isValid || !dirty}
                 >
-                  Update
-                </IonButton>
+                  <IonButton
+                    className={
+                      !isValid || !dirty || !selectNoError
+                        ? "payment-update-disabled"
+                        : "payment-update-button"
+                    }
+                    disabled={!isValid || !dirty || !selectNoError}
+                  >
+                    Add payment method
+                  </IonButton>
+                </div>
               </Form>
             )}
           </Formik>

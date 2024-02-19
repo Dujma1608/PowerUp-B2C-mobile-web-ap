@@ -1,5 +1,11 @@
 // Import necessary modules
-import { IonButton, IonContent, IonIcon, IonPage } from "@ionic/react";
+import {
+  IonAlert,
+  IonButton,
+  IonContent,
+  IonIcon,
+  IonPage,
+} from "@ionic/react";
 import {
   BarcodeScanner,
   SupportedFormat,
@@ -9,124 +15,87 @@ import { arrowBackOutline, scanOutline } from "ionicons/icons";
 import "./BarcodeScanner.css";
 import "../../../global.css";
 import { useHistory } from "react-router";
-import { handleScan } from "./StartScan";
 import bottomLeft from "../../../assets/images/QR/VectorbottomLeft.png";
 import bottomRight from "../../../assets/images/QR/VectorbottomRight.png";
 import topLeft from "../../../assets/images/QR/VectortopLeft.png";
 import topRight from "../../../assets/images/QR/VectortopRight.png";
 import QR from "../../../assets/images/QR/QR.png";
+import BackArrow from "../../../app/common/BackArrow";
+import QRCodeScanner from "./QRCodeScanner";
+import SureModal from "../../../app/common/tabbar/SureModal";
+import CameraPermissionModal from "./CameraPermissionModal";
+import { Camera } from "@capacitor/camera";
 
 const BarcodePage: React.FC = () => {
   const [scanResult, setScanResult] = useState<string | null>(null);
-  const [scan, setScan] = useState(false);
-
-  const [showModal, setShowModal] = useState(false);
+  const [scanActive, setScanActive] = useState(false);
+  const [actionPopup, setActionPopup] = useState(false);
+  const [showModal, setShowModal] = useState(true);
   const history = useHistory();
 
-  const checkPermission = async () => {
-    const status = await BarcodeScanner.checkPermission({ force: true });
+  const title = "Allow access to your camera";
+  const subtitle = "To scan QR code we would like to access your camera";
+  const confirmButtonText = "Allow";
+  const denyButtonText = "No";
 
-    if (status.granted) {
-      // the user did grant the permission now
-      return true;
-    }
-    if (status.denied) {
-      return false;
-      // const c = confirm(
-      //   "If you want to grant permission for using your camera, enable it in the app settings."
-      // );
-      // if (c) {
-      //   BarcodeScanner.openAppSettings();
-      // }
-    }
-  };
-
-  const scanQRCode = async () => {
-    setScan(true);
-    checkPermission();
-    try {
-      const result = await BarcodeScanner.startScan({
-        targetedFormats: [SupportedFormat.QR_CODE],
-      });
-
-      if (!result.hasContent) {
-        console.log("Scan cancelled");
-      } else {
-        console.log("QR Code scanned:", result.content);
-        setScanResult(result.content);
-        history.push("/home");
-      }
-    } catch (error) {
-      console.error("Error scanning QR Code:", error);
-    }
-  };
-  const handleButtonClick = () => {
-    setScan(true);
-  };
   const handleBack = () => {
-    setScan(false);
-    stopScan();
-    history.push("/home");
+    QRCodeScanner.stopScan();
+    setScanActive(false);
+    history.goBack();
   };
-  const stopScan = () => {
-    BarcodeScanner.showBackground();
-    BarcodeScanner.stopScan();
-  };
-  useEffect(() => {
-    scanQRCode();
 
+  const checkPermission = async () => {
+    // await Camera.checkPermissions();
+    const status = await Camera.requestPermissions({ permissions: ["camera"] });
+    console.log("CAMERA STATUS: ", status.camera);
+    if (status.camera === "granted") {
+      console.log("Camera permission GRANTED");
+      setActionPopup(false);
+      return true;
+    } else if (status.camera === "denied") {
+      setActionPopup(true);
+      return false;
+    } else if (status.camera === "prompt-with-rationale") {
+      setActionPopup(true);
+      return false;
+    } else {
+      console.log("Camera permission NOT GRANTED");
+      return false;
+    }
+  };
+
+  useEffect(() => {
+    const startScanner = async () => {
+      const granted = await checkPermission();
+      if (granted) {
+        setScanActive(true);
+        const result = await QRCodeScanner.startScan();
+        setScanResult(result);
+        history.push("/home");
+        setScanActive(false);
+      }
+    };
+
+    startScanner();
     return () => {
-      setScan(false);
-      stopScan();
+      QRCodeScanner.stopScan();
     };
   }, []);
-  // const checkPermission = async () => {
-  //   const status = await BarcodeScanner.checkPermission();
-
-  //   if (status.granted) {
-  //     // the user did grant the permission now
-  //     return true;
-  //   }
-  //   if (status.denied) {
-  //     // the user denied permission
-  //     return new Promise((resolve) => {
-  //       const onAllowEveryTime = async () => {
-  //         await BarcodeScanner.requestPermission();
-  //         resolve(true);
-  //         setShowModal(false);
-  //       };
-
-  //       const onAllowOnce = async () => {
-  //         await BarcodeScanner.requestPermission({ force: true });
-  //         resolve(true);
-  //         setShowModal(false);
-  //       };
-
-  //       const onNever = () => {
-  //         resolve(false);
-  //         setShowModal(false);
-  //       };
-
-  //       setShowModal(true);
-  //     });
-  //   }
-  // };
 
   return (
     <IonPage>
       <div
         className={
-          scan ? "startScanner-container transparent" : "startScanner-container"
+          scanActive
+            ? "startScanner-container transparent"
+            : "startScanner-container"
         }
       >
+        <div style={{ padding: "35px 15px 0px 15px" }}>
+          <BackArrow setClose={handleBack} isWhite />
+        </div>
+
         <div className="flex-container">
-          <IonButton
-            className={"scannerBack"}
-            slot="start"
-            onClick={handleBack}
-          >
-            <IonIcon icon={arrowBackOutline} />
-          </IonButton>
           <div className="text-container">
             <h3 className="scan-title">Scan to charge</h3>
             <p>
@@ -136,23 +105,29 @@ const BarcodePage: React.FC = () => {
           </div>
           {/* <div className="displayNone"> */}
           <div
-            className={scan ? "square-border transparent" : "square-border"}
+            className={
+              scanActive ? "square-border transparent" : "square-border"
+            }
             style={{ position: "relative" }}
           >
-            {scan ? null : (
+            {/* {scanActive ? null : (
               <img
                 src={QR}
                 style={{
-                  width: "80%",
-                  height: "80%",
+                  width: "100%",
+                  height: "100%",
                 }}
               />
-            )}
+            )} */}
             <div>
               <img
                 className="barcode-img"
                 src={topLeft}
-                style={{ position: "absolute", top: 0, left: 0 }}
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                }}
               />
               <img
                 className="barcode-img"
@@ -175,14 +150,43 @@ const BarcodePage: React.FC = () => {
           </div>
           {/* </div> */}
         </div>
-        {/* <PermissionModal
-          isOpen={showModal}
-          onAllowEveryTime={() => checkPermission()}
-          onAllowOnce={() => checkPermission()}
-          onNever={() => checkPermission()}
-          onClose={() => setShowModal(false)}
-        /> */}
       </div>
+      {/* <CameraPermissionModal
+        isOpen={
+          !QRCodeScanner.permissionGranted &&
+          showModal &&
+          QRCodeScanner.permissionDenied
+        }
+        setShowModal={setShowModal}
+        title={title}
+        subtitle={subtitle}
+        confirmButtonText={confirmButtonText}
+        allowCamera={handlePermissionAllow}
+        denyButtonText={denyButtonText}
+      /> */}
+      <IonAlert
+        isOpen={actionPopup}
+        header="Camera Permission"
+        // subHeader="A Sub Header Is Optional"
+        message="If you want to grant permission for using your camera, enable it in the app settings."
+        buttons={[
+          {
+            text: "Cancel",
+            role: "cancel",
+            handler: () => {
+              history.push("/home");
+            },
+          },
+          {
+            text: "Open settings",
+            role: "confirm",
+            handler: () => {
+              BarcodeScanner.openAppSettings();
+              history.push("/home");
+            },
+          },
+        ]}
+      ></IonAlert>
     </IonPage>
   );
 };

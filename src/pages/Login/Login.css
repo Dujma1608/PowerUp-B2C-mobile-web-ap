@@ -119,19 +119,12 @@
     align-items: center;
 
 }
-span{
-    --font-size: 12px;
-    --font-weight: 600;
-    --color: white;
-    --line-height: 36px;
-    --pading: 24px;
-
-
-    font-size: var(--font-size);
-    font-weight: var(--font-weight);
-    color: var(--color);
-    line-height: var(--line-height);
+.buttonText{
+    font-size: 12px;
+    font-weight: 600;
+    padding: 24px;
 }
+
 
 @media (min-width: 1366px) and (max-width: 1920px) {
 

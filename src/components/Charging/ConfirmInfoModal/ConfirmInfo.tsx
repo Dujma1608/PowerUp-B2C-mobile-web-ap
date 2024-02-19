@@ -3,10 +3,13 @@ import { IonButton, IonModal, IonContent, IonIcon } from "@ionic/react";
 import "./ConfirmInfo.css";
 import { addSharp } from "ionicons/icons";
 import { useHistory } from "react-router";
+import { useStore } from "../../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
 interface Props {}
 
-const ConfirmInfo: React.FC<Props> = ({}) => {
+const ConfirmInfo: React.FC<Props> = observer(({}) => {
+  const { regularStore } = useStore();
   const modal = useRef<HTMLIonModalElement>(null);
   const [isOpen, setIsOpen] = useState(true);
   const history = useHistory();
@@ -17,6 +20,11 @@ const ConfirmInfo: React.FC<Props> = ({}) => {
 
   const handleModalPresent = () => {
     setIsOpen(true);
+  };
+
+  const handleStartCharging = () => {
+    history.push("/connecting");
+    regularStore.setIsCharging(true);
   };
 
   return (
@@ -58,16 +66,13 @@ const ConfirmInfo: React.FC<Props> = ({}) => {
             Add Payment Method
             <IonIcon icon={addSharp} style={{ marginLeft: "26px" }} />
           </IonButton>
-          <IonButton
-            onClick={() => history.push("/connecting")}
-            className="stop-button"
-          >
+          <IonButton onClick={handleStartCharging} className="stop-button">
             Start Charging
           </IonButton>
         </div>
       </div>
     </IonModal>
   );
-};
+});
 
 export default ConfirmInfo;

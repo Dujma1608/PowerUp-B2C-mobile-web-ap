@@ -36,17 +36,12 @@ const MarkerClusterComponent: React.FC = () => {
       })
         .bindPopup(popUp)
         .on("click", () => {
-          // Set the selected marker when clicked
           setSelectedMarker({ geoCode, popUp, connectorsNumber });
         });
 
       mcg.addLayer(marker);
     });
 
-    // Optionally center the map around the markers
-    // map.fitBounds(mcg.getBounds());
-
-    // Add the marker cluster group to the map
     map.addLayer(mcg);
 
     return () => {

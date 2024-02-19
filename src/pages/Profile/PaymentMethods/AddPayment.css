@@ -11,27 +11,39 @@
 .flex-payment{
     display: flex;
     justify-content: space-between;
-    margin-bottom: 10px;
 }
 .input-width{
     width: 45%;
 }
-/* Custom styling for the select */
-.custom-select {
+.keyboard-visible{
     width: 100%;
-    padding: 10px 35px;
-    border: none;
-    color: #000000;
-    border-bottom: 2px solid #F2F2F2;
-    background-color: #fff;
-    font-size: 12px;
-    background-image: url('../../../assets/images/croatia.png');
-        /* Path to Croatia flag image */
-    background-repeat: no-repeat;
-    background-position: 10px center;
-    background-size: 20px;
 }
-.custom-select:disabled{
-    opacity: 1;
+.keyboard-hidden{
+    width: 100%;
+    margin: 0 auto;
+    position: absolute;
+    bottom: 0;
+}
+
+.payment-update-button {
+    width: 100%;
+    --color: #ffffff;
+    --font-weight: 400;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    --box-shadow: none;
+    --border-radius: 0px
+}
+
+.payment-update-disabled {
+    width: 100%;
+    --color: #A6A6A6;
+    font-weight: 600;
+    font-size: 12px;
+    --padding-top: 16px;
+    --padding-bottom: 16px;
+    --background: #F2F2F2;
+    --box-shadow: none;
+    --border-radius: 0px
 }
 

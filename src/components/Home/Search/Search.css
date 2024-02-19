@@ -1,0 +1,21 @@
+.search-bar{
+    --placeholder-color: #A6A6A6;
+    --placeholder-font-weight: 500;
+}
+.search-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+.search-img{
+    width: 230px;
+    height: 180px;
+}
+.search-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}

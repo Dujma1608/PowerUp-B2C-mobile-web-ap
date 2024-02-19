@@ -1,0 +1,33 @@
+.outer-map-circle {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0px 9px 11px 0px rgba(0, 0, 0, 0.06);
+    z-index: 1000;
+}
+
+.map-percentage {
+    font-size: 20px;
+    font-weight: 700;
+    fill: #FFF;
+    padding: 0;
+    margin: 0;
+}
+
+:root {
+    --color1: #00FF6D;
+    --color2: #0AB051
+}
+
+.map-circle-background {
+    fill: #021F0E;
+    stroke: #F6F6F6;
+}
+
+.map-circle-progress {
+    fill: none;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}

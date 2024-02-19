@@ -10,7 +10,7 @@ interface Props {
   type?: "password" | "email";
   showPasswordToggle?: boolean;
   handleChange: (e: any) => void;
-  isLogin: boolean;
+  isLogin?: boolean;
   inputDisabled?: true;
 }
 

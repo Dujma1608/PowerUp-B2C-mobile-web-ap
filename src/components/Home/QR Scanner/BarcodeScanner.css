@@ -1,6 +1,7 @@
 .startScanner-container{
     height: 100vh;
-    background-color: black;
+    background: black;
+
 }
 /* .displayNone{
     background: transparent;
@@ -11,37 +12,29 @@
     margin-bottom: 180px;
 } */
 .flex-container{
-    height: 100%;
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    align-items: flex-start;
-    padding: 25px 20px;
+    align-items: center;
+
 }
 .square-border {
-    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.8);
-    height: 50%;
-    width: 100%;
-    display: flex;
+    box-shadow: 0 0 0 100vmax rgba(0, 0, 0, 0.6);
+    height: 370px;
+    width: 340px;
     background: black;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 180px;
 }
 .transparent{
     background: transparent;
 }
 .barcode-img{
-    width: 44.5px;
-    height: 44.5px;
+    width: 45px;
+    height: 45px;
 }
 .text-container{
-    position: absolute;
     z-index: 100;
     padding: 10px;
     text-align: center;
-    margin-top: 50px;
+    margin-bottom: 40px;
     width: 100%;
 }
 .scan-title{
@@ -54,7 +47,6 @@
     width: 66%;
     margin: 0 auto;
     font-size: 10px;
-    
 }
 
 .scannerBack {

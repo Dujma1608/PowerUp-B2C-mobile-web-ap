@@ -7,6 +7,7 @@ import MyTextInput from "../../app/common/form/MyTextInput";
 import { useHistory } from "react-router-dom";
 import "./ForgotPassword.css";
 import { arrowBackOutline } from "ionicons/icons";
+import BackArrow from "../../app/common/BackArrow";
 
 interface Props {
   handleNext: () => void;
@@ -35,15 +36,7 @@ const ForgotPassword: React.FC<Props> = ({ handleNext, setUserEmail }) => {
       {({ values, handleChange, handleSubmit }) => (
         <Form className="email-form" autoComplete="off" onSubmit={handleSubmit}>
           <div>
-            <div className="back-container">
-              <IonButton
-                className="backButton"
-                slot="start"
-                onClick={() => history.push("/login")}
-              >
-                <IonIcon icon={arrowBackOutline} />
-              </IonButton>
-            </div>
+            <BackArrow setClose={() => history.goBack()} />
           </div>
           <div className="reset-container">
             <IonLabel className="title-login">Password reset</IonLabel>
