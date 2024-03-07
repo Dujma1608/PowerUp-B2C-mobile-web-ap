@@ -13,11 +13,17 @@ RUN npm install
 # Copy the rest of the application files
 COPY . .
 
+RUN npm install -g vite
+
+
 # Build the Ionic application
 RUN npm run build
 
+
+
 # Use Nginx as the production server
 FROM nginx:alpine
+
 
 # Copy the production build output from the previous stage into the Nginx server
 COPY --from=build /app/dist /usr/share/nginx/html
