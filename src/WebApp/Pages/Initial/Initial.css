@@ -1,7 +1,7 @@
 .background-container {
     position: relative;
     width: 100%;
-    height: 100vh;
+    height: 100%;
     background-image:
         url('../../../assets/images/Web/HomeBackground.png');
         /* Background image */
@@ -12,8 +12,6 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 80px;
-
 }
 
 .vector-group-one {
@@ -23,7 +21,7 @@
     right: 0;
     transform: translateY(-28%);
     width: 100%;
-    height: 100%;
+    height: 70%;
     
 }
 .vector-group-two {
@@ -37,14 +35,13 @@
 .web-home-container{
     position: absolute;
     bottom: 0;
-    transform: translateY(-22%);
+    transform: translateY(-24%);
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 35px;
     width: 80%;
-    height: 40%;
 }
 .web-title-container .title{
     padding: 0;
