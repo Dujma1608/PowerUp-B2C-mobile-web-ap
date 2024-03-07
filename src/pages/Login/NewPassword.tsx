@@ -41,12 +41,13 @@ const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
       validateOnMount={true}
       initialValues={{
         email: userEmail,
+        companyId: 1,
         activationCode: "",
-        password: "",
-        confirmPassword: "",
+        newPassword: "",
+        newPasswordRepeated: "",
       }}
       onSubmit={(values) => {
-        // userStore.resetPassword(values)
+        userStore.resetPassword(values);
       }}
     >
       {({ values, handleChange, handleSubmit }) => (
@@ -66,14 +67,14 @@ const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
               />
               <LoginTextInput
                 placeholder="Password"
-                name="password"
+                name="newPassword"
                 type="password"
                 handleChange={handleChange}
               />
               <LoginTextInput
                 type="password"
                 placeholder="Confirm Password"
-                name="confirmPassword"
+                name="newPasswordRepeated"
                 handleChange={handleChange}
               />
             </div>

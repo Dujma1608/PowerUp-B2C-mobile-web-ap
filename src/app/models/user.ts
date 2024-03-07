@@ -22,7 +22,8 @@ export interface VerifyUser {
 }
 
 export interface ResetPassword {
-  userId: number;
+  email: string;
+  companyId: number;
   activationCode: string;
   newPassword: string;
   newPasswordRepeated: string;

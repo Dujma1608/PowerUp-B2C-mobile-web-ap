@@ -7,7 +7,7 @@ import { useStore } from "../../../app/stores/store";
 
 const ConfirmInfoWeb: React.FC = observer(() => {
   const { chargerStore, sessionStore, regularStore, profileStore } = useStore();
-  const { loadChargers, chargerRegistry, charrgers } = chargerStore;
+  const { loadChargers, chargerRegistry } = chargerStore;
 
   const [locationAlert, setLocationAlert] = useState(false);
   return (
