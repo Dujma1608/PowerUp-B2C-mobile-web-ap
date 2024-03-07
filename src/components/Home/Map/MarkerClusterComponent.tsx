@@ -1,7 +1,6 @@
 import L from "leaflet";
 import { useEffect, useState } from "react";
 import { useMap } from "react-leaflet";
-import { MyMarker, markers } from "../../utils/utils";
 import "leaflet.markercluster/dist/leaflet.markercluster";
 import "leaflet.markercluster/dist/MarkerCluster.css";
 import "leaflet.markercluster/dist/MarkerCluster.Default.css";
@@ -9,16 +8,23 @@ import { CustomMarkerIcon } from "../../utils/utils";
 import { CustomMarker, CustomMarkerOptions } from "./CustomMarkerClass";
 import MarkerModal from "../MarkerModal/MarkerModal";
 import ConfirmInfo from "../../Charging/ConfirmInfoModal/ConfirmInfo";
+import { useStore } from "../../../app/stores/store";
+import { Charger } from "../../../app/models/charger";
+import { toJS } from "mobx";
 
-const MarkerClusterComponent: React.FC = () => {
+interface Props {
+  chargers: Charger[];
+}
+const MarkerClusterComponent: React.FC<Props> = ({ chargers }) => {
+  const { chargerStore } = useStore();
   const map = useMap();
-  const [selectedMarker, setSelectedMarker] = useState<MyMarker | null>(null);
+  const [selectedMarker, setSelectedMarker] = useState<Charger | null>(null);
 
   const mcg = L.markerClusterGroup({
     iconCreateFunction: (cluster) => {
       const sum = cluster.getAllChildMarkers().reduce((acc, marker) => {
         return (
-          acc + (marker.options as CustomMarkerOptions).connectorsNumber! || 0
+          acc + (marker.options as CustomMarkerOptions).connectorsCount! || 0
         );
       }, 0);
 
@@ -27,28 +33,30 @@ const MarkerClusterComponent: React.FC = () => {
   });
 
   useEffect(() => {
+    // Clear existing layers
     mcg.clearLayers();
 
-    markers.forEach(({ geoCode, popUp, connectorsNumber }: MyMarker) => {
-      const marker = new CustomMarker(new L.LatLng(geoCode[0], geoCode[1]), {
-        icon: CustomMarkerIcon(connectorsNumber),
-        connectorsNumber: connectorsNumber,
-      })
-        .bindPopup(popUp)
-        .on("click", () => {
-          setSelectedMarker({ geoCode, popUp, connectorsNumber });
+    if (chargers && chargers.length > 0) {
+      // Iterate through chargers and create markers
+      chargers.forEach((charger: Charger) => {
+        const marker = new CustomMarker(
+          new L.LatLng(charger.latitude, charger.longitude),
+          {
+            icon: CustomMarkerIcon(charger.connectorsCount),
+            connectorsCount: charger.connectorsCount,
+          }
+        ).on("click", () => {
+          setSelectedMarker(charger);
+          console.log(toJS(charger));
         });
 
-      mcg.addLayer(marker);
-    });
+        mcg.addLayer(marker);
+      });
 
-    map.addLayer(mcg);
-
-    return () => {
-      // Cleanup when component unmounts
-      map.removeLayer(mcg);
-    };
-  }, [map, markers, mcg]);
+      // Add marker cluster group to the map
+      map.addLayer(mcg);
+    }
+  }, [chargers, map, setSelectedMarker]);
 
   const closeMarkerModal = () => {
     setSelectedMarker(null);
@@ -56,8 +64,9 @@ const MarkerClusterComponent: React.FC = () => {
 
   return (
     <>
-      {selectedMarker && <ConfirmInfo />}
-      {/* {selectedMarker && <MarkerModal onClose={closeMarkerModal} />} */}
+      {selectedMarker && (
+        <MarkerModal charger={selectedMarker} onClose={closeMarkerModal} />
+      )}
       <style>
         {`
           .leaflet-cluster-spiderfy {

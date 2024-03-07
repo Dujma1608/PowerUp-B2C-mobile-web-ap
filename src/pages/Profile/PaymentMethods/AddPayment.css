@@ -20,9 +20,9 @@
 }
 .keyboard-hidden{
     width: 100%;
-    margin: 0 auto;
     position: absolute;
     bottom: 0;
+    transform: translateX(-5%);
 }
 
 .payment-update-button {

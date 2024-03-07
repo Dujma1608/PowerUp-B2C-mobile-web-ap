@@ -14,7 +14,7 @@ const BackArrow: React.FC<Props> = ({ setClose, isWhite }) => {
       slot="start"
       onClick={() => setClose()}
     >
-      <IonIcon icon={arrowBackOutline} style={{ fontSize: "26px" }} />
+      <IonIcon icon={arrowBackOutline} style={{ fontSize: "24px" }} />
     </div>
   );
 };

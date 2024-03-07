@@ -3,9 +3,12 @@ import {
   IonButton,
   IonButtons,
   IonCheckbox,
+  IonContent,
   IonIcon,
   IonInput,
   IonLabel,
+  IonPage,
+  IonSpinner,
   IonText,
 } from "@ionic/react";
 import { Field, Form, Formik } from "formik";
@@ -16,61 +19,72 @@ import { Link, useHistory } from "react-router-dom";
 import { arrowBackOutline } from "ionicons/icons";
 import { registerValidation } from "../FormUtils/Validation";
 import { useState } from "react";
+import UserStore from "../../app/stores/userStore";
+import { useStore } from "../../app/stores/store";
+import BackArrow from "../../app/common/BackArrow";
+import { observer } from "mobx-react-lite";
 
-const RegisterForm: React.FC = () => {
+const RegisterForm: React.FC = observer(() => {
+  const { userStore, regularStore } = useStore();
+  const [submit, setSubmit] = useState(false);
+
+  const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [initialValues, setInitialValues] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    confirmPassword: "",
-    agreeToTerms: false,
+    repeatPassword: "",
+    companyId: 1,
+    error: null,
   });
   const history = useHistory();
 
-  const handleChangeChecked = (e: any) => {
+  const handleChangeChecked = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, checked } = e.target;
     console.log(checked);
-    console.log(name);
-    setInitialValues((prevValues) => ({
-      ...prevValues,
-      [name]: checked,
-    }));
+    setAgreeToTerms(checked);
+    console.log("Agree", agreeToTerms);
+  };
+  const handleBack = () => {
+    history.push("/login");
   };
 
   return (
     <Formik
       validateOnMount={true}
       validationSchema={registerValidation}
-      initialValues={{
-        firstName: "",
-        lastName: "",
-        email: "",
-        password: "",
-        confirmPassword: "",
-        agreeToTerms: false,
-      }}
-      onSubmit={(values) => {
-        if (registerValidation.isValidSync(values)) {
-          console.log(values);
-          history.push("/home");
-        }
+      initialValues={initialValues}
+      onSubmit={(values, { setErrors }) => {
+        setSubmit(true);
+        userStore
+          .register(values)
+          .then(() => {
+            regularStore.setIsRegistered(true);
+            history.push("/register/verify");
+          })
+          .catch((error) => {
+            setSubmit(false);
+            setErrors({ error: "User with this email already exist" });
+          });
       }}
     >
-      {({ values, handleChange, handleSubmit, isValid, dirty }) => (
+      {({
+        errors,
+        values,
+        handleChange,
+        handleSubmit,
+        isValid,
+        dirty,
+        isSubmitting,
+      }) => (
         <Form
           className="register-form"
           autoComplete="off"
           onSubmit={handleSubmit}
         >
-          <div className="back-container">
-            <IonButton
-              className="backButton"
-              slot="start"
-              onClick={() => history.push("/login")}
-            >
-              <IonIcon icon={arrowBackOutline} />
-            </IonButton>
+          <div>
+            <BackArrow setClose={handleBack} />
           </div>
           <div className="titles-container">
             <IonLabel className="title-login">
@@ -97,9 +111,17 @@ const RegisterForm: React.FC = () => {
               type="email"
               name="email"
               placeholder="Email"
-              showGreenTick={true}
               handleChange={handleChange}
+              error={values.error}
+              errors={errors}
+              isEmail
             />
+
+            {/* <div style={{ width: "100%", height: "10px" }}>
+                  <IonText className="validator-message" color="danger">
+                    {errors.error}
+                  </IonText>
+                </div> */}
             <MyTextInput
               label="Password"
               placeholder="Password"
@@ -112,25 +134,25 @@ const RegisterForm: React.FC = () => {
               label="Confirm Password"
               type="password"
               placeholder="Confirm Password"
-              name="confirmPassword"
+              name="repeatPassword"
               showGreenTick={true}
               handleChange={handleChange}
             />
           </div>
           <div className="bottom-container">
             <div className="checkbox-container">
-              <Field
+              <input
                 style={{
                   width: "16px",
                   height: "16px",
                   marginRight: "8px",
+                  marginTop: "10px",
                 }}
                 type="checkbox"
-                name="agreeToTerms"
-                checked={values.agreeToTerms}
-                value={values.agreeToTerms}
+                onChange={handleChangeChecked}
+                checked={agreeToTerms}
               />
-              <IonText>
+              <IonText style={{ marginTop: "10px" }}>
                 I agree to the{" "}
                 <Link className="blue-no-underline" to="/termsAndConditions">
                   Terms and Conditions
@@ -142,9 +164,13 @@ const RegisterForm: React.FC = () => {
               <IonButton
                 className="register-button"
                 type="submit"
-                disabled={!isValid || !dirty}
+                disabled={!isValid || !dirty || !agreeToTerms}
               >
-                <span>Continue</span>
+                {isSubmitting && submit ? (
+                  <IonSpinner className="register-spinner" name="crescent" />
+                ) : (
+                  <span>Continue</span>
+                )}
               </IonButton>
             </div>
           </div>
@@ -152,6 +178,6 @@ const RegisterForm: React.FC = () => {
       )}
     </Formik>
   );
-};
+});
 
 export default RegisterForm;

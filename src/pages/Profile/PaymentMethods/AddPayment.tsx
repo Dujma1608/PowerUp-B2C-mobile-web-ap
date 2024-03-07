@@ -11,10 +11,10 @@ import "./AddPayment.css";
 import PaymentInput from "./PaymentInput";
 import CardNumberInput from "./CardNumberInput";
 import BackArrow from "../../../app/common/BackArrow";
-import SelectCountryDropdown from "../../../components/Profile/SelectCountryDropdown";
 import { useEffect, useState } from "react";
 import { Keyboard } from "@capacitor/keyboard";
 import { Capacitor } from "@capacitor/core";
+import SelectCountryDropdown from "../../../components/Profile/SelectCountryDropdown";
 
 interface Props {
   isOpen: boolean;
@@ -29,22 +29,22 @@ const AddPayment: React.FC<Props> = ({ isOpen, setClose }) => {
 
   const [isKeyboardVisible, setIsKeyboardVisible] = useState(false);
 
-  useEffect(() => {
-    // Check if running in Capacitor environment
-    if (Capacitor.getPlatform() !== "web") {
-      const showHandler = Keyboard.addListener("keyboardDidShow", () =>
-        setIsKeyboardVisible(true)
-      );
-      const hideHandler = Keyboard.addListener("keyboardDidHide", () =>
-        setIsKeyboardVisible(false)
-      );
+  // useEffect(() => {
+  //   // Check if running in Capacitor environment
+  //   if (Capacitor.getPlatform() !== "web") {
+  //     const showHandler = Keyboard.addListener("keyboardDidShow", async () =>
+  //       setIsKeyboardVisible(true)
+  //     );
+  //     const hideHandler = Keyboard.addListener("keyboardDidHide", async () =>
+  //       setIsKeyboardVisible(false)
+  //     );
 
-      return () => {
-        showHandler.remove();
-        hideHandler.remove();
-      };
-    }
-  }, []);
+  //     return () => {
+  //       showHandler.remove();
+  //       hideHandler.remove();
+  //     };
+  //   }
+  // }, []);
 
   useEffect(() => {
     if (selectValue !== "") {
@@ -119,22 +119,22 @@ const AddPayment: React.FC<Props> = ({ isOpen, setClose }) => {
                     selectValue={selectValue}
                     setSelectValue={setSelectValue}
                   />
-                </div>
-                <div
-                  className={
-                    isKeyboardVisible ? "keyboard-visible" : "keyboard-hidden"
-                  }
-                >
-                  <IonButton
+                  <div
                     className={
-                      !isValid || !dirty || !selectNoError
-                        ? "payment-update-disabled"
-                        : "payment-update-button"
+                      isKeyboardVisible ? "keyboard-visible" : "keyboard-hidden"
                     }
-                    disabled={!isValid || !dirty || !selectNoError}
                   >
-                    Add payment method
-                  </IonButton>
+                    <IonButton
+                      className={
+                        !isValid || !dirty || !selectNoError
+                          ? "payment-update-disabled"
+                          : "payment-update-button"
+                      }
+                      disabled={!isValid || !dirty || !selectNoError}
+                    >
+                      Add payment method
+                    </IonButton>
+                  </div>
                 </div>
               </Form>
             )}

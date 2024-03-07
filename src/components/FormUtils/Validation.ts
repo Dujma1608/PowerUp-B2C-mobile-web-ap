@@ -1,14 +1,24 @@
 import * as Yup from "yup";
 
+export const invoiceValidation = Yup.object({
+  email: Yup.string()
+    .email()
+    .required("Email is required")
+    .matches(
+      /^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/,
+      "Email is not valid"
+    ),
+});
+
 export const loginValidation = Yup.object({
   email: Yup.string().email("Email is not valid").required("Email is required"),
   password: Yup.string().required("Password is required"),
 });
 
 export const passwordValidation = Yup.object({
-  password: Yup.string().min(6, "Password must be at least 6 characters"),
-  confirmPassword: Yup.string()
-    .oneOf([Yup.ref("password")], "Passwords must match")
+  newPassword: Yup.string().min(6, "Password must be at least 6 characters"),
+  newPasswordRepeated: Yup.string()
+    .oneOf([Yup.ref("newPassword")], "Passwords must match")
     .required("Confirm password is required"),
 });
 
@@ -51,12 +61,9 @@ export const registerValidation = Yup.object().shape({
   lastName: Yup.string().nullable(),
   email: Yup.string().email("Invalid email").required("Email is required"),
   password: Yup.string()
-    .min(6, "Password must be at least 6 characters")
+    .min(8, "Password must be at least 8 characters")
     .required("Password is required"),
-  confirmPassword: Yup.string()
+  repeatPassword: Yup.string()
     .oneOf([Yup.ref("password")], "Passwords must match")
     .required("Confirm password is required"),
-  agreeToTerms: Yup.boolean()
-    .required()
-    .oneOf([true], "You must agree to the terms and conditions"),
 });

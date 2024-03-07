@@ -1,0 +1,27 @@
+.sure-modal {
+    --border-radius: 12px;
+    --box-shadow: 0 -8px 10px rgba(0, 0, 0, 0.05);
+}
+
+.sure-container {
+    display: flex;
+    padding: 10px 35px;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header-item {
+    width: 100%;
+    border-bottom: 2px solid #F2F2F2;
+    display: flex;
+    justify-content: center;
+    padding: 5px 0px;
+}
+.subtitle-item{
+    padding: 5px 0px;
+}
+
+.sure-button-container {
+    margin-top: 10px;
+    width: 100%;
+}

@@ -1,13 +1,18 @@
-import { IonButton, IonLabel, IonText } from "@ionic/react";
+import { IonButton, IonLabel, IonSpinner, IonText } from "@ionic/react";
 import "../../pages/Login/Login.css";
-import { useState } from "react";
-import { Form, Formik } from "formik";
+import { useEffect, useState } from "react";
+import { ErrorMessage, Form, Formik } from "formik";
 import { Link, useHistory } from "react-router-dom";
 import { useStore } from "../../app/stores/store";
 import { loginValidation } from "../FormUtils/Validation";
 import LoginTextInput from "./LoginTextInput";
+import { nuclearOutline } from "ionicons/icons";
+import { observer } from "mobx-react-lite";
 
-const LoginForm: React.FC = () => {
+interface Props {
+  setToast: (state: boolean) => void;
+}
+const LoginForm: React.FC<Props> = observer(({ setToast }) => {
   const { userStore } = useStore();
   const [showPassword, setShowPassword] = useState(false);
   const history = useHistory();
@@ -15,20 +20,56 @@ const LoginForm: React.FC = () => {
   const initialValues = {
     email: "",
     password: "",
+    companyId: 1,
+    error: null,
   };
 
+  const handleCreateAccount = () => {
+    history.push("/register");
+  };
+  useEffect(() => {
+    const unlisten = history.listen((location, action) => {
+      if (action === "POP") {
+        // User is attempting to navigate back
+        // Add your logic here, such as redirecting to another page
+        history.push("/login");
+      }
+    });
+
+    return () => {
+      // Cleanup function to unsubscribe from history listener
+      unlisten();
+    };
+  }, [history]);
   return (
     <Formik
       validationSchema={loginValidation}
       initialValues={initialValues}
-      onSubmit={(values) => {
-        if (loginValidation.isValidSync(values)) {
-          console.log(values);
-          history.push("/home");
-        }
+      onSubmit={(values, { setErrors, setSubmitting }) => {
+        setSubmitting(true);
+
+        userStore
+          .login(values)
+          .then(() => {
+            setErrors({});
+            setSubmitting(false);
+            history.push("/app/home");
+          })
+          .catch((error) => {
+            setSubmitting(false);
+            setToast(true);
+          });
       }}
     >
-      {({ handleSubmit, handleChange }) => (
+      {({
+        handleSubmit,
+        handleChange,
+        errors,
+        isSubmitting,
+        values,
+        isValid,
+        dirty,
+      }) => (
         <Form className="login-form" autoComplete="off" onSubmit={handleSubmit}>
           <div className="titles-container">
             <IonLabel className="title-login">Login to your account</IonLabel>
@@ -51,10 +92,19 @@ const LoginForm: React.FC = () => {
               handleChange={handleChange}
               isLogin={false}
             />
+            {/* <div style={{ width: "100%", height: "10px" }}>
+              <IonText className="validator-message" color="danger">
+                {errors.error}
+              </IonText>
+            </div> */}
           </div>
           <div className="buttons-container-login">
             <IonButton className="login-button" type="submit">
-              <span className="buttonText">Login</span>
+              {isSubmitting && !errors.error && isValid ? (
+                <IonSpinner className="register-spinner" name="crescent" />
+              ) : (
+                <span className="buttonText">Login</span>
+              )}
             </IonButton>
 
             <IonText className="forgot-password">
@@ -70,7 +120,11 @@ const LoginForm: React.FC = () => {
               <div className="divider-line"></div>
               <div className="or-text">or</div>
             </div>
-            <IonButton className="create-account-button" href="/register">
+            <IonButton
+              routerLink="/register"
+              className="create-account-button"
+              onClick={handleCreateAccount}
+            >
               <span className="buttonText">Create an Account</span>
             </IonButton>
           </div>
@@ -78,6 +132,6 @@ const LoginForm: React.FC = () => {
       )}
     </Formik>
   );
-};
+});
 
 export default LoginForm;

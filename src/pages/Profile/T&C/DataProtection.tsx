@@ -3,7 +3,7 @@ import BackArrow from "../../../app/common/BackArrow";
 import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import "./T&C.css";
-import cards from "../../../assets/images/Cards/data-protection-cards.png";
+import cards from "../../../assets/images/Cards/cards-data.png";
 
 const DataProtection: React.FC = () => {
   const history = useHistory();
@@ -13,9 +13,7 @@ const DataProtection: React.FC = () => {
   useEffect(() => {
     const fetchDataProtection = async () => {
       try {
-        const response = await fetch(
-          "/src/pages/Profile/T&C/dataProtection.txt"
-        );
+        const response = await fetch("/dataProtection.txt");
         if (!response.ok) {
           throw new Error("Failed to fetch terms and conditions");
         }
@@ -34,24 +32,58 @@ const DataProtection: React.FC = () => {
   };
   const renderText = () => {
     return dataProtection.split("\n").map((line, index) => {
-      if (line.startsWith("Power Up moguće je sljedećim karticama:")) {
+      if (
+        line.startsWith(
+          "The following cards are accepted for product/service payments on the Power Up system:"
+        )
+      ) {
         return (
           <div key={index}>
-            <p className="tekst">{line}</p>
-            {/* Insert your image here */}
-            <img style={{ margin: "5px 0" }} src={cards} alt="Card Types" />
+            <p
+              className="tekst"
+              style={{ textAlign: "center", marginBottom: "10px" }}
+            >
+              {line}
+            </p>
+            <img
+              style={{ margin: "5px 0", width: "68vw", height: "32px" }}
+              src={cards}
+              alt="Card Types"
+            />
           </div>
         );
       } else if (line.startsWith("Title:")) {
         return (
-          <p className="odredbe" key={index}>
+          <p className="odredbe" key={index} style={{ textAlign: "center" }}>
             {line.replace("Title:", "")}
           </p>
         );
       } else if (line.startsWith("Subtitle:")) {
         return (
-          <p className="clanak" key={index}>
+          <p className="clanak" key={index} style={{ textAlign: "center" }}>
             {line.replace("Subtitle:", "")}
+          </p>
+        );
+      } else if (line.startsWith("Super-subtitle:")) {
+        return (
+          <p
+            className="super-subtitle"
+            key={index}
+            style={{ textAlign: "center" }}
+          >
+            {line.replace("Super-subtitle:", "")}
+          </p>
+        );
+      } else if (line.startsWith("Super:")) {
+        return (
+          <p className="super" key={index}>
+            {line.replace("Super:", "")}
+          </p>
+        );
+      } else if (line.startsWith("Super2:")) {
+        return (
+          <p className="super2" key={index}>
+            {line.replace("Super2:", "")}
           </p>
         );
       } else {

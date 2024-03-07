@@ -2,21 +2,38 @@ import { useMap } from "react-leaflet";
 import locate from "../../../assets/images/Map/locate.png";
 import "./Map.css";
 import { Geolocation } from "@capacitor/geolocation";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../../app/stores/store";
+import { useEffect } from "react";
+import { Charger } from "../../../app/models/charger";
 
 interface Props {
-  mapCenter: [number, number];
-  setMapCenter: (coordinates: [number, number]) => void;
+  chargers: Charger[];
 }
-const CenterMap: React.FC<Props> = ({ mapCenter, setMapCenter }) => {
+
+const CenterMap: React.FC<Props> = observer(({ chargers }) => {
   const map = useMap();
+  const { regularStore, connectorStore, locationStore } = useStore();
+  const { scannedConnector } = connectorStore;
+
+  useEffect(() => {
+    const scanProcess = () => {
+      if (scannedConnector) {
+        chargers.forEach((charger) => {
+          if (scannedConnector.chargerAddress === charger.address) {
+            map.setView([charger.latitude - 0.0007, charger.longitude]);
+            map.setZoom(18);
+          }
+        });
+      }
+    };
+    scanProcess();
+  }, [scannedConnector, chargers, map]);
 
   const centerOnUserLocation = async () => {
     try {
       const currentPosition = await Geolocation.getCurrentPosition();
       const { latitude, longitude } = currentPosition.coords;
-      console.log("Clicked", [latitude, longitude]);
-      console.log("Map center", mapCenter);
-      setMapCenter([latitude, longitude]);
 
       map.setView([latitude, longitude]);
     } catch (error) {
@@ -36,6 +53,6 @@ const CenterMap: React.FC<Props> = ({ mapCenter, setMapCenter }) => {
       />
     </div>
   );
-};
+});
 
 export default CenterMap;

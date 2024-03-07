@@ -2,18 +2,20 @@ import { IonSearchbar } from "@ionic/react";
 import "./Search.css";
 
 interface Props {
-  openModal: (value: boolean) => void;
-  closeModal: (value: boolean) => void;
+  openModal: () => void;
+  closeModal: () => void;
 }
 
 const SearchBar: React.FC<Props> = ({ openModal, closeModal }) => {
   return (
     <IonSearchbar
       className="search-bar"
-      onIonFocus={() => openModal(true)}
+      onIonFocus={() => openModal()}
       showCancelButton="focus"
-      onIonCancel={() => closeModal(false)}
-      color={"dark"}
+      onIonCancel={() => closeModal()}
+      color="dark"
+      searchIcon=""
+      showClearButton="focus"
       placeholder="Search anything..."
       style={{
         position: "absolute",
@@ -22,6 +24,8 @@ const SearchBar: React.FC<Props> = ({ openModal, closeModal }) => {
         padding: "54px 27px 0 26px",
         zIndex: 1000,
         "--border-radius": "10px",
+        "--background": "red",
+        color: "gray",
       }}
     />
   );

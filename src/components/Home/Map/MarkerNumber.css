@@ -16,5 +16,7 @@
     color: #0AB051;
     background-color: transparent;
     z-index: 9999;
+    box-shadow: none;
+    
     /* Bring it to the front */
 }

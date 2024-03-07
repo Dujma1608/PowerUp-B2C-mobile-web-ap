@@ -4,6 +4,7 @@ import {
   IonIcon,
   IonInput,
   IonPage,
+  IonSpinner,
   IonText,
 } from "@ionic/react";
 import { Form, Formik } from "formik";
@@ -13,17 +14,22 @@ import * as Yup from "yup";
 import "./BasicInfo.css";
 import InfoInput from "./InfoInput";
 import BackArrow from "../../../../app/common/BackArrow";
+import { useStore } from "../../../../app/stores/store";
+import { useEffect, useState } from "react";
 
 const BasicInfo: React.FC = () => {
-  const validation = Yup.object({
-    // firstName: Yup.string().required("First name is required"),
-    // lastName: Yup.string().required("Last name is required"),
-  });
+  const [submitting, setSubmitting] = useState(false);
+  const { profileStore } = useStore();
+  const { profile, getUserInfo, updateUserName } = profileStore;
   const history = useHistory();
 
   const handleBack = () => {
     history.goBack();
   };
+
+  useEffect(() => {
+    if (submitting) getUserInfo();
+  }, [submitting, getUserInfo, profile]);
 
   return (
     <IonPage style={{ padding: "30px 15px" }}>
@@ -32,9 +38,19 @@ const BasicInfo: React.FC = () => {
       </div>
       <IonContent className="ion-padding">
         <Formik
-          initialValues={{ firstName: "", lastName: "" }}
-          validationSchema={validation}
-          onSubmit={() => {}}
+          initialValues={{
+            firstName: profile?.firstName,
+            lastName: profile?.lastName,
+          }}
+          onSubmit={(values) => {
+            setSubmitting(true);
+            updateUserName(values);
+
+            setTimeout(() => {
+              setSubmitting(false);
+              history.push("/profile/account");
+            }, 400);
+          }}
         >
           {({ handleChange }) => (
             <Form>
@@ -51,6 +67,17 @@ const BasicInfo: React.FC = () => {
                 type="text"
                 handleChange={handleChange}
               />
+              <IonButton
+                className="update-button"
+                type="submit"
+                disabled={submitting}
+              >
+                {submitting ? (
+                  <IonSpinner className="register-spinner" name="crescent" />
+                ) : (
+                  <span>Update</span>
+                )}
+              </IonButton>
             </Form>
           )}
         </Formik>

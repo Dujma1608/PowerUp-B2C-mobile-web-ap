@@ -1,12 +1,16 @@
-.search-bar{
-    --placeholder-color: #A6A6A6;
+ion-search-bar.search-bar{
     --placeholder-font-weight: 500;
+    opacity: 1;
+}
+ion-searchbar.search-bar:disabled {
+    opacity: 0;
+    /* Adjust the opacity value as needed */
 }
 .search-container{
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    padding: 60%  10%;
 }
 .search-img{
     width: 230px;

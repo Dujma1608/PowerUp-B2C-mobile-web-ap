@@ -17,12 +17,22 @@ import {
 import "./AccountInfo.css";
 import { Router, useHistory } from "react-router";
 import BackArrow from "../../../../app/common/BackArrow";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../../../app/stores/store";
+import { useEffect } from "react";
+import SureModal from "../../../../app/common/tabbar/SureModal";
 
-const AccountInfo: React.FC = () => {
+const AccountInfo: React.FC = observer(() => {
+  const { userStore, profileStore } = useStore();
+  const { profile } = profileStore;
   const history = useHistory();
 
+  const modalTitle = "Log Out";
+  const modalSubtitle = "Are you sure you want to log out?";
+  const modalButtonText = "Log Out";
+
   const handleBack = () => {
-    history.goBack();
+    history.push("/app/profile");
   };
   const handleChangePassword = () => {
     history.push("/profile/account/password");
@@ -30,9 +40,12 @@ const AccountInfo: React.FC = () => {
   const handleChangeName = () => {
     history.push("/profile/account/info");
   };
-  const handleChangeEmail = () => {
-    history.push("/profile/account/email");
+
+  const handleLogOut = () => {
+    userStore.logout();
+    history.push("/login");
   };
+
   return (
     <IonPage style={{ padding: "30px 15px" }}>
       <div style={{ marginBottom: "20px" }}>
@@ -40,7 +53,7 @@ const AccountInfo: React.FC = () => {
       </div>
       <IonContent>
         <IonList>
-          <IonItem lines="none" style={{ margin: "15px 0", padding: "10px 0" }}>
+          <IonItem lines="none">
             <div className="accountInfo-header">
               <IonText className="font18 w600 color021">Account Info</IonText>
               <div className="circle-info">
@@ -55,36 +68,24 @@ const AccountInfo: React.FC = () => {
             </div>
           </IonItem>
           <IonItem lines="none">
-            <IonText
-              style={{ marginBottom: "10px" }}
-              className="font18 w600 color021"
-            >
-              Basic Info
-            </IonText>
+            <IonText className="font18 w600 color021">Basic Info</IonText>
           </IonItem>
           <IonItem
             onClick={handleChangeName}
             lines="full"
             style={{ padding: "10px 0" }}
           >
-            <IonText className="font12 w500">Josip Dujmović</IonText>
+            <IonText className="font12 w500">
+              {profile?.firstName} {profile?.lastName}
+            </IonText>
             <IonIcon
               icon={chevronForwardOutline}
               style={{ color: "#021F0E", fontSize: "19px" }}
               slot="end"
             />
           </IonItem>
-          <IonItem
-            onClick={handleChangeEmail}
-            lines="full"
-            style={{ padding: "10px 0" }}
-          >
-            <IonText className="font12 w500">josip@gmail.com</IonText>
-            <IonIcon
-              icon={chevronForwardOutline}
-              style={{ color: "#021F0E", fontSize: "19px" }}
-              slot="end"
-            />
+          <IonItem lines="full" style={{ padding: "10px 0" }}>
+            <IonText className="font12 w500">{profile?.email}</IonText>
           </IonItem>
           <IonItem lines="none">
             <IonText
@@ -107,14 +108,25 @@ const AccountInfo: React.FC = () => {
               slot="end"
             />
           </IonItem>
-          <div className="account-info-buttons">
-            <IonButton className="login-button font12 w600">Log Out</IonButton>
-            <IonButton className="delete w600 font12">Delete Account</IonButton>
-          </div>
         </IonList>
+        <div className="account-info-buttons">
+          <IonButton
+            id="open-sure-modal"
+            className="login-button font12 w600"
+            // onClick={handleLogOut}
+          >
+            Log Out
+          </IonButton>
+        </div>
+        <SureModal
+          title={modalTitle}
+          subtitle={modalSubtitle}
+          buttonText={modalButtonText}
+          isLoggingOut
+        />
       </IonContent>
     </IonPage>
   );
-};
+});
 
 export default AccountInfo;

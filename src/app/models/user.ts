@@ -1,7 +1,10 @@
 export interface User {
-  username: string;
+  id: number;
+  firstName: string;
+  lastName: string;
   email: string;
-  token: string;
+  token?: string;
+  roleName?: string;
 }
 
 export interface UserFormValues {
@@ -9,5 +12,18 @@ export interface UserFormValues {
   lastName?: string;
   email: string;
   password: string;
-  confirmPassword: string;
+  repeatPassword?: string;
+  companyId: number;
+}
+
+export interface VerifyUser {
+  userId: number;
+  activationCode: string;
+}
+
+export interface ResetPassword {
+  userId: number;
+  activationCode: string;
+  newPassword: string;
+  newPasswordRepeated: string;
 }

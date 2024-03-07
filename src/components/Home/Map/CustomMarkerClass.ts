@@ -1,7 +1,7 @@
 import L from "leaflet";
 
 export interface CustomMarkerOptions extends L.MarkerOptions {
-  connectorsNumber?: number;
+  connectorsCount?: number;
 }
 
 export class CustomMarker extends L.Marker {
