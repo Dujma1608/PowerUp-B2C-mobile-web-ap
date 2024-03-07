@@ -1,0 +1,19 @@
+apiVersion : apps/v1
+kind: Deployment
+metadata:
+  name: powerupfrontendbc 
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: powerupfrontendbc
+  template:
+    metadata:
+      labels:
+        app: powerupfrontendbc 
+    spec:
+      containers:
+        - name: powerupfrontendbc 
+          image: powerupacr.azurecr.io/powerupfrontendbc
+          ports:
+          - containerPort: 80
