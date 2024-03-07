@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 import { useStore } from "../../../app/stores/store";
 
 const ConfirmInfoWeb: React.FC = observer(() => {
-  const { chargerStore, sessionStore, regularStore, profileStore } = useStore();
+  const { chargerStore } = useStore();
   const { loadChargers, chargerRegistry } = chargerStore;
 
   const [locationAlert, setLocationAlert] = useState(false);

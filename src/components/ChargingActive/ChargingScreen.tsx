@@ -38,7 +38,7 @@ const ChargingScreen: React.FC = observer(() => {
   const modalButtonText = "Yes";
 
   return (
-    <IonPage>
+    <IonPage className="charge-page">
       <IonContent>
         <div className="charge-container">
           {!regularStore.isWeb && (
