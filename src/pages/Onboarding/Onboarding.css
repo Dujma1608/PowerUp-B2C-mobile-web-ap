@@ -40,6 +40,17 @@
     height: 8px;
     margin-bottom: 38.4px;
 }
+.dots-img{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+.dots-img img{
+    width: 55px;
+    height: 8px;
+}
 
 .buttons-container {
     width: 165px;

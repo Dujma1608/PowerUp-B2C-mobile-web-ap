@@ -1,18 +1,33 @@
+import { ChargerData } from "../../../app/models/connector";
 import "./Connector.css";
 
-const Connector: React.FC = () => {
+interface Props {
+  connector: ChargerData;
+}
+
+const Connector: React.FC<Props> = ({ connector }) => {
   return (
-    <div className="flex">
-      <div className="flex-column">
-        <p className="title">Connector#1:CCS2</p>
-        <p className="availability w400">EUR 0,50/kWh</p>
+    <div className="charger-info-flex">
+      <div className="column">
+        <p className="font12 w400 color021">{connector.connectorName}</p>
+        <p className="font10 colorA6 w400">
+          {connector.currencyIso} {connector.pricePerKwh}/kWh
+        </p>
       </div>
-      <div className="flex-column">
+      <div className="column">
         <div className="flex-little">
-          <p className="title w700">DC</p>
-          <p className="availability w400 marginzero">Occupied</p>
+          <p className="font12 color021 w700">{connector.electricCurrent}</p>
+          <p
+            className={
+              connector.connectorStatus === "Available"
+                ? "font10 w500 color0ABgreen"
+                : "font10 colorA6 w500"
+            }
+          >
+            {connector.connectorStatus}
+          </p>
         </div>
-        <p className="availability">Max Power: 300kW</p>
+        <p className="font10 w400 color021">Max Power: 300kW</p>
       </div>
     </div>
   );

@@ -1,30 +1,24 @@
-.flex{
+.charger-info-flex{
     display: flex;
     justify-content: space-between;
+    align-items: baseline;
 }
 .flex-little{
     display: flex;
-    align-items:baseline;
+    justify-content: space-between;
+    align-items: center;
     gap: 10px;
 }
-.flex-column{
+.charger-info-flex .column{
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 .title{
     font-size: 12px;
-    font-weight: 400;
     color: #021F0E;
 }
-.availability{
-    font-size: 10px;
-    color: #A6A6A6;
-    margin-bottom: 15px;
-}
-.marginzero{
-    margin: 0;
-}
+
 p{
     margin: 0;
 }

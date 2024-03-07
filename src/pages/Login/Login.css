@@ -65,6 +65,7 @@
     margin: 0 0 15px 0;
     --border-radius: 10px;
     height: 48px;
+    --ripple-color: #000;
 }
 
 .forgot-password {
@@ -117,12 +118,30 @@
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
+    --ripple-color: #000;
 
 }
 .buttonText{
     font-size: 12px;
     font-weight: 600;
     padding: 24px;
+}
+
+.registration-toast {
+    --background:#3ACE7A;
+    --box-shadow: 5px 3px 12px 0 rgba(0, 0, 0, 0.3);
+    font-weight: 500;
+    --color: #ffffff;
+}
+.login-toast {
+    --background: #f04e4e;
+    --box-shadow: 5px 3px 12px 0 rgba(0, 0, 0, 0.3);
+    --color: #ffffff;
+    font-weight: 500;
+}
+
+ion-toast ion-icon{
+    --color: #3ACE7A;
 }
 
 

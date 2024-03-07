@@ -1,75 +1,92 @@
-// appRoutes.tsx
-
 import React from "react";
 import { Route } from "react-router-dom";
 import Onboarding from "../pages/Onboarding/Onboarding";
 import Login from "../pages/Login/Login";
 import Register from "../pages/Register/Register";
-import ForgotPassword from "../pages/Login/ForgotPassword";
-import NewPassword from "../pages/Login/NewPassword";
-import Home from "../pages/Home/Home";
-
 import PasswordReset from "../pages/Login/PasswordReset";
 import BarcodePage from "../components/Home/QR Scanner/BarcodePage";
 import Connecting from "../components/Charging/Connecting";
-import ChargingScreen from "../components/ChargingActive/ChargingScreen";
 import ProcessingPayment from "../components/ChargingActive/ProccesingPayment";
-import Profile from "../pages/Profile/Profile";
 import AccountInfo from "../pages/Profile/Info/AccountInfo/AccountInfo";
 import ChangePassword from "../pages/Profile/Info/PasswordChange/ChangePassword";
 import BasicInfo from "../pages/Profile/Info/BasicInfo/BasicInfo";
-import Email from "../pages/Profile/Info/BasicInfo/Email";
 import PaymentMethods from "../pages/Profile/PaymentMethods/PaymentMethods";
 import Card from "../pages/Profile/PaymentMethods/Detail/Card";
 import PaymentHistory from "../pages/Profile/PaymentHistory/PaymentHistory";
 import InfoPage from "../pages/Profile/T&C/InfoPage";
 import TermsAndConditions from "../pages/Profile/T&C/TermsAndCondition";
 import DataProtection from "../pages/Profile/T&C/DataProtection";
-// import Home from "../pages/Home/Home";
+import TabDefault from "../pages/TabDefault";
+import { Capacitor } from "@capacitor/core";
+import VerifyUser from "../components/RegisterForm/VerifyUser";
+import Initial from "../WebApp/Pages/Initial/Initial";
+import ConfirmInfoWeb from "../WebApp/Pages/ConfirmInfo/ConfirmInfoWeb";
+import ChargingScreen from "../components/ChargingActive/ChargingScreen";
 
-const Routes: React.FC = () => (
-  <>
-    <Route path="/" component={Onboarding} exact={true} />
-    <Route path="/login" component={Login} exact={true} />
-    <Route path="/camera" component={BarcodePage} exact={true} />
-    <Route path="/login/password-reset" component={PasswordReset} />
-    <Route path="/home" component={Home} exact={true} />
-    <Route path="/connecting" component={Connecting} exact={true} />
-    <Route path="/charging" component={ChargingScreen} exact={true} />
-    <Route
-      path="/charging/process"
-      component={ProcessingPayment}
-      exact={false}
-    />
-    <Route path="/register" component={Register} exact={true} />
-    <Route path="/profile" component={Profile} exact={true} />
-    <Route path="/profile/account" component={AccountInfo} exact={true} />
-    <Route path="/profile/account/info" component={BasicInfo} exact={true} />
-    <Route path="/profile/account/email" component={Email} exact={true} />
-    <Route
-      path="/profile/account/password"
-      component={ChangePassword}
-      exact={true}
-    />
-    <Route path="/profile/payment" component={PaymentMethods} exact={true} />
-    <Route path="/profile/payment/:id" component={Card} exact={true} />
-    <Route
-      path="/profile/payment-history"
-      component={PaymentHistory}
-      exact={true}
-    />
-    <Route path="/profile/info" component={InfoPage} exact={true} />
-    <Route
-      path="/profile/info/terms&conditions"
-      component={TermsAndConditions}
-      exact={true}
-    />
-    <Route
-      path="/profile/info/data-protection"
-      component={DataProtection}
-      exact={true}
-    />
-  </>
-);
+const mobileRoutes = [
+  { path: "/", component: Onboarding, exact: true },
+  { path: "/login", component: Login, exact: true },
+  { path: "/camera", component: BarcodePage, exact: true },
+  { path: "/login/password-reset", component: PasswordReset },
+  { path: "/app", component: TabDefault },
+  { path: "/connecting", component: Connecting, exact: true },
+  { path: "/charging", component: ChargingScreen, exact: true },
+  { path: "/charging/process", component: ProcessingPayment },
+  { path: "/register", component: Register, exact: true },
+  { path: "/register/verify", component: VerifyUser, exact: true },
+  { path: "/profile/account", component: AccountInfo, exact: true },
+  { path: "/profile/account/info", component: BasicInfo, exact: true },
+  { path: "/profile/account/password", component: ChangePassword, exact: true },
+  { path: "/profile/payment", component: PaymentMethods, exact: true },
+  { path: "/profile/payment/:id", component: Card, exact: true },
+  { path: "/profile/payment-history", component: PaymentHistory, exact: true },
+  { path: "/profile/info", component: InfoPage, exact: true },
+  {
+    path: "/profile/info/terms&conditions",
+    component: TermsAndConditions,
+    exact: true,
+  },
+  {
+    path: "/profile/info/data-protection",
+    component: DataProtection,
+    exact: true,
+  },
+];
+const webRoutes = [
+  { path: "/", component: Initial, exact: true },
+  {
+    path: "/terms",
+    component: TermsAndConditions,
+    exact: true,
+  },
+  {
+    path: "/home",
+    component: ConfirmInfoWeb,
+    exact: true,
+  },
+  { path: "/connecting", component: Connecting, exact: true },
+  { path: "/charging", component: ChargingScreen, exact: true },
+  { path: "/charging/process", component: ProcessingPayment },
+];
+
+const Routes: React.FC = () => {
+  let routes = [];
+
+  if (Capacitor.getPlatform() == "web") {
+    routes = webRoutes;
+  } else routes = mobileRoutes;
+  return (
+    <>
+      {routes.map((route, index) => (
+        <Route
+          key={index}
+          path={route.path}
+          component={route.component}
+          exact={route.exact}
+        />
+      ))}
+    </>
+  );
+};
 
 export default Routes;

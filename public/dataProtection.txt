@@ -1,0 +1,70 @@
+Super: SALES TERMS:
+
+Super-subtitle:I. PAYMENT FOR ELECTRICITY
+Infinite Loop IT is not a concessionaire, owner, nor in possession of the products/services offered through its websites. Therefore, it cannot be held responsible (in cases where it is not an owner) for potential deficiencies or any other issues that may arise during the use of the services it offers.
+
+Super-subtitle:II. PAYMENT
+Power Up enables users to make payments using credit cards. The payment card processing service is provided by the CorvusPay system, contractually authorized by Infinite Loop IT j.d.o.o. for these transactions.
+
+The following cards are accepted for product/service payments on the Power Up system:
+
+
+Super-subtitle:III. CURRENCY CONVERSION STATEMENT
+All payments will be processed in euros. When charging your credit card, the same amount is converted into your local currency based on the current exchange rate of the card association. As a result of the conversion of prices, there may be a slight difference in the amount compared to the original price displayed on our website.
+
+Super-subtitle:IV. DELIVERY/SHIPPING
+The payment for electrical energy will be executed through the Power Up application after completing the electric vehicle charging. Proof of payment for the electricity charging service is provided through an invoice issued for each purchase.
+
+Super-subtitle:V. COMPLAINTS AND REFUND
+During a complaint, the Buyer is required to provide the purchase receipt or essential elements of the receipt.
+The Power Up sales point is considered equal to all other sales points of the Concessionaire, and the Buyer is directed to address complaints directly to the Concessionaire. Infinite Loop IT can only accept the complaint as an intermediary and will forward it to the Concessionaire with all necessary technical data arising from the purchase via the Power Up application.
+In accordance with Article 79, paragraph 1, item 12 of the Consumer Protection Act, the Buyer does not have the right to unilaterally terminate the distance contract (refund) since the subject of the contract is the provision of services related to leisure, taking place at a specific time or within a specified period.
+The method and place of refund are determined by the Concessionaire.
+In the case of a valid complaint, the Buyer will not burden Infinite Loop IT j.d.o.o with any direct or indirect costs and damages, but exclusively the Concessionaire. The individual responsibility of the Concessionaire and Infinite Loop IT j.d.o.o is resolved on the basis of a mutual agreement. 
+If the Buyer believes they did not receive the paid product/service, they must inform Infinite Loop IT j.d.o.o immediately, but no later than seven (7) days after paying for the service. If the Buyer does not inform Infinite Loop IT j.d.o.o within the specified period, it will be considered that they are satisfied with the paid product/service, and the complaint and the right to a refund are considered irrelevant.
+
+
+Super: SECURITY
+Super2:Security of Online Payments
+While conducting payments on our web shop you are using CorvusPay – an advanced system for secure acceptance of credit cards on the Internet. 
+
+CorvusPay system ensures complete privacy of your credit card data and personal data from the moment you type them into the CorvusPay payment form. Data required for billing is forwarded encrypted from your web browser to the bank that issued your payment card. Our store never comes into contact with your sensitive payment card data. Similarly, CorvusPay operators cannot access your complete cardholder data. An isolated system core independently transmits and manages sensitive data while at the same time keeping it completely safe. 
+
+The form for entering payment data is secured by an SSL transmission cipher of the greatest reliability. All stored data is additionally protected by hi-grade encryption, using hardware devices certified by FIPS 140 2 Level 3 standard. CorvusPay fulfills all of the requirements for safe online payment prescribed by the leading credit card brands, operating in compliance to the PCI DSS Level 1 standard - the highest security standard of the payment card industry. Payments made by cards enroled with the 3-D Secure program are further authenticated by the issuing bank, confirming your identity through the use of a token or a password. 
+
+All information collected by Corvus Pay is considered a secret and treated accordingly. The information is used exclusively for the purposes for which they were intended. Your sensitive data is fully secure and it’s privacy is guaranteed by the state of the art safeguard mechanisms. We collect only the data necessary for performing the work in accordance with the demanding prescribed procedures for online payment. 
+Security controls and operating procedures applied within the CorvusPay infrastructure not only ensure current reliability of CorvusPay but permanently maintain and enhance the security levels of protecting your credit card information by maintaining strict access controls, regular security and in-depth system checks for preventing network vulnerabilities. 
+
+Thank you for using CorvusPay!
+
+
+Super:PRIVACY
+Protecting your personal data is a legal obligation, and elements of privacy protection are part of the solutions of the Power Up application. This statement explains how we use and protect your data.
+By using the Power Up application, it is considered that you agree that any information provided in the Power Up system is archived, used, and disclosed in accordance with this Privacy Statement. Please read the Privacy Statement and Terms of Use in full before using the website.
+Power Up is committed to providing the protection of customers&#39; personal data by collecting only necessary, basic customer/user data required to fulfill our obligations. We inform customers about how the collected data is used, regularly provide customers with the choice of using their data, including the option to decide whether they want their name removed from lists used for marketing campaigns. All user data is strictly kept and only accessible to Power Up employees who need this data to perform their job and parking concessionaires whose products you purchase, according to the conditions listed below. All legal entities from the heading of the Statement and their employees are responsible for respecting the principles of privacy protection.
+
+Title:1. DATA WE COLLECT
+When you access the application, you provide us with the following data, which we archive:
+Subtitle:1.1 PERSONAL DATA VOLUNTARILY ENTERED WHEN USING POWER UP SERVICES
+Personal data related to your identity may include, among other things, your name, email address, phone number, date of birth, address, and location. The data will be securely transmitted to the concessionaire&#39;s electricity payment system. From Power Up application users, we will collect limited credit card data, card owner information, and similar payment-related information. These data are exclusively available to the Power Up system and will not be forwarded to third parties. Sensitive credit card data that can be used for payment transactions, such as credit card numbers, are transmitted via a security protocol (SSL) to the CorvusPay system, which handles payments and, for security reasons, is never archived in the Power Up system.
+Subtitle:1.2 GENERAL DATA NOT DIRECTLY LINKED TO YOUR IDENTITY
+General data may include, among other things, IP address, approximate location, or time spent on the website. This data cannot be directly linked to your identity in any way.
+
+Title:2. USE OF COLLECTED DATA
+We will use the data we collect about you to provide you with the best possible service. Some ways in which we may use your Personal Data include:
+- To identify you as a user.
+- To conduct financial transactions on your behalf, each time with your explicit consent.
+- To contact you with information related to the use of the Power Up system and concessionaire electricity.
+- To improve the quality of the application and prevent potential malpractices. 
+General data cannot be linked to you in any way, and Power Up may use it for any legally permissible purpose.
+
+Title:3. ADDITIONAL NOTES
+The collected data cannot and will not be subject to further data selling, and their security is of the utmost importance to us. However, there are situations in which a third party could gain access to your data:
+- In possible cases of business transitions on the concessionaire&#39;s side or on the side of Infinite Loop IT j.d.o.o., your personal data will, in most cases, be part of the transferred assets.
+- When conducting transactions through the application, you agree that data will be provided to assumed third parties. This third party is authorized to use personal data only for the implementation of the application&#39;s basic functionality.
+- When purchasing products, concessionaires have access to some of your personal data. Concessionaires are also required to adhere to this Privacy Statement, but responsibility is personal for each legal entity involved in the WebPark system, and each will be responsible individually. Responsibility is joint but not several.
+
+Infinite Loop IT j.d.o.o. will respect law enforcement requirements, and when applicable laws, court decisions, or government regulations require, Infinite Loop IT j.d.o.o. will provide authorized state authorities access to necessary personal data to protect the safety of users or other individuals.
+
+Title:4. CHANGES TO THE PRIVACY STATEMENT
+Infinite Loop IT j.d.o.o. and concessionaires reserve the right to amend or supplement this Privacy Statement or any part of it at any time without prior notice. Therefore, we recommend that you regularly check the content of this Privacy Statement.

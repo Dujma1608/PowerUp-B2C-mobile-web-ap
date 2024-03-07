@@ -8,42 +8,49 @@ import MarkerClusterComponent from "./MarkerClusterComponent";
 import GeoPosition from "./GeoPosition";
 import { Geolocation } from "@capacitor/geolocation";
 import CenterMap from "./CenterMap";
+import { Charger } from "../../../app/models/charger";
+import { useStore } from "../../../app/stores/store";
+import { observer } from "mobx-react-lite";
+import { toJS } from "mobx";
 
 interface Props {
-  center: [number, number];
   setLocationAlert: (value: boolean) => void;
+  chargers: Charger[];
 }
 
-const MyMap: React.FC<Props> = ({ center, setLocationAlert }) => {
-  const [mapCenter, setMapCenter] = useState<[number, number]>([
-    45.778, 15.9151,
-  ]);
+const MyMap: React.FC<Props> = observer(({ setLocationAlert, chargers }) => {
+  const { chargerStore, regularStore, connectorStore } = useStore();
+  const { scannedConnector } = connectorStore;
+  const { chargerRegistry } = chargerStore;
+  const { mapCenter, mapZoom, setMapZoom } = regularStore;
 
   useEffect(() => {
     setTimeout(function () {
       window.dispatchEvent(new Event("resize"));
-    }, 10);
-  }, [mapCenter]);
+    }, 20);
+  }, [regularStore.mapCenter, chargerRegistry]);
 
   return (
     <MapContainer
       center={mapCenter}
-      zoom={12}
+      zoom={mapZoom}
       scrollWheelZoom={true}
       zoomControl={false}
+      attributionControl={false}
     >
       <TileLayer
+        updateWhenZooming={true}
         url={MAP_URL}
         attribution={`&copy; <a href="https://www.mapbox.com/">Mapbox</a> contributors`}
+        maxZoom={20}
       />
-      <MarkerClusterComponent />
+      <MarkerClusterComponent chargers={chargers} />
 
-      <CenterMap mapCenter={mapCenter} setMapCenter={setMapCenter} />
+      <CenterMap chargers={chargers} />
 
-      {/* Display current location marker */}
       <GeoPosition setLocationAlert={setLocationAlert} />
     </MapContainer>
   );
-};
+});
 
 export default MyMap;

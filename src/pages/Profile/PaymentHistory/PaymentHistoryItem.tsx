@@ -20,8 +20,8 @@ interface Payment {
 
 const PaymentHistoryItem: React.FC<Props> = ({ payment }) => {
   return (
-    <div className="flex">
-      <div>
+    <div className="history-flex">
+      <div className="payment-history-info">
         <p className="font14 w600 color021">{payment.date}</p>
         <div className="flex-price">
           <p className="price">{payment.price} EUR</p>

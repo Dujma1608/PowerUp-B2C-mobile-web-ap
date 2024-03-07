@@ -3,16 +3,19 @@ import { observer } from "mobx-react-lite";
 import { useRef } from "react";
 import { useHistory } from "react-router";
 import { useStore } from "../../stores/store";
+import "./SureModal.css";
 
 interface Props {
   title: string;
   subtitle: string;
   buttonText: string;
   isCharging?: true;
+  isLoggingOut?: true;
 }
 const SureModal: React.FC<Props> = observer(
-  ({ title, subtitle, buttonText, isCharging }) => {
-    const { regularStore } = useStore();
+  ({ title, subtitle, buttonText, isCharging, isLoggingOut }) => {
+    const { regularStore, userStore, sessionStore, connectorStore } =
+      useStore();
     const modal = useRef<HTMLIonModalElement>(null);
     const history = useHistory();
 
@@ -22,8 +25,14 @@ const SureModal: React.FC<Props> = observer(
 
     const handleClick = () => {
       if (isCharging) {
-        regularStore.setIsCharging(false);
-        history.push("/charging/process");
+        sessionStore.stopSession(sessionStore.session?.id!).then(() => {
+          regularStore.setIsCharging(false);
+          connectorStore.setConnector();
+          history.push("/charging/process");
+        });
+      } else if (isLoggingOut) {
+        userStore.logout();
+        history.push("/login");
       } else console.log("Payment removed");
     };
     return (
@@ -31,14 +40,14 @@ const SureModal: React.FC<Props> = observer(
         backdropDismiss={false}
         ref={modal}
         trigger="open-sure-modal"
-        initialBreakpoint={0.33}
+        initialBreakpoint={0.3}
         className="sure-modal"
       >
         <div className="sure-container">
           <div className="header-item">
             <p className="font16 w600">{title}</p>
           </div>
-          <div>
+          <div className="subtitle-item">
             <p className="font12 w400 colorA6">{subtitle}</p>
           </div>
           <div className="sure-button-container">

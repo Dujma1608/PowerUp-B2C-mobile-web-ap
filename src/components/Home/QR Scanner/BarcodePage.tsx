@@ -25,12 +25,15 @@ import QRCodeScanner from "./QRCodeScanner";
 import SureModal from "../../../app/common/tabbar/SureModal";
 import CameraPermissionModal from "./CameraPermissionModal";
 import { Camera } from "@capacitor/camera";
+import { useStore } from "../../../app/stores/store";
 
 const BarcodePage: React.FC = () => {
   const [scanResult, setScanResult] = useState<string | null>(null);
   const [scanActive, setScanActive] = useState(false);
   const [actionPopup, setActionPopup] = useState(false);
   const [showModal, setShowModal] = useState(true);
+
+  const { connectorStore } = useStore();
   const history = useHistory();
 
   const title = "Allow access to your camera";
@@ -70,8 +73,9 @@ const BarcodePage: React.FC = () => {
       if (granted) {
         setScanActive(true);
         const result = await QRCodeScanner.startScan();
+        connectorStore.getConnector(result!);
         setScanResult(result);
-        history.push("/home");
+        history.push("/app/home");
         setScanActive(false);
       }
     };

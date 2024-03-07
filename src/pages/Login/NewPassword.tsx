@@ -10,13 +10,16 @@ import { arrowBackOutline } from "ionicons/icons";
 import "./NewPassword.css";
 import LoginTextInput from "../../components/LoginForm/LoginTextInput";
 import BackArrow from "../../app/common/BackArrow";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../app/stores/store";
 
 interface Props {
   userEmail: string;
   goBack: () => void;
 }
 
-const NewPassword: React.FC<Props> = ({ userEmail, goBack }) => {
+const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
+  const { userStore } = useStore();
   const validationSchema = Yup.object({
     email: Yup.string()
       .required("Email is required")
@@ -38,14 +41,12 @@ const NewPassword: React.FC<Props> = ({ userEmail, goBack }) => {
       validateOnMount={true}
       initialValues={{
         email: userEmail,
+        activationCode: "",
         password: "",
         confirmPassword: "",
       }}
       onSubmit={(values) => {
-        if (validationSchema.isValidSync(values)) {
-          console.log(values);
-          history.push("/login");
-        }
+        // userStore.resetPassword(values)
       }}
     >
       {({ values, handleChange, handleSubmit }) => (
@@ -86,6 +87,6 @@ const NewPassword: React.FC<Props> = ({ userEmail, goBack }) => {
       )}
     </Formik>
   );
-};
+});
 
 export default NewPassword;

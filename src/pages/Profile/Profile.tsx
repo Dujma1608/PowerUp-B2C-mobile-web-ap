@@ -9,19 +9,30 @@ import {
 } from "ionicons/icons";
 import "./Profile.css";
 import { useHistory } from "react-router";
+import { useEffect } from "react";
+import { useStore } from "../../app/stores/store";
 
 const Profile: React.FC = () => {
+  const { userStore, profileStore } = useStore();
+  const { getUserInfo, profile } = profileStore;
   const history = useHistory();
 
   const handleUserClick = () => {
     history.push("/profile/account");
   };
+
+  useEffect(() => {
+    getUserInfo();
+  }, [getUserInfo]);
+
   return (
     <IonPage>
       <IonList style={{ padding: "20px 25px 20px 5px" }}>
         <IonItem style={{ margin: "15px 0", padding: "10px 0" }}>
           <div className="profile-header" onClick={handleUserClick}>
-            <IonText className="font18 w600 color021">Josip Dujmović</IonText>
+            <IonText className="font18 w600 color021">
+              {profileStore.profile?.firstName} {profileStore.profile?.lastName}
+            </IonText>
             <div className="user-circle">
               <IonIcon
                 icon={person}
@@ -77,7 +88,7 @@ const Profile: React.FC = () => {
           />
         </IonItem>
       </IonList>
-      <TabBar />
+      {/* <TabBar /> */}
     </IonPage>
   );
 };

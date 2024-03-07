@@ -24,7 +24,7 @@ const Slide: React.FC<SlideProps> = ({
       <h1>{title}</h1>
       <p>{subtitle}</p>
       <img src={image} alt={imageAlt} style={imageStyle} />
-      <img src={dots} alt="dots" id="dots" />
+      {/* <img src={dots} alt="dots" id="dots" /> */}
     </div>
   );
 };

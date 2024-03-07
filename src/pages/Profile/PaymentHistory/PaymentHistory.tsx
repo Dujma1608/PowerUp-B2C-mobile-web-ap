@@ -3,8 +3,13 @@ import "./PaymentHistory.css";
 import BackArrow from "../../../app/common/BackArrow";
 import { useHistory } from "react-router";
 import PaymentHistoryItem from "./PaymentHistoryItem";
+import { useEffect } from "react";
+import { useStore } from "../../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
-const PaymentHistory: React.FC = () => {
+const PaymentHistory: React.FC = observer(() => {
+  const { sessionStore } = useStore();
+  const { loadSessionHistory, sessions } = sessionStore;
   const history = useHistory();
 
   const handleBack = () => {
@@ -25,14 +30,11 @@ const PaymentHistory: React.FC = () => {
       charged: "100,5kWh",
       pricePer: "EUR 0,50/kWh",
     },
-    {
-      id: 3,
-      date: "07. Dec, 2022, 12:40:01",
-      price: 30.25,
-      charged: "60,5kWh",
-      pricePer: "EUR 0,50/kWh",
-    },
   ];
+
+  useEffect(() => {
+    if (sessions.length <= 1) loadSessionHistory();
+  }, [sessions, loadSessionHistory]);
 
   return (
     <IonPage style={{ padding: "30px 15px" }}>
@@ -62,6 +64,6 @@ const PaymentHistory: React.FC = () => {
       </IonContent>
     </IonPage>
   );
-};
+});
 
 export default PaymentHistory;

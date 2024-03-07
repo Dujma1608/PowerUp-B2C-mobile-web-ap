@@ -9,21 +9,7 @@ import {
 } from "@ionic/react";
 import searchImg from "../../../assets/images/Map/Search.png";
 
-interface Props {
-  open: boolean;
-}
-
-const SearchPage: React.FC<Props> = ({ open }) => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openModal = () => {
-    setIsModalOpen(true);
-  };
-
-  const closeModal = () => {
-    setIsModalOpen(false);
-  };
-
+const SearchPage: React.FC = () => {
   return (
     <div className="search-container">
       <div className="search-content">

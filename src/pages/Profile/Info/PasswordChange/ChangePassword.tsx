@@ -5,6 +5,7 @@ import {
   IonItem,
   IonList,
   IonPage,
+  IonSpinner,
   IonText,
 } from "@ionic/react";
 import { Form, Formik } from "formik";
@@ -14,9 +15,15 @@ import { passwordValidation } from "../../../../components/FormUtils/Validation"
 import LoginTextInput from "../../../../components/LoginForm/LoginTextInput";
 import "./ChangePassword.css";
 import BackArrow from "../../../../app/common/BackArrow";
+import { useState } from "react";
+import { useStore } from "../../../../app/stores/store";
 
 const ChangePassword: React.FC = () => {
   const history = useHistory();
+
+  const { profileStore } = useStore();
+  const { profile, updatePassword } = profileStore;
+  const [submitting, setSubmitting] = useState(false);
 
   const handleBack = () => {
     history.goBack();
@@ -28,48 +35,60 @@ const ChangePassword: React.FC = () => {
       </div>
       <IonContent className="ion-padding">
         <Formik
-          initialValues={{ password: "", confirmPassword: "" }}
+          initialValues={{
+            oldPassword: "",
+            newPassword: "",
+            newPasswordRepeated: "",
+          }}
           validationSchema={passwordValidation}
-          onSubmit={() => {}}
+          onSubmit={(values) => {
+            setSubmitting(true);
+            updatePassword(values);
+
+            setTimeout(() => {
+              history.push("/profile/account");
+              setSubmitting(false);
+            }, 500);
+          }}
         >
           {({ handleChange, isValid, dirty }) => (
             <Form>
-              {!isValid || !dirty ? (
-                <>
-                  <p className="font18 w600 color021 marginBottom">Password</p>
-                  <LoginTextInput
-                    placeholder="Current Password"
-                    name="currentPassword"
-                    type="password"
-                    handleChange={handleChange}
-                    isLogin={true}
-                    inputDisabled
-                  />
-                </>
-              ) : null}
+              <p className="font18 w600 color021 marginBottom">Old Password</p>
+              <LoginTextInput
+                placeholder="Current Password"
+                name="oldPassword"
+                type="password"
+                handleChange={handleChange}
+                isLogin={true}
+              />
 
               <p className="font18 w600 color021 marginBottom">New Password</p>
               <LoginTextInput
                 placeholder="New Password"
-                name="password"
+                name="newPassword"
                 type="password"
                 handleChange={handleChange}
                 isLogin={true}
               />
               <LoginTextInput
                 placeholder="Confirm Password"
-                name="confirmPassword"
+                name="newPasswordRepeated"
                 type="password"
                 handleChange={handleChange}
                 isLogin={true}
               />
               <IonButton
+                type="submit"
                 className={
                   !isValid || !dirty ? "update-disabled" : "update-button"
                 }
                 disabled={!isValid || !dirty}
               >
-                Update
+                {submitting ? (
+                  <IonSpinner className="register-spinner" name="crescent" />
+                ) : (
+                  <span>Update</span>
+                )}
               </IonButton>
             </Form>
           )}

@@ -88,8 +88,11 @@ const Card: React.FC = () => {
             </div>
           </div>
           <div className="card-buttons-container">
-            <IonButton className="login-button w600 font12">Edit</IonButton>
-            <IonButton id="open-sure-modal" className="delete w600 font12">
+            <IonButton
+              id="open-sure-modal"
+              className="delete w600 font12"
+              style={{ background: "#F1F1F1" }}
+            >
               Remove payment method
             </IonButton>
           </div>

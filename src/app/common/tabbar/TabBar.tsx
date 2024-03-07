@@ -26,11 +26,11 @@ const TabBar: React.FC = observer(() => {
   return (
     <div
       style={{
-        position: "fixed",
+        position: "absolute",
         bottom: 0,
         width: "100%",
         height: "9%",
-        zIndex: 1000,
+        zIndex: 100,
       }}
     >
       <IonTabs>

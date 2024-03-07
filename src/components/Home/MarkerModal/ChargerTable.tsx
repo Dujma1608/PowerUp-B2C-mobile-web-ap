@@ -1,15 +1,18 @@
 import Connector from "./Connector";
 import "./ChargerTable.css";
+import { ChargerData } from "../../../app/models/connector";
 
-const ChargerTable: React.FC = () => {
+interface Props {
+  connectors: ChargerData[];
+}
+const ChargerTable: React.FC<Props> = ({ connectors }) => {
   return (
     <div className="charger-table">
       <div className="line-item-divider"></div>
-      <h2 className="table-title">Charger #{2}</h2>
-      <div>
-        <Connector />
-        <Connector />
-      </div>
+      <h2 className="table-title">Charger #{1}</h2>
+      {connectors.map((connector) => (
+        <Connector key={connector.id} connector={connector} />
+      ))}
     </div>
   );
 };

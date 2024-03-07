@@ -4,11 +4,15 @@ import { CircleMarker, Marker, ZoomControl } from "react-leaflet";
 import L from "leaflet";
 import userLocationIcon from "../../../assets/images/Map/UserLocationIcon.png";
 import { IonAlert } from "@ionic/react";
+import { useStore } from "../../../app/stores/store";
 
 interface Props {
+  // position: [number, number] | null;
+  // setPosition: (position: [number, number] | null) => void;
   setLocationAlert: (value: boolean) => void;
 }
 const GeoPosition: React.FC<Props> = ({ setLocationAlert }) => {
+  const { regularStore } = useStore();
   const [position, setPosition] = useState<[number, number] | null>(null);
 
   const requestLocationPermission = async () => {
@@ -40,6 +44,7 @@ const GeoPosition: React.FC<Props> = ({ setLocationAlert }) => {
               const { latitude, longitude } = position.coords;
               setLocationAlert(false);
               setPosition([latitude, longitude]);
+              regularStore.setUserLocation(latitude, longitude);
             } else {
               console.error("Error getting position:", error);
             }
@@ -50,9 +55,8 @@ const GeoPosition: React.FC<Props> = ({ setLocationAlert }) => {
           Geolocation.clearWatch({ id: watchPositionId.toString() });
         };
       } catch (error) {
-        console.error("Error getting location:", error);
-
-        // Display alert if error occurs
+        // console.error("Error getting location:", error);
+        setLocationAlert(true);
       }
     };
 

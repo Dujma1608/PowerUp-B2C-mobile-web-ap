@@ -1,0 +1,108 @@
+.background-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    background-image:
+        url('../../../assets/images/Web/HomeBackground.png');
+        /* Background image */
+        /* url('../../../assets/images/Web/VectorGroup1.png'),
+        url('../../../assets/images/Web/VectorGroup2.png'); */
+    /* Center both images */
+    background-size:cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 80px;
+
+}
+.vector-group-one {
+    position: absolute;
+    opacity: 0.2;
+    top: 0;
+    right: 0;
+    transform: translateY(-28%);
+    width: 100%;
+    height: 100%;
+    
+}
+.vector-group-two {
+    position: absolute;
+    bottom: 0;
+    opacity: 0.2;
+    transform: translateY(15%);
+    width: 100%;
+    height: 100%;
+}
+.web-home-container{
+    position: absolute;
+    bottom: 0;
+    transform: translateY(-22%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 35px;
+    width: 80%;
+    height: 40%;
+}
+.web-title-container .title{
+    padding: 0;
+    margin: 0;
+    font-size: 36px;
+    width: 100%;
+    font-weight: 500;
+}
+.web-title-container .colorW{
+    color: #FFF;
+}
+.web-title-container .colorG {
+    color: #0BA781;
+}
+.web-button-container{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+}
+.web-button-container .button{
+    --border-radius: 10px;
+    font-size: 12px;
+    height: 46px;
+    font-weight: 600;
+}
+.web-button-container .proceed-container{
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.web-button-container .download{
+    --background: #0BA781;
+}
+.web-button-container .proceed{
+    display: flex;
+    flex: 5;
+    --background: rgba(255, 255, 255, 0.10);
+}
+.web-button-container .arrow-container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    height: 46px;
+    background: rgba(255, 255, 255, 0.10);
+    border-radius: 10px;
+}
+.web-button-container .proceed-container .arrow{
+    font-size: 24px;
+    color: #FFF;
+}
+.terms{
+    margin-top: 20px;
+    color: rgba(255, 255, 255, 0.90);
+    font-size: 10px;
+    font-weight: 500;
+    text-decoration: underline;
+}
+
+
+

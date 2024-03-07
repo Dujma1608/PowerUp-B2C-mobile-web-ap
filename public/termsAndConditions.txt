@@ -1,0 +1,74 @@
+Title:I. GENERAL PROVISIONS
+Subtitle: Article 1.
+Power Up enables you to use the services and content of its portal subject to the Terms of Use outlined below. These terms apply to all content and services of the Power Up application.
+
+Subtitle: Article 2.
+By using the Power Up application, you are considered to have fully read, understood, and agreed to the Terms of Use / Sales Terms stated here. If you do not agree with them, please refrain from using this application.
+
+Title:II. DEFINITIONS OF BASIC TERMS
+Subtitle: Article 3.
+1. Concessionaire is, within the scope of these Terms of Use, a legal entity that sells electric energy through the Power Up system.
+
+2. Customer is, in terms of these Terms of Use, any visitor of the Power Up application who has come to the mentioned application with the intention of obtaining information and/or purchasing a product service offered on the Power Up application.
+
+3. User is, in terms of these Terms of Use, any visitor of the Power Up application, including the Concessionaire and the Customer.
+
+Title:III. DESCRIPTION OF SERVICES
+Subtitle: Article 4.
+The primary purpose of the Power Up application is to facilitate the sale of electric energy by the Concessionaire. Infinite Loop IT Ltd. enables and conducts the sale of products/services as an intermediary on behalf of and for the account of the Concessionaire through the Power Up application and related pages.
+The application allows Users to pay for consumed electric energy.
+General terms of use and conditions for the purchase of electric energy are defined by the general and specific terms of each Concessionaire, and Power Up adopts them without modification. The Concessionaire is responsible for defining and highlighting the general terms of use for electric energy and informing Users about the method and conditions of use through their channels or through the Power Up application. 
+By using the Power Up mobile application, Users can monitor the status of their purchased electric energy, review consumption status, and have the option to purchase offered electric packages.
+
+Title:IV. USER PROFILE REGISTRATION
+Subtitle: Article 5.
+Before purchasing electrical energy through the Power Up application, the User must register a valid bank card for payment.
+Subtitle: Article 6.
+During registration on the Power Up application, the User must enter accurate personal information, which must be regularly checked and updated. If there is any suspicion that the User&#39;s data is inaccurate or not updated, Power Up reserves the right to suspend the User&#39;s account and further use of the application.
+Title:V. USE OF THE POWER UP APPLICATION
+Subtitle: Article 7.
+The User agrees not to attempt to disrupt or interfere with the operation of the Power Up application in any way.
+Subtitle: Article 8.
+The User also agrees not to attempt to access the source code of the Power Up application, resell or rent any part of the Power Up application, and to use the platform only for personal information, checking the status of electric vehicle charging, or purchasing electrical energy.
+
+Title:VI. CONTENT ON THE POWER UP APPLICATION AND USER BEHAVIOR
+Subtitle: Article 9.
+All materials on the Power Up application are the exclusive right of Infinite Loop IT Ltd. and the Concessionaire or are used with explicit permission from the copyright and/or trademark and/or design rights holder. Any copying, distribution, transmission, publication, linking, deep linking, or other modification of the Power Up application without the explicit written consent of Infinite Loop IT Ltd. is strictly prohibited.
+Subtitle: Article 10.
+In the event of a violation of the terms outlined in the previous article, legal action and/or criminal prosecution may be initiated against the violator.
+
+Title:VII. USER BEHAVIOR
+Subtitle: Article 11.
+When using the Power Up application, the User will have the option to enter data that will later be displayed. All data entered by the User must comply with these Terms of Use.
+Subtitle: Article 12.
+The User agrees not to enter data that:
+
+- Could harm or offend another person.
+- Are inaccurate or promote illegal activities.
+- Are an illegal copy of someone&#39;s copyrighted work.
+- Include pornographic materials.
+- Assist illegal activities.
+- Violate these Terms of Use or any laws of the Republic of Croatia.
+Subtitle: Article 13.
+By posting on or through the Power Up application, the User has granted Infinite Loop IT a free, legally valid, irrevocable, and non-exclusive license to use, reproduce, modify, publish, adapt, translate, distribute, perform, and display and communicate, either alone or as part of a larger whole, in any form, media, or technology, whether known or later developed, and to share such rights with multiple licensors of that license.
+
+Title:VIII. LIABILITY FOR DAMAGES
+Subtitle: Article 14.
+The User agrees not to hold Infinite Loop IT Ltd., its subsidiaries, their responsible persons, employees, and agents responsible for any claims for damages and costs, including legal representation costs, that may arise from the use of the Power Up application by the User.
+
+Title:IX. TERMINATION OF BUSINESS RELATIONSHIP
+Subtitle: Article 15.
+Infinite Loop IT Ltd. reserves the right to terminate or deny the use of your user account and/or one or more services for which you are registered, without prior notice and/or explanation. Infinite Loop IT Ltd. is not responsible for any damages arising from the termination of the user account.
+
+Title:X. CHANGES TO TERMS OF USE
+Subtitle: Article 16.
+Infinite Loop IT Ltd. reserves the right to change the Terms of Use at any time and will not be responsible for any possible consequences arising from these changes.
+
+Title:XI. MISCELLANEOUS
+Subtitle: Article 17.
+If any party fails to exercise its rights under these Terms, it shall not be considered a waiver or loss of those rights.
+Subtitle: Article 18.
+Company Headquarters: Infinite Loop IT Ltd., Ivana Meštrovića Street 35, Sesvete (City of Zagreb).
+
+Legal disputes arising from the use of the Power Up website (unless otherwise specified by a separate agreement) fall within the jurisdiction of the court in Zagreb and are resolved in accordance with the laws of the Republic of Croatia.
+

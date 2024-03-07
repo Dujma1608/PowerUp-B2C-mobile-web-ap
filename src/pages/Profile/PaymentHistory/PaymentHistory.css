@@ -1,4 +1,14 @@
+.history-flex{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.payment-history-info p {
+    padding: 0;
+}
 .flex-price{
+    margin-top: 5px;
     display: flex;
     align-items: baseline;
 }

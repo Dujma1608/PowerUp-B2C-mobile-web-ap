@@ -10,6 +10,9 @@ interface Props {
   label?: string;
   type?: "text" | "password" | "email";
   showGreenTick?: boolean;
+  isEmail?: true;
+  error?: any;
+  errors?: any;
   handleChange: (e: any) => void;
 }
 
@@ -20,6 +23,9 @@ const MyTextInput: React.FC<Props> = ({
   type,
   showGreenTick,
   handleChange,
+  error,
+  errors,
+  isEmail,
 }) => {
   const [field, meta, helpers] = useField(name);
 
@@ -53,11 +59,21 @@ const MyTextInput: React.FC<Props> = ({
           ) : null}
         </IonButton>
       </IonInput>
-      <div className="error-message">
-        {meta.touched && meta.error ? (
-          <IonText className="validator-message">{meta.error}</IonText>
-        ) : null}
-      </div>
+      {isEmail ? (
+        <div className="error-message">
+          {meta.touched && meta.error ? (
+            <IonText className="validator-message">{meta.error}</IonText>
+          ) : (
+            <IonText className="validator-message">{errors.error}</IonText>
+          )}
+        </div>
+      ) : (
+        <div className="error-message">
+          {meta.touched && meta.error ? (
+            <IonText className="validator-message">{meta.error}</IonText>
+          ) : null}
+        </div>
+      )}
     </div>
   );
 };

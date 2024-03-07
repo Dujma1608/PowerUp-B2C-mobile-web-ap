@@ -7,19 +7,24 @@ import Icon from "../../assets/images/Charging/LightingIcon.png";
 import { contractOutline } from "ionicons/icons";
 import Timer from "./Timer";
 import SureModal from "../../app/common/tabbar/SureModal";
+import { observer } from "mobx-react-lite";
+import { useStore } from "../../app/stores/store";
+import ChargingBill from "./Invoice/ChargingBill";
 
-const ChargingScreen: React.FC = () => {
-  const [percentage, setPercentage] = useState(75);
+const ChargingScreen: React.FC = observer(() => {
+  const [percentage, setPercentage] = useState(83);
   const [isFinished, setIsFinished] = useState(false);
   const history = useHistory();
   const startTime = new Date();
+  const { regularStore, sessionStore } = useStore();
+  const { session } = sessionStore;
 
   const handleStop = () => {
     setIsFinished(true);
     history.push("/charging/process");
   };
   const handleExit = () => {
-    history.push("/home");
+    history.push("/app/home");
   };
   const formattedStartTime = startTime.toLocaleTimeString([], {
     hour: "2-digit",
@@ -36,14 +41,20 @@ const ChargingScreen: React.FC = () => {
     <IonPage>
       <IonContent>
         <div className="charge-container">
-          <IonButton className="exit" slot="start" onClick={handleExit}>
-            <IonIcon size="medium" icon={contractOutline} />
-          </IonButton>
+          {!regularStore.isWeb && (
+            <IonButton className="exit" slot="start" onClick={handleExit}>
+              <IonIcon size="medium" icon={contractOutline} />
+            </IonButton>
+          )}
           <div className="flex-column">
             <div className="header-charging">
               <h3 className="w700">Charging</h3>
-              <p className="f14-green w700">DC/CCS</p>
-              <p className="address w500">Radnicka cesta 37</p>
+              <p className="f14-green w700">
+                {session?.connector.connectorType.name}
+              </p>
+              <p className="address w500">
+                {session?.connector.charger.street}
+              </p>
             </div>
 
             <ChargingCircle
@@ -58,13 +69,15 @@ const ChargingScreen: React.FC = () => {
               </div>
               <p className="power w700">100 kWh</p>
               <p className="price">
-                Electricity price:{" "}
-                <strong className="text w500">EUR 0,50/kWh</strong>
+                Electricity Price:{" "}
+                <strong className="text w500">
+                  {session?.currency.currencyISO} 0,50/kWh
+                </strong>
               </p>
             </div>
             <div className="charger-info-container">
               <div className="flex-alling">
-                <p className="font10 colorA6 w500">Energy Chargers</p>
+                <p className="font10 colorA6 w500">Energy Charged</p>
                 <p className="font14 color3E w500">40kWh</p>
               </div>
               <div className="flex-alling">
@@ -80,7 +93,9 @@ const ChargingScreen: React.FC = () => {
           <div className="footer-container">
             <div>
               <p className="font10 colorA6 w500 currentBill">Current Bill</p>
-              <h2 className="font24 color021 w700 priceBill">EUR 20,52</h2>
+              <h2 className="font24 color021 w700 priceBill">
+                {session?.currency.currencyISO} 20,52
+              </h2>
             </div>
             <button className="stop" id="open-sure-modal">
               Stop Charging
@@ -94,8 +109,9 @@ const ChargingScreen: React.FC = () => {
           isCharging
         />
       </IonContent>
+      <ChargingBill isOpen={regularStore.paymentFinished} />
     </IonPage>
   );
-};
+});
 
 export default ChargingScreen;

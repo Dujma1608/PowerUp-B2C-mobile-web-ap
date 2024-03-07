@@ -13,9 +13,7 @@ const TermsAndConditions: React.FC = () => {
   useEffect(() => {
     const fetchTermsAndConditions = async () => {
       try {
-        const response = await fetch(
-          "/src/pages/Profile/T&C/termsAndConditions.txt"
-        );
+        const response = await fetch("/termsAndConditions.txt");
         if (!response.ok) {
           throw new Error("Failed to fetch terms and conditions");
         }
@@ -36,13 +34,13 @@ const TermsAndConditions: React.FC = () => {
     return termsAndConditions.split("\n").map((line, index) => {
       if (line.startsWith("Title:")) {
         return (
-          <p className="odredbe" key={index}>
+          <p className="odredbe" key={index} style={{ textAlign: "center" }}>
             {line.replace("Title:", "")}
           </p>
         );
       } else if (line.startsWith("Subtitle:")) {
         return (
-          <p className="clanak" key={index}>
+          <p className="clanak" key={index} style={{ textAlign: "center" }}>
             {line.replace("Subtitle:", "")}
           </p>
         );
@@ -57,11 +55,14 @@ const TermsAndConditions: React.FC = () => {
   };
 
   return (
-    <IonPage style={{ padding: "30px 15px" }}>
-      <div style={{ marginBottom: "20px" }}>
+    <IonPage style={{ padding: "35px 15px" }}>
+      <div style={{ marginBottom: "15px" }}>
         <BackArrow setClose={handleBack} />
       </div>
-      <h3 className="font18 w600 color021" style={{ padding: "0px 15px" }}>
+      <h3
+        className="font18 w600 color021"
+        style={{ padding: "0px 15px", marginBottom: "20px" }}
+      >
         Terms & Conditions
       </h3>
       <IonContent className="ion-padding">
