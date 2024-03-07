@@ -70,8 +70,8 @@ stages:
             inputs:
               action: deploy
               manifests: |
-                $(Pipeline.Workspace)/manifests/b2c_deployment_8100
-                $(Pipeline.Workspace)/manifests/b2c_service_8100
+                $(Pipeline.Workspace)/manifests/b2c_deployment_8100.yml
+                $(Pipeline.Workspace)/manifests/b2c_service_8100.yml
               imagePullSecrets: |
                 $(imagePullSecret)
               containers: |
