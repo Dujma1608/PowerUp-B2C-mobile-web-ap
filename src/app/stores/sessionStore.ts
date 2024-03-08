@@ -98,12 +98,12 @@ export default class SessionStore {
     });
   };
 
-  // stopConnection = () => {
-  //   this.connection
-  //     ?.stop()
-  //     .then(() => console.log("Connection successfully closed."))
-  //     .catch((error) =>
-  //       console.error("Error while closing the connection", error)
-  //     );
-  // };
+  stopConnection = () => {
+    this.connection
+      ?.stop()
+      .then(() => console.log("Connection successfully closed."))
+      .catch((error) =>
+        console.error("Error while closing the connection", error)
+      );
+  };
 }

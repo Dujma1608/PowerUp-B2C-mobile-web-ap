@@ -4,15 +4,19 @@ import vectors1 from "../../../assets/images/Web/vectors1.svg";
 import vectors2 from "../../../assets/images/Web/vectors2.svg";
 import { arrowForwardOutline } from "ionicons/icons";
 import Alert from "../../../pages/Web/components/Alert";
-import { useState } from "react";
-import { useHistory } from "react-router";
+import { useEffect, useState } from "react";
+import { useHistory, useLocation } from "react-router";
 import ConfirmInfo from "../../../components/Charging/ConfirmInfoModal/ConfirmInfo";
+import { useStore } from "../../../app/stores/store";
 
 const Initial: React.FC = () => {
+  const [qr, setQr] = useState<string | null>("");
   const [emailAlert, setEmailAlert] = useState(false);
   const [isErrorAlert, setIsErrorAlert] = useState(false);
   const [cpoApp, setCpoApp] = useState(true);
 
+  const { connectorStore } = useStore();
+  const location = useLocation();
   const history = useHistory();
 
   if (emailAlert)
@@ -41,6 +45,13 @@ const Initial: React.FC = () => {
       console.log("Unsupported device");
     }
   };
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    const qrString = params.get("qr");
+    setQr(qrString);
+    connectorStore.getConnector(qrString!);
+  }, []);
 
   return (
     <IonPage className="background-container">

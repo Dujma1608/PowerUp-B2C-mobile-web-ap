@@ -26,6 +26,7 @@ const SureModal: React.FC<Props> = observer(
     const handleClick = () => {
       if (isCharging) {
         sessionStore.stopSession(sessionStore.session?.id!).then(() => {
+          sessionStore.stopConnection();
           regularStore.setIsCharging(false);
           connectorStore.setConnector();
           history.push("/charging/process");

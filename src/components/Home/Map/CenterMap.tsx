@@ -16,20 +16,6 @@ const CenterMap: React.FC<Props> = observer(({ chargers }) => {
   const { regularStore, connectorStore, locationStore } = useStore();
   const { scannedConnector } = connectorStore;
 
-  useEffect(() => {
-    const scanProcess = () => {
-      if (scannedConnector) {
-        chargers.forEach((charger) => {
-          if (scannedConnector.chargerAddress === charger.address) {
-            map.setView([charger.latitude - 0.0007, charger.longitude]);
-            map.setZoom(18);
-          }
-        });
-      }
-    };
-    scanProcess();
-  }, [scannedConnector, chargers, map]);
-
   const centerOnUserLocation = async () => {
     try {
       const currentPosition = await Geolocation.getCurrentPosition();
