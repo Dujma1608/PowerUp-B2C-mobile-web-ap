@@ -5,7 +5,7 @@ import vectors2 from "../../../assets/images/Web/vectors2.svg";
 import { arrowForwardOutline } from "ionicons/icons";
 import Alert from "../../../pages/Web/components/Alert";
 import { useEffect, useState } from "react";
-import { useHistory, useLocation } from "react-router";
+import { useHistory, useLocation, useParams } from "react-router";
 import ConfirmInfo from "../../../components/Charging/ConfirmInfoModal/ConfirmInfo";
 import { useStore } from "../../../app/stores/store";
 
@@ -17,6 +17,7 @@ const Initial: React.FC = () => {
 
   const { connectorStore } = useStore();
   const location = useLocation();
+  const { qr: qrString } = useParams<{ qr: string }>();
   const history = useHistory();
 
   if (emailAlert)
@@ -47,8 +48,6 @@ const Initial: React.FC = () => {
   };
 
   useEffect(() => {
-    const params = new URLSearchParams(location.search);
-    const qrString = params.get("qr");
     setQr(qrString);
     // Assuming getConnector is a function to fetch connector data
     if (qrString) {
