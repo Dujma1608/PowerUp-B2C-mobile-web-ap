@@ -8,27 +8,26 @@ import { useHistory } from "react-router-dom";
 import "./ForgotPassword.css";
 import { arrowBackOutline } from "ionicons/icons";
 import BackArrow from "../../app/common/BackArrow";
-import MainIcon from "../../assets/images/Map/billIcon.png";
 import { useStore } from "../../app/stores/store";
 import { invoiceValidation } from "../../components/FormUtils/Validation";
 
 interface Props {
   handleNext: () => void;
   setUserEmail: (email: string) => void;
+  emailModalOpen: (value: boolean) => void;
 }
 
-const ForgotPassword: React.FC<Props> = ({ handleNext, setUserEmail }) => {
+const ForgotPassword: React.FC<Props> = ({
+  handleNext,
+  setUserEmail,
+  emailModalOpen,
+}) => {
   const { userStore, regularStore } = useStore();
   const { sendActivationCode } = userStore;
-  const [openMailModal, setOpenMailModal] = useState(false);
   const userEmail = "name@example.com";
 
   const isFormSubmittedRef = useRef(false);
   const history = useHistory();
-
-  const handleCloseModal = () => {
-    setOpenMailModal(false);
-  };
 
   return (
     <>
@@ -37,7 +36,10 @@ const ForgotPassword: React.FC<Props> = ({ handleNext, setUserEmail }) => {
         initialValues={{ email: "" }}
         onSubmit={(values) => {
           sendActivationCode(values.email);
-          history.push("/register/verify");
+          setUserEmail(values.email);
+          emailModalOpen(true);
+          handleNext();
+          // history.push("/register/verify");
         }}
       >
         {({ values, handleChange, handleSubmit }) => (
@@ -66,43 +68,6 @@ const ForgotPassword: React.FC<Props> = ({ handleNext, setUserEmail }) => {
           </Form>
         )}
       </Formik>
-      <IonModal
-        id="password-reset-modal"
-        isOpen={openMailModal}
-        showBackdrop={true}
-        backdropDismiss={false}
-      >
-        <div className="modal-bill-container">
-          <div className="icon-transparent-container-reset">
-            <IonButton className="circular-button-bill">
-              <img src={MainIcon} />
-            </IonButton>
-          </div>
-          <div
-            style={{
-              background: "#FFFFFF",
-              height: "100%",
-              borderRadius: "16px",
-            }}
-          >
-            <div
-              className="modal-box"
-              style={{ textAlign: "center", padding: "35px 15px 20px 15px" }}
-            >
-              <p className="font18 w600 color021">Check your E-mail</p>
-              <p className="font12 w400 colorA6">
-                We sent you an email to {userEmail} with instruction how to
-                reset your password
-              </p>
-            </div>
-            <div style={{ width: "100%" }}>
-              <button id="close-modal-button" onClick={handleCloseModal}>
-                Close
-              </button>
-            </div>
-          </div>
-        </div>
-      </IonModal>
     </>
   );
 };

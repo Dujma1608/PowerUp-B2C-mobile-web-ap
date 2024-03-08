@@ -46,12 +46,17 @@ const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
         newPassword: "",
         newPasswordRepeated: "",
       }}
-      onSubmit={(values) => {
-        userStore.resetPassword(values);
+      onSubmit={(values, { setErrors }) => {
+        console.log(values);
+        userStore.resetPassword(values).catch((error) => {
+          if (error.response && error.response.data) {
+            setErrors(error.response.data.errors);
+          }
+        });
       }}
     >
       {({ values, handleChange, handleSubmit }) => (
-        <Form className="reset-form" autoComplete="off">
+        <Form className="reset-form" autoComplete="off" onSubmit={handleSubmit}>
           <div>
             <BackArrow setClose={() => history.goBack()} />
           </div>
@@ -75,6 +80,11 @@ const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
                 type="password"
                 placeholder="Confirm Password"
                 name="newPasswordRepeated"
+                handleChange={handleChange}
+              />
+              <LoginTextInput
+                placeholder="Activation Code"
+                name="activationCode"
                 handleChange={handleChange}
               />
             </div>
