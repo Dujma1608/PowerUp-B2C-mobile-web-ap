@@ -1,5 +1,5 @@
 .charge-page{
-    overflow: auto;
+    
     
 }
 
@@ -7,16 +7,17 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
     width: 100%;
-    gap: 20px;
-    padding: 10px 25px;
+    gap: 25px;
+    padding: 0px 25px;
+    margin-bottom: 35px;
 }
 .exit{
-    align-self: flex-start;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(15%, 70%);
     --background: transparent;
-    margin-top: 20px;
-    margin-left: 10px;
     --box-shadow: none;
     --color: black;
     
@@ -81,6 +82,8 @@ p{
     padding: 5px 0;
 }
 .footer-container{
+    position: absolute;
+    bottom: 0;
     padding: 25px 25px;
     width: 100%;
     display: flex;

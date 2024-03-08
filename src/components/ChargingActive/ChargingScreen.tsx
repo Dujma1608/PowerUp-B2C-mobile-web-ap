@@ -41,12 +41,12 @@ const ChargingScreen: React.FC = observer(() => {
     <IonPage className="charge-page">
       <IonContent>
         <div className="charge-container">
-          {!regularStore.isWeb && (
-            <IonButton className="exit" slot="start" onClick={handleExit}>
-              <IonIcon size="medium" icon={contractOutline} />
-            </IonButton>
-          )}
           <div className="flex-column">
+            {!regularStore.isWeb && (
+              <IonButton className="exit" slot="start" onClick={handleExit}>
+                <IonIcon size="medium" icon={contractOutline} />
+              </IonButton>
+            )}
             <div className="header-charging">
               <h3 className="w700">Charging</h3>
               <p className="f14-green w700">
