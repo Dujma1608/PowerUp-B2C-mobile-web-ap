@@ -50,8 +50,11 @@ const Initial: React.FC = () => {
     const params = new URLSearchParams(location.search);
     const qrString = params.get("qr");
     setQr(qrString);
-    connectorStore.getConnector(qrString!);
-  }, []);
+    // Assuming getConnector is a function to fetch connector data
+    if (qrString) {
+      connectorStore.getConnector(qrString);
+    }
+  }, [location.search, connectorStore]);
 
   return (
     <IonPage className="background-container">

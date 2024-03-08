@@ -12,7 +12,6 @@ export default class ConnectorStore {
   }
 
   getConnector = async (data: string) => {
-    this.connectors = [];
     this.setLoading(true);
     try {
       const connector: QRConnector = await agent.Connectors.getByQr(data);
