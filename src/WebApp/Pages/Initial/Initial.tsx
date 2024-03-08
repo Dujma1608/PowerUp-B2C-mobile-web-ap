@@ -5,19 +5,20 @@ import vectors2 from "../../../assets/images/Web/vectors2.svg";
 import { arrowForwardOutline } from "ionicons/icons";
 import Alert from "../../../pages/Web/components/Alert";
 import { useEffect, useState } from "react";
-import { useHistory, useLocation, useParams } from "react-router";
+import { useHistory, useParams } from "react-router-dom";
 import ConfirmInfo from "../../../components/Charging/ConfirmInfoModal/ConfirmInfo";
 import { useStore } from "../../../app/stores/store";
 
+interface Params {
+  qr: string;
+}
 const Initial: React.FC = () => {
-  const [qr, setQr] = useState<string | null>("");
   const [emailAlert, setEmailAlert] = useState(false);
   const [isErrorAlert, setIsErrorAlert] = useState(false);
   const [cpoApp, setCpoApp] = useState(true);
 
   const { connectorStore } = useStore();
-  const location = useLocation();
-  const { qr: qrString } = useParams<{ qr: string }>();
+  const { qr } = useParams<Params>();
   const history = useHistory();
 
   if (emailAlert)
@@ -47,13 +48,11 @@ const Initial: React.FC = () => {
     }
   };
 
-  useEffect(() => {
-    setQr(qrString);
-    // Assuming getConnector is a function to fetch connector data
-    if (qrString) {
-      connectorStore.getConnector(qrString);
-    }
-  }, [location.search, connectorStore]);
+  // useEffect(() => {
+  //   if (qr) {
+  //     connectorStore.getConnector(qr);
+  //   }
+  // }, [connectorStore]);
 
   return (
     <IonPage className="background-container">
