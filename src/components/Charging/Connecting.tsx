@@ -17,7 +17,7 @@ const Connecting: React.FC = () => {
   return (
     <IonPage>
       <IonContent>
-        <div className="flex-column">
+        <div className="connecting-flex-column">
           <div className="text-flex">
             <h1 className="title-header w600">Connecting</h1>
             <p className="subtitle w400">
