@@ -16,7 +16,8 @@ interface Props {
   chargers: Charger[];
 }
 const MarkerClusterComponent: React.FC<Props> = ({ chargers }) => {
-  const { chargerStore } = useStore();
+  const { chargerStore, connectorStore } = useStore();
+  const { scannedConnector } = connectorStore;
   const map = useMap();
   const [selectedMarker, setSelectedMarker] = useState<Charger | null>(null);
 
@@ -61,6 +62,21 @@ const MarkerClusterComponent: React.FC<Props> = ({ chargers }) => {
   const closeMarkerModal = () => {
     setSelectedMarker(null);
   };
+
+  useEffect(() => {
+    const scanProcess = () => {
+      if (scannedConnector) {
+        chargers.forEach((charger) => {
+          if (scannedConnector.chargerAddress === charger.address) {
+            console.log([charger.latitude, charger.longitude]);
+            map.setView([charger.latitude - 0.0007, charger.longitude]);
+            map.setZoom(18);
+          }
+        });
+      }
+    };
+    scanProcess();
+  }, [scannedConnector, chargers, map.setView]);
 
   return (
     <>
