@@ -1,8 +1,3 @@
-.charge-page{
-    
-    
-}
-
 .flex-column {
     display: flex;
     flex-direction: column;
@@ -27,7 +22,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 100vh;
+    height: 95vh;
 }
 .header-charging {
     text-align: center;
