@@ -3,9 +3,10 @@ import "./Connector.css";
 
 interface Props {
   connector: ChargerData;
+  status: string;
 }
 
-const Connector: React.FC<Props> = ({ connector }) => {
+const Connector: React.FC<Props> = ({ connector, status }) => {
   return (
     <div className="charger-info-flex">
       <div className="column">
@@ -19,12 +20,12 @@ const Connector: React.FC<Props> = ({ connector }) => {
           <p className="font12 color021 w700">{connector.electricCurrent}</p>
           <p
             className={
-              connector.connectorStatus === "Available"
-                ? "font10 w500 color0ABgreen"
-                : "font10 colorA6 w500"
+              status !== "Available"
+                ? "font10 colorA6 w500"
+                : "font10 w500 color0ABgreen"
             }
           >
-            {connector.connectorStatus}
+            {status}
           </p>
         </div>
         <p className="font10 w400 color021">Max Power: 300kW</p>

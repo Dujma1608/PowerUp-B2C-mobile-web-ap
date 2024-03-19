@@ -1,6 +1,16 @@
+.charging-circular-button {
+    position: absolute;
+    bottom: 32px;
+    left: 49.5%;
+    transform: translateX(-50%);
+    --background: transparent;
+    --border-radius: 50%;
+    --box-shadow: 0;
+    z-index: 1000;
+}
 .circular-button {
     position: absolute;
-    bottom: 16px;
+    bottom: 15px;
     left: 49.5%;
     transform: translateX(-50%);
     --background: transparent;

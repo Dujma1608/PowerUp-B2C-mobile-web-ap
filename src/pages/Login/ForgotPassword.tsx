@@ -24,9 +24,6 @@ const ForgotPassword: React.FC<Props> = ({
 }) => {
   const { userStore, regularStore } = useStore();
   const { sendActivationCode } = userStore;
-  const userEmail = "name@example.com";
-
-  const isFormSubmittedRef = useRef(false);
   const history = useHistory();
 
   return (
@@ -34,11 +31,19 @@ const ForgotPassword: React.FC<Props> = ({
       <Formik
         validationSchema={invoiceValidation}
         initialValues={{ email: "" }}
-        onSubmit={(values) => {
-          sendActivationCode(values.email);
-          setUserEmail(values.email);
-          emailModalOpen(true);
-          handleNext();
+        onSubmit={(values, { setErrors }) => {
+          sendActivationCode(values.email)
+            .then(() => {
+              setUserEmail(values.email);
+              emailModalOpen(true);
+              handleNext();
+            })
+            .catch((error) => {
+              if (error.response && error.response.data) {
+                console.log(error.response.data.errors);
+                setErrors(error.response.data.errors);
+              }
+            });
           // history.push("/register/verify");
         }}
       >

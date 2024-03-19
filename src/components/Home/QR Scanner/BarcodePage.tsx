@@ -1,17 +1,7 @@
 // Import necessary modules
-import {
-  IonAlert,
-  IonButton,
-  IonContent,
-  IonIcon,
-  IonPage,
-} from "@ionic/react";
-import {
-  BarcodeScanner,
-  SupportedFormat,
-} from "@capacitor-community/barcode-scanner";
+import { IonAlert, IonPage } from "@ionic/react";
+import { BarcodeScanner } from "@capacitor-community/barcode-scanner";
 import { useEffect, useState } from "react";
-import { arrowBackOutline, scanOutline } from "ionicons/icons";
 import "./BarcodeScanner.css";
 import "../../../global.css";
 import { useHistory } from "react-router";
@@ -19,11 +9,8 @@ import bottomLeft from "../../../assets/images/QR/VectorbottomLeft.png";
 import bottomRight from "../../../assets/images/QR/VectorbottomRight.png";
 import topLeft from "../../../assets/images/QR/VectortopLeft.png";
 import topRight from "../../../assets/images/QR/VectortopRight.png";
-import QR from "../../../assets/images/QR/QR.png";
 import BackArrow from "../../../app/common/BackArrow";
 import QRCodeScanner from "./QRCodeScanner";
-import SureModal from "../../../app/common/tabbar/SureModal";
-import CameraPermissionModal from "./CameraPermissionModal";
 import { Camera } from "@capacitor/camera";
 import { useStore } from "../../../app/stores/store";
 
@@ -95,7 +82,7 @@ const BarcodePage: React.FC = () => {
             : "startScanner-container"
         }
       >
-        <div style={{ padding: "35px 15px 0px 15px" }}>
+        <div style={{ marginBottom: "60px" }}>
           <BackArrow setClose={handleBack} isWhite />
         </div>
 
@@ -114,15 +101,6 @@ const BarcodePage: React.FC = () => {
             }
             style={{ position: "relative" }}
           >
-            {/* {scanActive ? null : (
-              <img
-                src={QR}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                }}
-              />
-            )} */}
             <div>
               <img
                 className="barcode-img"

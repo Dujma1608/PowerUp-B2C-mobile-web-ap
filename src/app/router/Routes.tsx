@@ -1,27 +1,28 @@
 import React from "react";
 import { Route } from "react-router-dom";
-import Onboarding from "../pages/Onboarding/Onboarding";
-import Login from "../pages/Login/Login";
-import Register from "../pages/Register/Register";
-import PasswordReset from "../pages/Login/PasswordReset";
-import BarcodePage from "../components/Home/QR Scanner/BarcodePage";
-import Connecting from "../components/Charging/Connecting";
-import ProcessingPayment from "../components/ChargingActive/ProccesingPayment";
-import AccountInfo from "../pages/Profile/Info/AccountInfo/AccountInfo";
-import ChangePassword from "../pages/Profile/Info/PasswordChange/ChangePassword";
-import BasicInfo from "../pages/Profile/Info/BasicInfo/BasicInfo";
-import PaymentMethods from "../pages/Profile/PaymentMethods/PaymentMethods";
-import Card from "../pages/Profile/PaymentMethods/Detail/Card";
-import PaymentHistory from "../pages/Profile/PaymentHistory/PaymentHistory";
-import InfoPage from "../pages/Profile/T&C/InfoPage";
-import TermsAndConditions from "../pages/Profile/T&C/TermsAndCondition";
-import DataProtection from "../pages/Profile/T&C/DataProtection";
-import TabDefault from "../pages/TabDefault";
+import Onboarding from "../../pages/Onboarding/Onboarding";
+import Login from "../../pages/Login/Login";
+import Register from "../../pages/Register/Register";
+import PasswordReset from "../../pages/Login/PasswordReset";
+import BarcodePage from "../../components/Home/QR Scanner/BarcodePage";
+import Connecting from "../../components/Charging/Connecting";
+import ProcessingPayment from "../../components/ChargingActive/ProccesingPayment";
+import AccountInfo from "../../pages/Profile/Info/AccountInfo/AccountInfo";
+import ChangePassword from "../../pages/Profile/Info/PasswordChange/ChangePassword";
+import BasicInfo from "../../pages/Profile/Info/BasicInfo/BasicInfo";
+import PaymentMethods from "../../pages/Profile/PaymentMethods/PaymentMethods";
+import Card from "../../pages/Profile/PaymentMethods/Detail/Card";
+import PaymentHistory from "../../pages/Profile/PaymentHistory/PaymentHistory";
+import InfoPage from "../../pages/Profile/T&C/InfoPage";
+import TermsAndConditions from "../../pages/Profile/T&C/TermsAndCondition";
+import DataProtection from "../../pages/Profile/T&C/DataProtection";
+import TabDefault from "../common/tabbar/TabDefault";
 import { Capacitor } from "@capacitor/core";
-import VerifyUser from "../components/RegisterForm/VerifyUser";
-import Initial from "../WebApp/Pages/Initial/Initial";
-import ConfirmInfoWeb from "../WebApp/Pages/ConfirmInfo/ConfirmInfoWeb";
-import ChargingScreen from "../components/ChargingActive/ChargingScreen";
+import VerifyUser from "../../components/RegisterForm/VerifyUser";
+import Initial from "../../WebApp/Pages/Initial/Initial";
+import ConfirmInfoWeb from "../../WebApp/Pages/ConfirmInfo/ConfirmInfoWeb";
+import ChargingScreen from "../../components/ChargingActive/ChargingScreen";
+import NotConnected from "../../components/Charging/NotConnected";
 
 const mobileRoutes = [
   { path: "/", component: Onboarding, exact: true },
@@ -30,6 +31,7 @@ const mobileRoutes = [
   { path: "/login/password-reset", component: PasswordReset },
   { path: "/app", component: TabDefault },
   { path: "/connecting", component: Connecting, exact: true },
+  { path: "/not-connected", component: NotConnected, exact: true },
   { path: "/charging", component: ChargingScreen, exact: true },
   { path: "/charging/process", component: ProcessingPayment },
   { path: "/register", component: Register, exact: true },
@@ -60,7 +62,7 @@ const webRoutes = [
     exact: true,
   },
   {
-    path: "/home",
+    path: "/confirm-info",
     component: ConfirmInfoWeb,
     exact: true,
   },

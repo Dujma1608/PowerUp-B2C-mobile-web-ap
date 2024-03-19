@@ -11,37 +11,36 @@ interface Props {}
 
 const ConfirmInfo: React.FC<Props> = observer(({}) => {
   const [connectorAddress, setConnectorAddress] = useState<string | null>(null);
+  const [isConnected, setIsConnected] = useState(true);
   const { regularStore, connectorStore, sessionStore, locationStore } =
     useStore();
   const { scannedConnector } = connectorStore;
   const modal = useRef<HTMLIonModalElement>(null);
-  const [isOpen, setIsOpen] = useState(true);
   const history = useHistory();
 
   const handleModalDismiss = () => {
-    setIsOpen(false);
-  };
-
-  const handleModalPresent = () => {
-    setIsOpen(true);
+    connectorStore.setScannedConnector(null);
   };
 
   const handleStartCharging = () => {
-    history.push("/connecting");
-    sessionStore.createSession(17).then(() => {
-      regularStore.setIsCharging(true);
-      sessionStore.createHubConnection();
-    });
+    if (!isConnected) history.push("/not-connected");
+    else {
+      history.push("/connecting");
+      connectorStore.setScannedConnector(null);
+      sessionStore.createSession(1).then(() => {
+        regularStore.setIsCharging(true);
+        sessionStore.createHubConnection();
+      });
+    }
   };
 
   return (
     <IonModal
       ref={modal}
-      isOpen={isOpen}
+      isOpen={!!connectorStore.scannedConnector}
       handle={!regularStore.isWeb}
       backdropDismiss={!regularStore.isWeb}
       onDidDismiss={handleModalDismiss}
-      onWillPresent={handleModalPresent}
       initialBreakpoint={1}
       breakpoints={[1]}
       className="custom-modal"

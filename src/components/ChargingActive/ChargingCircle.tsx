@@ -8,7 +8,7 @@ interface Props {
 
 const ChargingCircle: React.FC<Props> = ({ percentage, setPercentage }) => {
   const circleWidth = 215;
-  const radius = 92;
+  const radius = 90;
   const dashArray = radius * Math.PI * 2;
   const dashOffset = dashArray - (dashArray * percentage) / 100;
   return (

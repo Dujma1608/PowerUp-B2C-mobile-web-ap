@@ -3,9 +3,9 @@
     flex-direction: column;
     align-items: center;
     width: 100%;
-    gap: 25px;
+    gap: 30px;
     padding: 0px 25px;
-    margin-bottom: 35px;
+
 }
 .exit{
     position: absolute;
@@ -22,7 +22,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    height: 94vh;
+    height: 90%;
 }
 .header-charging {
     text-align: center;
@@ -74,12 +74,12 @@
     gap: 25px;
 }
 p{
-    padding: 5px 0;
+    padding: 5px 0px;
 }
 .footer-container{
     position: absolute;
     bottom: 0;
-    padding: 25px 25px;
+    padding: 20px 25px;
     width: 100%;
     display: flex;
     justify-content: space-between;

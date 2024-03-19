@@ -42,7 +42,7 @@ const PaymentMethods: React.FC = () => {
   };
   return (
     <IonPage style={{ padding: "30px 15px" }}>
-      <div style={{ marginBottom: "20px" }}>
+      <div style={{ marginBottom: "50px" }}>
         <BackArrow setClose={handleBack} />
       </div>
       <IonContent>

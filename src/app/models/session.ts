@@ -21,6 +21,40 @@ export interface SessionHistory {
   electricityConsumed: number;
 }
 
+export interface SessionUpdate {
+  sessionId: number;
+  currentPower: number;
+  currentSoC: number;
+  currentPrice: number;
+}
+export interface FinishedSessionInfo {
+  address: string;
+  duration: string;
+  email: string;
+  energyConsumed: number;
+  id: number;
+  paymentCompleted: boolean;
+  paymentMethod: string;
+  pricePerKwh: number;
+  timeStart: string;
+  timeStop: string;
+  totalPrice: number;
+}
+
+export interface InitialSessionInfo {
+  address: string;
+  connectorType: string;
+  currencyIso: string | null;
+  currentPower: number;
+  currentPrice: number | null;
+  currentSoC: number;
+  currentType: string;
+  energyConsumed: number | null;
+  initialSoC: number;
+  startDateTime: string;
+  unitPrice: number;
+}
+
 interface Duration {
   ticks: number;
   days: number;

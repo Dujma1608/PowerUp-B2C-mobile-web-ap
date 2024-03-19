@@ -30,7 +30,7 @@ const Initial: React.FC = () => {
     history.push("/terms");
   };
   const handleProceed = () => {
-    history.push("/home");
+    if (qr) history.push("/confirm-info");
   };
 
   const handleDownloadApp = () => {
@@ -48,11 +48,11 @@ const Initial: React.FC = () => {
     }
   };
 
-  // useEffect(() => {
-  //   if (qr) {
-  //     connectorStore.getConnector(qr);
-  //   }
-  // }, [connectorStore]);
+  useEffect(() => {
+    if (qr) {
+      connectorStore.getWebConnector(qr);
+    }
+  }, [connectorStore]);
 
   return (
     <IonPage className="background-container">

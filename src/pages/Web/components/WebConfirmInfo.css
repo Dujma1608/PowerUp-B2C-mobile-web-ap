@@ -1,0 +1,41 @@
+.bottom{
+    position: absolute;
+    bottom: 0;
+}
+.width-100{
+    width: 100%;
+}
+.web-absolute{
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translateY(-20%);
+}
+.web-confirm-line-item-divider {
+    border-top: 2px solid #F2F2F2;
+    margin: 20px 0;
+    width: 100%;
+}
+.web-confirm-info-container {
+    position: absolute;
+    transform: translateY(20%);
+    width: 100%;
+    padding: 0px 25px 0px 25px;
+}
+.web-container{
+    width: 100%;
+}
+.web-container p {
+    padding: 0;
+    margin: 0;
+}
+
+.web-container .flex {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 30px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid #F2F2F2;
+}

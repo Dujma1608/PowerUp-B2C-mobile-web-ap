@@ -56,7 +56,7 @@ const TermsAndConditions: React.FC = () => {
 
   return (
     <IonPage style={{ padding: "35px 15px" }}>
-      <div style={{ marginBottom: "15px" }}>
+      <div style={{ marginBottom: "40px" }}>
         <BackArrow setClose={handleBack} />
       </div>
       <h3

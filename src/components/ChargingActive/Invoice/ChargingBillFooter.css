@@ -1,0 +1,13 @@
+.footer-bill-container {
+    padding: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card-bill-flex {
+    display: flex;
+    align-items: center;
+}

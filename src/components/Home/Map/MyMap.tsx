@@ -27,7 +27,7 @@ const MyMap: React.FC<Props> = observer(({ setLocationAlert, chargers }) => {
   useEffect(() => {
     setTimeout(function () {
       window.dispatchEvent(new Event("resize"));
-    }, 20);
+    }, 10);
   }, [mapCenter, chargerRegistry, chargers]);
 
   return (

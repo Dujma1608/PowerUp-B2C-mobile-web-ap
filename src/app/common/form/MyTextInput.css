@@ -20,9 +20,15 @@
     font-size: 12px;
     border-bottom: var(--border-bottom);   
 }
+.disabled-input {
+    opacity: 1;
+    /* Set the desired opacity value */
+    /* Add any other styles as needed */
+}
 
 .error-message{
-    margin-top: 5px;
+    width: 80%;
+    margin-top: 7px;
     display: flex;
     height: 10px;
     align-items: center;
