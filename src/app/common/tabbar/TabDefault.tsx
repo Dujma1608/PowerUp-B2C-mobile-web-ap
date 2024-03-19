@@ -11,15 +11,15 @@ import { Redirect, Route, useHistory } from "react-router";
 
 import { BarcodeScanner } from "@capacitor-community/barcode-scanner";
 import { observer } from "mobx-react-lite";
-import Home from "./Home/Home";
-import Profile from "./Profile/Profile";
-import { useStore } from "../app/stores/store";
-import ChargingMapCircle from "../components/ChargingActive/ChargingMapCircle";
-import MainIcon from "../assets/images/MainButtonIcon.png";
+import Home from "../../../pages/Home/Home";
+import Profile from "../../../pages/Profile/Profile";
+import { useStore } from "../../stores/store";
+import ChargingMapCircle from "../../../components/ChargingActive/ChargingMapCircle";
+import MainIcon from "../../../assets/images/MainButtonIcon.png";
 
 const TabDefault: React.FC = observer(() => {
   const history = useHistory();
-  const { regularStore } = useStore();
+  const { regularStore, sessionStore } = useStore();
 
   const handleMainButton = () => {
     BarcodeScanner.prepare();
@@ -61,10 +61,12 @@ const TabDefault: React.FC = observer(() => {
       {!regularStore.search &&
         (regularStore.isCharging ? (
           <div
-            className="circular-button"
+            className="charging-circular-button"
             onClick={() => history.push("/charging")}
           >
-            <ChargingMapCircle />
+            <ChargingMapCircle
+              percentage={sessionStore.sessionUpdates?.currentSoC!}
+            />
           </div>
         ) : (
           <IonButton className="circular-button" onClick={handleMainButton}>

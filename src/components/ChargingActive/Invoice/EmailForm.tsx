@@ -13,7 +13,7 @@ const EmailForm: React.FC = () => {
     >
       {({ handleChange, isValid, dirty, isSubmitting, values }) => (
         <div className="web-footer-container">
-          <p className="font10 w600 color021" style={{ marginTop: "15px" }}>
+          <p className="font10 w600 color021">
             Please enter your email to send an invoice
           </p>
           <div className="web-input-container">

@@ -18,6 +18,11 @@ import { useState } from "react";
 import Alert from "../../../pages/Web/components/Alert";
 import { Formik, useFormik } from "formik";
 import EmailForm from "./EmailForm";
+import ChargingBillFooter from "./ChargingBillFooter";
+import ChargingBillFinalPrice from "./ChargingBillFinalPrice";
+import { useStore } from "../../../app/stores/store";
+import ChargingBillBasicInfo from "./ChargingBillBasicInfo";
+import WebChargingBillFooter from "../../../pages/Web/components/WebChargingBillFooter";
 
 interface Props {
   isOpen: boolean;
@@ -25,16 +30,14 @@ interface Props {
 }
 
 const ChargingBill: React.FC<Props> = ({ isOpen, closeModal }) => {
+  const { sessionStore, regularStore } = useStore();
+  const { finishedSession, session } = sessionStore;
   const [emailAlert, setEmailAlert] = useState(false);
   const [isErrorAlert, setIsErrorAlert] = useState(false);
-  const date = "21.Oct 2023, 10:30AM";
-  const price = 25.2;
-  const cardNo = "2234756492308463";
-  const email = "mate.matic@gmail.com";
-  const maskedCardNo =
-    "•".repeat(4) + " " + cardNo.substring(cardNo.length - 4, cardNo.length);
 
   const closeThisModal = () => {
+    regularStore.setPaymentFinished(false);
+    sessionStore.toDefault();
     closeModal && closeModal(false);
   };
 
@@ -59,7 +62,6 @@ const ChargingBill: React.FC<Props> = ({ isOpen, closeModal }) => {
           <div
             style={{
               background: "#FFFFFF",
-              height: "100%",
               borderRadius: "16px",
             }}
           >
@@ -81,113 +83,31 @@ const ChargingBill: React.FC<Props> = ({ isOpen, closeModal }) => {
                 <div className="grayline"></div>
                 <div className="transparent-circle"></div>
               </div>
+              <ChargingBillBasicInfo
+                address={finishedSession?.address}
+                energyConsumed={finishedSession?.energyConsumed}
+                startTime={sessionStore.startTime}
+                finishTime={sessionStore.finishTime}
+                duration={sessionStore.formattedElapsedTime}
+              />
               <div className="bill-info-container">
-                <div className="bill-address-flex flex-justify-space">
-                  <div style={{ width: "125px" }}>
-                    <p className="font10 w600 colorA6">Location Address</p>
-                    <p className="font12 w600 color021">Radnicka Cesta 37</p>
-                  </div>
-                  <div>
-                    <p
-                      className="font12 w600"
-                      style={{ color: "#3E3E3E", textAlign: "end" }}
-                    >
-                      40,31 KwH
-                    </p>
-                  </div>
-                </div>
-                <div className="bill-address-flex">
-                  <div>
-                    <p className="font10 w600 colorA6">Start Time</p>
-                    <p className="font12 w600 color021">{date}</p>
-                  </div>
-                </div>
-                <div className="bill-address-flex">
-                  <div>
-                    <p className="font10 w600 colorA6">Stop Time</p>
-                    <p className="font12 w600 color021">{date}</p>
-                  </div>
-                  <div>
-                    <div
-                      style={{
-                        display: "flex",
-                        flexDirection: "column",
-                        alignItems: "flex-end",
-                      }}
-                    >
-                      <p className="font10 w600 colorA6">Duration</p>
-                      <p className="font12 w600" style={{ color: "#3E3E3E" }}>
-                        40,31 KwH
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="bill-info-container">
-                <div className="bill-address-flex">
-                  <div style={{ width: "125px" }}>
-                    <p className="font10 w600 colorA6">Total Bill</p>
-                    <p
-                      className="font12 w600 color021"
-                      style={{ fontSize: "22px" }}
-                    >
-                      {price} EUR
-                    </p>
-                  </div>
-                  <div className="completed-green-div">
-                    <IonIcon
-                      src={checkmarkSharp}
-                      style={{ fontSize: "10px", color: "#3ACE7A" }}
-                    />
-                    <p className="font10 w500" style={{ color: "#3ACE7A" }}>
-                      Completed
-                    </p>
-                  </div>
-                </div>
+                <ChargingBillFinalPrice price={finishedSession?.totalPrice} />
               </div>
             </div>
             {Capacitor.getPlatform() === "web" ? (
-              <Formik initialValues={{ email: "" }} onSubmit={() => {}}>
-                {({ handleChange, isValid, dirty, isSubmitting, values }) => (
-                  <div className="web-footer-bill-container">
-                    <div className="web-card-bill-flex">
-                      <IonImg
-                        style={{
-                          width: "42px",
-                          height: "24px",
-                          marginRight: "10px",
-                        }}
-                        src={mastercard}
-                      />
-                      <p className="font12 w500">{maskedCardNo}</p>
-                    </div>
-                    <EmailForm />
-                  </div>
-                )}
-              </Formik>
+              <WebChargingBillFooter />
             ) : (
-              <div className="footer-bill-container">
-                <div className="card-bill-flex">
-                  <IonImg
-                    style={{
-                      width: "42px",
-                      height: "24px",
-                      marginRight: "10px",
-                    }}
-                    src={mastercard}
-                  />
-                  <p className="font12 w500">{maskedCardNo}</p>
-                </div>
-                <p className="font10 w500 colorA6">
-                  Invoice sent to your email: {email}
-                </p>
-              </div>
+              <ChargingBillFooter email={finishedSession?.email} />
             )}
           </div>
         </div>
       </IonModal>
       {Capacitor.getPlatform() === "web" ? null : (
-        <IonModal isOpen={isOpen} className="button-modal">
+        <IonModal
+          isOpen={isOpen}
+          className="button-modal"
+          backdropDismiss={false}
+        >
           <div className="exit-x" onClick={closeThisModal}>
             <IonIcon src={closeOutline} size="large" />
           </div>

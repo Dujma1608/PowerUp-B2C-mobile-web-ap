@@ -61,7 +61,7 @@ const Card: React.FC = () => {
 
   return (
     <IonPage style={{ padding: "30px 15px" }}>
-      <div style={{ marginBottom: "20px" }}>
+      <div style={{ marginBottom: "50px" }}>
         <BackArrow setClose={handleBack} />
       </div>
 
@@ -90,8 +90,8 @@ const Card: React.FC = () => {
           <div className="card-buttons-container">
             <IonButton
               id="open-sure-modal"
-              className="delete w600 font12"
-              style={{ background: "#F1F1F1" }}
+              className="remove-card w600 font12"
+              style={{ background: "#0AB051" }}
             >
               Remove payment method
             </IonButton>

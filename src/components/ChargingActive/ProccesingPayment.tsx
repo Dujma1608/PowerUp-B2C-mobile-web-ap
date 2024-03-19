@@ -7,17 +7,21 @@ import { useStore } from "../../app/stores/store";
 
 const ProcessingPayment: React.FC = observer(() => {
   const history = useHistory();
-  const { regularStore } = useStore();
+  const { regularStore, sessionStore } = useStore();
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
       if (regularStore.isWeb) {
         history.push("/charging");
         regularStore.setPaymentFinished(true);
-      } else history.push("/app/home"); // Change '/another-page' to the path of your destination page
-    }, 2000); // 2 seconds delay
+      } else {
+        sessionStore.closeConnection();
+        history.push("/app/home");
+        regularStore.setPaymentFinished(true);
+      }
+    }, 2000);
 
-    return () => clearTimeout(timeoutId); // Clear the timeout if the component unmounts before the timeout is reached
+    return () => clearTimeout(timeoutId);
   }, [history]);
   return (
     <IonPage>

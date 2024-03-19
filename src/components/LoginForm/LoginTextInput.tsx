@@ -7,7 +7,7 @@ import { eyeOffOutline, eyeOutline } from "ionicons/icons";
 interface Props {
   placeholder: string;
   name: string;
-  type?: "password" | "email";
+  type?: "password" | "email" | "number";
   showPasswordToggle?: boolean;
   handleChange: (e: any) => void;
   isLogin?: boolean;

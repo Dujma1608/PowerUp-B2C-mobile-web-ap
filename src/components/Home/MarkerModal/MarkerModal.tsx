@@ -7,6 +7,7 @@ import { Charger } from "../../../app/models/charger";
 import { observer } from "mobx-react-lite";
 import MarkerModalHeader from "./Header/MarkerModalHeader";
 import { ChargerData } from "../../../app/models/connector";
+import { observable } from "mobx";
 
 interface Props {
   onClose: () => void;
@@ -17,7 +18,7 @@ const MarkerModal: React.FC<Props> = observer(({ onClose, charger }) => {
   const { chargerStore, regularStore, locationStore, connectorStore } =
     useStore();
   const { userLocation } = regularStore;
-  const { chargerRegistry } = chargerStore;
+  const { chargerRegistry, connectorStatus } = chargerStore;
   const { getChargerInfo, connectors } = connectorStore;
   const { fetchAddress, calculateDistance, formatDistance } = locationStore;
   const modal = useRef<HTMLIonModalElement>(null);
@@ -43,6 +44,10 @@ const MarkerModal: React.FC<Props> = observer(({ onClose, charger }) => {
         });
     }
   }, [userLocation, charger.latitude, charger.longitude]);
+
+  useEffect(() => {
+    chargerStore.createHubConnection();
+  }, [connectorStatus]);
 
   useEffect(() => {
     getChargerInfo(charger.id);
@@ -74,7 +79,10 @@ const MarkerModal: React.FC<Props> = observer(({ onClose, charger }) => {
           charger={charger}
         />
         <IonContent>
-          <ChargerTable connectors={connectors} />
+          <ChargerTable
+            connectors={connectors}
+            connectorStatus={Array.from(connectorStatus.values())}
+          />
         </IonContent>
         <IonButton
           className="login-button"

@@ -21,15 +21,17 @@ interface Props {
 const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
   const { userStore } = useStore();
   const validationSchema = Yup.object({
-    email: Yup.string()
-      .required("Email is required")
-      .email("Incorrect email or password"),
-    password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
+    newPassword: Yup.string()
+      .min(8, "New password must be at least 8 characters long.")
+      .matches(
+        /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).*$/,
+        "Password must contain at least one uppercase letter, one lowercase letter, and one digit."
+      )
       .required("Password is required"),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password")], "Passwords must match")
+    newPasswordRepeated: Yup.string()
+      .oneOf([Yup.ref("newPassword")], "Passwords must match")
       .required("Confirm password is required"),
+    activationCode: Yup.number().required("Activation code required"),
   });
 
   const isFormSubmittedRef = useRef(false);
@@ -38,7 +40,6 @@ const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
   return (
     <Formik
       validationSchema={validationSchema}
-      validateOnMount={true}
       initialValues={{
         email: userEmail,
         companyId: 1,
@@ -48,11 +49,15 @@ const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
       }}
       onSubmit={(values, { setErrors }) => {
         console.log(values);
-        userStore.resetPassword(values).catch((error) => {
-          if (error.response && error.response.data) {
-            setErrors(error.response.data.errors);
-          }
-        });
+        userStore
+          .resetPassword(values)
+          .then(() => history.push("/app"))
+          .catch((error) => {
+            if (error.response && error.response.data) {
+              console.log(error.response.data.errors);
+              setErrors(error.response.data.errors);
+            }
+          });
       }}
     >
       {({ values, handleChange, handleSubmit }) => (
@@ -69,6 +74,7 @@ const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
                 placeholder="Email"
                 showGreenTick={true}
                 handleChange={handleChange}
+                isDisabled={true}
               />
               <LoginTextInput
                 placeholder="Password"
@@ -83,16 +89,15 @@ const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
                 handleChange={handleChange}
               />
               <LoginTextInput
+                type="number"
                 placeholder="Activation Code"
                 name="activationCode"
                 handleChange={handleChange}
               />
             </div>
-            <div className="reset-button">
-              <IonButton type="submit">
-                <span>Reset Password</span>
-              </IonButton>
-            </div>
+            <IonButton className="reset-password-btn" type="submit">
+              <span>Reset Password</span>
+            </IonButton>
           </div>
         </Form>
       )}

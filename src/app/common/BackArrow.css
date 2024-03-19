@@ -1,4 +1,11 @@
 .back-button {
+    width: 25px;
+    height: 25px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: translate(90%, 100%);
+    z-index: 100;
     color: #021F0E;
 }
 .white-color{

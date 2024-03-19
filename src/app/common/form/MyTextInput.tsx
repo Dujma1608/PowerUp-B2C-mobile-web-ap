@@ -11,7 +11,8 @@ interface Props {
   type?: "text" | "password" | "email";
   showGreenTick?: boolean;
   isEmail?: true;
-  error?: any;
+  error?: boolean;
+  isDisabled?: boolean;
   errors?: any;
   handleChange: (e: any) => void;
 }
@@ -25,6 +26,7 @@ const MyTextInput: React.FC<Props> = ({
   handleChange,
   error,
   errors,
+  isDisabled,
   isEmail,
 }) => {
   const [field, meta, helpers] = useField(name);
@@ -33,11 +35,13 @@ const MyTextInput: React.FC<Props> = ({
     <div className="input">
       <IonLabel>{label}</IonLabel>
       <IonInput
+        style={isDisabled ? { opacity: "0.6" } : {}}
         type={type}
         placeholder={placeholder}
         {...field}
         onIonInput={handleChange}
-        className="input-login"
+        className={`input-login ${isDisabled ? "disabled-input" : ""}`}
+        disabled={isDisabled}
       >
         <IonButton
           fill="clear"

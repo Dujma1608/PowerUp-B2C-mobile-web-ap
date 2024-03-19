@@ -1,17 +1,42 @@
 import { makeAutoObservable, runInAction } from "mobx";
-import agent from "../api/agent";
-import { Session, SessionHistory, SessionResponse } from "../models/session";
+import agent from "../api/mobileAgent";
+import {
+  FinishedSessionInfo,
+  InitialSessionInfo,
+  Session,
+  SessionHistory,
+  SessionResponse,
+  SessionUpdate,
+} from "../models/session";
 import * as signalR from "@microsoft/signalr";
 
 export default class SessionStore {
   session: SessionResponse | null = null;
+  finishedSession: FinishedSessionInfo | null = null;
   sessions: SessionHistory[] = [];
   loading = false;
   connection: signalR.HubConnection | null = null;
   url: string = "https://api-test.power-up.green/hubs/sessions";
+  sessionUpdates: SessionUpdate | null = null;
+  initialSessionInfo: InitialSessionInfo | null = null;
+  startTime: Date | null = null;
+  finishTime: Date | null = null;
+  hours: number = 0;
+  minutes: number = 0;
+  seconds: number = 0;
+  sessionDuration: number[] = [this.hours, this.minutes, this.seconds];
+  timer: NodeJS.Timeout | null = null;
+  stopFlag: boolean = false;
 
   constructor() {
     makeAutoObservable(this);
+  }
+
+  get formattedElapsedTime() {
+    const formattedHours = this.hours.toString().padStart(2, "0");
+    const formattedMinutes = this.minutes.toString().padStart(2, "0");
+    const formattedSeconds = this.seconds.toString().padStart(2, "0");
+    return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
   }
 
   loadSessionHistory = async () => {
@@ -40,6 +65,8 @@ export default class SessionStore {
   };
 
   stopSession = async (sessionId: number) => {
+    this.finishTime = new Date();
+    this.stopTimer();
     try {
       const session = await agent.Session.stop(sessionId);
       console.log("Session", session);
@@ -52,6 +79,8 @@ export default class SessionStore {
   };
 
   createHubConnection() {
+    this.startTime = new Date();
+    this.startTimer();
     this.connection = new signalR.HubConnectionBuilder()
       .withUrl(this.url, {
         withCredentials: false,
@@ -84,26 +113,73 @@ export default class SessionStore {
   };
   private receiveSessionInfo = () => {
     this.connection?.on("receiveSessionInfo", (sessionInfo) => {
+      runInAction(() => {
+        this.initialSessionInfo = sessionInfo; // Populate sessionInfo with the received data
+      });
       console.log("Received session info update:", sessionInfo);
     });
   };
   private updateSession = () => {
     this.connection?.on("updateSession", (updateSessionSignalRDto) => {
+      runInAction(() => {
+        this.sessionUpdates = updateSessionSignalRDto;
+      });
       console.log("Session update received:", updateSessionSignalRDto);
     });
   };
   private stopSessionSignal = () => {
     this.connection?.on("stopSession", (stopSessionSignalRDto) => {
+      runInAction(() => {
+        this.finishedSession = stopSessionSignalRDto;
+        this.stopFlag = true;
+      });
       console.log("Session stopped:", stopSessionSignalRDto);
     });
   };
 
-  stopConnection = () => {
+  closeConnection = () => {
     this.connection
       ?.stop()
       .then(() => console.log("Connection successfully closed."))
       .catch((error) =>
         console.error("Error while closing the connection", error)
       );
+  };
+
+  private startTimer() {
+    this.timer = setInterval(() => {
+      runInAction(() => {
+        this.seconds++;
+        if (this.seconds === 60) {
+          this.seconds = 0;
+          this.minutes++;
+        }
+        if (this.minutes === 60) {
+          this.minutes = 0;
+          this.hours++;
+        }
+      });
+    }, 1000);
+  }
+  private stopTimer() {
+    if (this.timer) {
+      clearInterval(this.timer);
+      this.timer = null;
+    }
+  }
+
+  toDefault = () => {
+    this.startTime = null;
+    this.finishTime = null;
+    this.session = null;
+    this.sessionUpdates = null;
+    this.initialSessionInfo = null;
+    this.hours = 0;
+    this.minutes = 0;
+    this.seconds = 0;
+    this.connection = null;
+    this.sessions = [];
+    this.finishedSession = null;
+    this.stopFlag = false;
   };
 }

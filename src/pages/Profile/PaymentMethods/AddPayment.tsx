@@ -70,7 +70,7 @@ const AddPayment: React.FC<Props> = ({ isOpen, setClose }) => {
         style={{ padding: "30px 15px" }}
         onClick={() => setIsClickedSelect(true)}
       >
-        <div style={{ marginBottom: "20px" }}>
+        <div style={{ marginBottom: "50px" }}>
           <BackArrow setClose={setClose} />
         </div>
 

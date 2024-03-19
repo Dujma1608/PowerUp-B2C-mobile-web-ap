@@ -68,15 +68,16 @@ const MarkerClusterComponent: React.FC<Props> = ({ chargers }) => {
       if (scannedConnector) {
         chargers.forEach((charger) => {
           if (scannedConnector.chargerAddress === charger.address) {
-            console.log([charger.latitude, charger.longitude]);
-            map.setView([charger.latitude - 0.0007, charger.longitude]);
-            map.setZoom(18);
+            map.setView(
+              [charger.latitude - 0.0007, charger.longitude + 0.00004],
+              18
+            );
           }
         });
       }
     };
     scanProcess();
-  }, [scannedConnector, chargers, map.setView]);
+  }, [scannedConnector, chargers]);
 
   return (
     <>

@@ -40,3 +40,8 @@
     margin-top: 10px;
     width: 100%;
 }
+.remove-card{
+    width: 100%;
+    border-radius: 12px;
+    height: 48px;
+}

@@ -98,7 +98,7 @@ const DataProtection: React.FC = () => {
 
   return (
     <IonPage style={{ padding: "30px 15px" }}>
-      <div style={{ marginBottom: "20px" }}>
+      <div style={{ marginBottom: "50px" }}>
         <BackArrow setClose={handleBack} />
       </div>
       <h3 className="font18 w600 color021" style={{ padding: "0px 15px" }}>

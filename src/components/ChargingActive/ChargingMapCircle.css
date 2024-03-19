@@ -10,10 +10,12 @@
 
 .map-percentage {
     font-size: 20px;
+    position: absolute;
     font-weight: 700;
     fill: #FFF;
     padding: 0;
     margin: 0;
+    z-index: 1000;
 }
 
 :root {
@@ -31,3 +33,101 @@
     stroke-linecap: round;
     stroke-linejoin: round;
 }
+
+@keyframes float {
+
+    0%{
+        transform: translateY(40px);
+    }
+
+    5% {
+        transform: translateY(35px);
+    }
+
+    10% {
+        transform: translateY(30px);
+    }
+
+    15% {
+        transform: translateY(25px);
+    }
+
+    20% {
+        transform: translateY(20px);
+    }
+
+    25% {
+        transform: translateY(15px);
+    }
+
+    30% {
+        transform: translateY(10px);
+    }
+
+    35% {
+        transform: translateY(5px);
+    }
+
+    40% {
+        transform: translateY(0);
+    }
+
+    45% {
+        transform: translateY(-5px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    55% {
+        transform: translateY(-15px);
+    }
+
+    60% {
+        transform: translateY(-20px);
+    }
+
+    65% {
+        transform: translateY(-25px);
+    }
+
+    70% {
+        transform: translateY(-30px);
+    }
+
+    75% {
+        transform: translateY(-35px);
+    }
+
+    80% {
+        transform: translateY(-40px);
+    }
+
+    85% {
+        transform: translateY(-45px);
+    }
+
+    90% {
+        transform: translateY(-50px);
+    }
+
+    95% {
+        transform: translateY(-55px);
+    }
+    100%{
+        transform: translateY(-60px);
+    }
+}
+
+.green-dot {
+    fill: #00ff6d;
+    /* Green color */
+    animation: float 2s infinite;
+    /* Apply animation */
+}
+.green-dots{
+    position: absolute;
+    z-index: 10;
+}
+

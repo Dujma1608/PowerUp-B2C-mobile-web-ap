@@ -4,7 +4,7 @@ import {
   ProfileNameForm,
   ProfilePasswordForm,
 } from "../models/profile";
-import agent from "../api/agent";
+import agent from "../api/mobileAgent";
 
 export default class ProfileStore {
   profile: Profile | null = null;
