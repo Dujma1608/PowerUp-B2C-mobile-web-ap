@@ -3,10 +3,8 @@ import "./Initial.css";
 import vectors1 from "../../../assets/images/Web/vectors1.svg";
 import vectors2 from "../../../assets/images/Web/vectors2.svg";
 import { arrowForwardOutline } from "ionicons/icons";
-import Alert from "../../../pages/Web/components/Alert";
 import { useEffect, useState } from "react";
-import { useHistory, useParams } from "react-router-dom";
-import ConfirmInfo from "../../../components/Charging/ConfirmInfoModal/ConfirmInfo";
+import { useHistory, useLocation } from "react-router-dom";
 import { useStore } from "../../../app/stores/store";
 
 const Initial: React.FC = () => {
@@ -15,8 +13,13 @@ const Initial: React.FC = () => {
   const [cpoApp, setCpoApp] = useState(true);
 
   const { connectorStore } = useStore();
-  const { qr } = useParams<{ qr: string }>();
   const history = useHistory();
+
+  const location = useLocation();
+
+  const params = new URLSearchParams(location.search);
+  const qrParam = params.get("qr") as string;
+  console.log("QR parameter:", qrParam);
 
   if (emailAlert)
     setTimeout(() => {
@@ -27,7 +30,7 @@ const Initial: React.FC = () => {
     history.push("/terms");
   };
   const handleProceed = () => {
-    history.push(`/confirm-info/${encodeURIComponent(qr)}`);
+    history.push(`/confirm-info/${encodeURIComponent(qrParam)}`);
   };
 
   const handleDownloadApp = () => {
@@ -46,9 +49,9 @@ const Initial: React.FC = () => {
   };
 
   useEffect(() => {
-    if (qr) {
-      console.log(qr);
-      connectorStore.getWebConnector(qr);
+    if (qrParam) {
+      console.log(qrParam);
+      connectorStore.getWebConnector(qrParam);
     }
   }, [connectorStore]);
 
