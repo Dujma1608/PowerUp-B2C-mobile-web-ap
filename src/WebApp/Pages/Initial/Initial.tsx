@@ -30,7 +30,7 @@ const Initial: React.FC = () => {
     history.push("/terms");
   };
   const handleProceed = () => {
-    if (qr) history.push("/confirm-info");
+    history.push("/confirm-info");
   };
 
   const handleDownloadApp = () => {
