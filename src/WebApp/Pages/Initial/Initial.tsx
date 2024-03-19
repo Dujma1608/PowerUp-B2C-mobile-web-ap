@@ -9,16 +9,13 @@ import { useHistory, useParams } from "react-router-dom";
 import ConfirmInfo from "../../../components/Charging/ConfirmInfoModal/ConfirmInfo";
 import { useStore } from "../../../app/stores/store";
 
-interface Params {
-  qr: string;
-}
 const Initial: React.FC = () => {
   const [emailAlert, setEmailAlert] = useState(false);
   const [isErrorAlert, setIsErrorAlert] = useState(false);
   const [cpoApp, setCpoApp] = useState(true);
 
   const { connectorStore } = useStore();
-  const { qr } = useParams<Params>();
+  const { qr } = useParams<{ qr: string }>();
   const history = useHistory();
 
   if (emailAlert)
@@ -30,7 +27,7 @@ const Initial: React.FC = () => {
     history.push("/terms");
   };
   const handleProceed = () => {
-    history.push("/confirm-info");
+    history.push(`/confirm-info/${encodeURIComponent(qr)}`);
   };
 
   const handleDownloadApp = () => {
@@ -50,6 +47,7 @@ const Initial: React.FC = () => {
 
   useEffect(() => {
     if (qr) {
+      console.log(qr);
       connectorStore.getWebConnector(qr);
     }
   }, [connectorStore]);

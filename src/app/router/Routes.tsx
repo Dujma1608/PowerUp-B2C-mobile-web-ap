@@ -62,7 +62,7 @@ const webRoutes = [
     exact: true,
   },
   {
-    path: "/confirm-info",
+    path: "/confirm-info/:qr",
     component: ConfirmInfoWeb,
     exact: true,
   },
