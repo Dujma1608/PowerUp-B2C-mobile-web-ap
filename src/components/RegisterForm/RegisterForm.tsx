@@ -112,7 +112,6 @@ const RegisterForm: React.FC = observer(() => {
               name="email"
               placeholder="Email"
               handleChange={handleChange}
-              error={values.error}
               errors={errors}
               isEmail
             />

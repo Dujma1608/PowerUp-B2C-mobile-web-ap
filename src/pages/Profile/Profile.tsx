@@ -1,5 +1,4 @@
 import { IonIcon, IonItem, IonList, IonPage, IonText } from "@ionic/react";
-import TabBar from "../../app/common/tabbar/TabBar";
 import {
   person,
   cardOutline,
