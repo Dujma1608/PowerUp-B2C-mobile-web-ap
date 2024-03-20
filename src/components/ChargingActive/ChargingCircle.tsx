@@ -10,7 +10,9 @@ const ChargingCircle: React.FC<Props> = ({ percentage, setPercentage }) => {
   const circleWidth = 215;
   const radius = 90;
   const dashArray = radius * Math.PI * 2;
-  const dashOffset = dashArray - (dashArray * percentage) / 100;
+  const dashOffset = isNaN(percentage)
+    ? 0
+    : dashArray - (dashArray * percentage) / 100;
   return (
     <div className="outer-circle">
       <svg width={circleWidth} height={circleWidth} viewBox="0 0 215 215">

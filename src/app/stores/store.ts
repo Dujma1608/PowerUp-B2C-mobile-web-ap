@@ -8,6 +8,7 @@ import SessionStore from "./sessionStore";
 import ConnectorStore from "./connectorStore";
 import LocationStore from "./locationStore";
 import CompanyStore from "../../WebApp/stores/companyStore";
+import WebSessionStore from "./webSessionStore";
 
 interface Store {
   userStore: UserStore;
@@ -19,6 +20,7 @@ interface Store {
   connectorStore: ConnectorStore;
   locationStore: LocationStore;
   companyStore: CompanyStore;
+  webSessionStore: WebSessionStore;
 }
 
 export const store: Store = {
@@ -31,6 +33,7 @@ export const store: Store = {
   connectorStore: new ConnectorStore(),
   locationStore: new LocationStore(),
   companyStore: new CompanyStore(),
+  webSessionStore: new WebSessionStore(),
 };
 
 export const StoreContext = createContext(store);

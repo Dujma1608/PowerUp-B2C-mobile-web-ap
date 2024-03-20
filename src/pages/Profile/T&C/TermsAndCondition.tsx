@@ -4,9 +4,13 @@ import { useHistory } from "react-router";
 import { useEffect, useState } from "react";
 import "./T&C.css";
 import AboutUs from "./AboutUs";
+import { useStore } from "../../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
-const TermsAndConditions: React.FC = () => {
+const TermsAndConditions: React.FC = observer(() => {
   const history = useHistory();
+  const { companyStore } = useStore();
+  const { companyData } = companyStore;
 
   const [termsAndConditions, setTermsAndConditions] = useState<string>("");
 
@@ -72,12 +76,12 @@ const TermsAndConditions: React.FC = () => {
             maxHeight: "80vh",
           }}
         >
-          <AboutUs />
+          <AboutUs data={companyData} />
           {renderText()}
         </div>
       </IonContent>
     </IonPage>
   );
-};
+});
 
 export default TermsAndConditions;

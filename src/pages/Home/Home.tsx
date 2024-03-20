@@ -14,8 +14,6 @@ import BlurredScreen from "../../components/Home/BlurredScreen/BlurredScreen";
 import Connecting from "../../components/Charging/Connecting";
 
 const Home: React.FC = observer(() => {
-  const [isFirstTimeUser, setIsFirstTimeUser] = useState(true);
-
   const {
     chargerStore,
     sessionStore,
@@ -39,7 +37,7 @@ const Home: React.FC = observer(() => {
     // Check if the user has registered before
     const hasRegistered = localStorage.getItem("hasRegistered");
     if (hasRegistered) {
-      setIsFirstTimeUser(false);
+      regularStore.setIsFirstTimeUser(false);
     }
   }, []);
 
@@ -65,14 +63,16 @@ const Home: React.FC = observer(() => {
   }, [history, regularStore.search]);
 
   const handleBlurClick = () => {
-    setIsFirstTimeUser(false);
+    regularStore.setIsFirstTimeUser(false);
 
     localStorage.setItem("hasRegistered", "true");
   };
 
   return (
     <IonPage>
-      {isFirstTimeUser && <BlurredScreen handleBlur={handleBlurClick} />}
+      {regularStore.isFirstTimeUser && (
+        <BlurredScreen handleBlur={handleBlurClick} isHome={true} />
+      )}
       <SearchBar openModal={openSearchModal} closeModal={closeSearchModal} />
       {regularStore.search ? (
         <SearchPage />

@@ -1,11 +1,15 @@
 interface Props {
   handleBlur: () => void;
+  isHome: boolean;
 }
 
-const BlurredScreen: React.FC<Props> = ({ handleBlur }) => {
+const BlurredScreen: React.FC<Props> = ({ handleBlur, isHome }) => {
   return (
     <div
       style={{
+        display: "flex",
+        justifyContent: "center",
+        alignItems: "center",
         position: "fixed",
         top: 0,
         left: 0,
@@ -16,7 +20,9 @@ const BlurredScreen: React.FC<Props> = ({ handleBlur }) => {
       }}
       onClick={handleBlur}
     >
-      <p className="font14 w500 color021">Tap anywhere to continue...</p>
+      {isHome && (
+        <p className="font14 w500 color021">Tap anywhere to continue...</p>
+      )}
     </div>
   );
 };

@@ -14,8 +14,13 @@ interface Props {
 }
 const SureModal: React.FC<Props> = observer(
   ({ title, subtitle, buttonText, isCharging, isLoggingOut }) => {
-    const { regularStore, userStore, sessionStore, connectorStore } =
-      useStore();
+    const {
+      regularStore,
+      userStore,
+      sessionStore,
+      connectorStore,
+      webSessionStore,
+    } = useStore();
     const modal = useRef<HTMLIonModalElement>(null);
     const history = useHistory();
 
@@ -24,12 +29,24 @@ const SureModal: React.FC<Props> = observer(
     }
 
     const handleClick = () => {
+      history.push("/charging/process");
       if (isCharging) {
-        sessionStore.stopSession(sessionStore.session?.id!).then(() => {
-          regularStore.setIsCharging(false);
-          connectorStore.setScannedConnector(null);
-          history.push("/charging/process");
-        });
+        if (regularStore.isWeb) {
+          if (webSessionStore.session) {
+            webSessionStore.stopSession(webSessionStore.session.id).then(() => {
+              regularStore.setIsCharging(false);
+              connectorStore.setWebScannedConnector(null);
+              history.push("/charging/process");
+            });
+          }
+        } else {
+          sessionStore.session &&
+            sessionStore.stopSession(sessionStore.session.id).then(() => {
+              regularStore.setIsCharging(false);
+              connectorStore.setScannedConnector(null);
+              history.push("/charging/process");
+            });
+        }
       } else if (isLoggingOut) {
         userStore.logout();
         history.push("/login");

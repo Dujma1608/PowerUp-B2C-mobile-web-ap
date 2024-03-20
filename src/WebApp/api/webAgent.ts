@@ -3,22 +3,24 @@ import { CompanyDetails } from "../models/company";
 import { QRConnector } from "../../app/models/connector";
 import { store } from "../../app/stores/store";
 
-axios.defaults.baseURL = "https://api-test.power-up.green/api/B2CWeb";
+const baseURL = "https://api-test.power-up.green/api/B2CWeb";
 
 const responseBody = (response: AxiosResponse) => response.data;
 
-axios.interceptors.request.use((config) => {
-  const token = store.commonStore.token;
-  if (token && config.headers) config.headers.Authorization = `bearer ${token}`;
-  return config;
-});
+// axios.interceptors.request.use((config) => {
+//   const token = store.commonStore.token;
+//   if (token && config.headers) config.headers.Authorization = `bearer ${token}`;
+//   return config;
+// });
 
 const requests = {
-  get: <T>(url: string) => axios.get<T>(url).then(responseBody),
+  get: <T>(url: string) => axios.get<T>(`${baseURL}${url}`).then(responseBody),
   post: <T>(url: string, body: {}) =>
-    axios.post<T>(url, body).then(responseBody),
-  put: <T>(url: string, body: {}) => axios.put<T>(url, body).then(responseBody),
-  delete: <T>(url: string) => axios.delete<T>(url).then(responseBody),
+    axios.post<T>(`${baseURL}${url}`, body).then(responseBody),
+  put: <T>(url: string, body: {}) =>
+    axios.put<T>(`${baseURL}${url}`, body).then(responseBody),
+  delete: <T>(url: string) =>
+    axios.delete<T>(`${baseURL}${url}`).then(responseBody),
 };
 
 const Company = {

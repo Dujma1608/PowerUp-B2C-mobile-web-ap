@@ -2,6 +2,7 @@ import { Capacitor } from "@capacitor/core";
 import { makeAutoObservable } from "mobx";
 
 export default class RegularStore {
+  isFirstTimeUser: boolean = true;
   isCharging: boolean = false;
   isRegistered: boolean = false;
   mapCenter: [number, number] = [45.798, 15.9611];
@@ -17,6 +18,9 @@ export default class RegularStore {
 
   setIsCharging = (value: boolean) => {
     this.isCharging = value;
+  };
+  setIsFirstTimeUser = (value: boolean) => {
+    this.isFirstTimeUser = value;
   };
 
   setIsRegistered = (value: boolean) => {
