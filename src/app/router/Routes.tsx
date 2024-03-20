@@ -23,7 +23,7 @@ import ConfirmInfoWeb from "../../WebApp/Pages/info/ConfirmInfoWeb";
 import ChargingScreen from "../../components/ChargingActive/ChargingScreen";
 import NotConnected from "../../components/Charging/NotConnected";
 import WebChargingScreen from "../../WebApp/Pages/active/WebChargingScreen";
-import Initial from "../../WebApp/Pages/initial/Initial";
+import Initial from "../../WebApp/Pages/Initial/Initial";
 
 const mobileRoutes = [
   { path: "/", component: Onboarding, exact: true },
