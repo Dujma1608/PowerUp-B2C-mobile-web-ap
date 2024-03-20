@@ -19,11 +19,11 @@ import DataProtection from "../../pages/Profile/T&C/DataProtection";
 import TabDefault from "../common/tabbar/TabDefault";
 import { Capacitor } from "@capacitor/core";
 import VerifyUser from "../../components/RegisterForm/VerifyUser";
-import Initial from "../../WebApp/Pages/initial/Initial";
 import ConfirmInfoWeb from "../../WebApp/Pages/info/ConfirmInfoWeb";
 import ChargingScreen from "../../components/ChargingActive/ChargingScreen";
 import NotConnected from "../../components/Charging/NotConnected";
 import WebChargingScreen from "../../WebApp/Pages/active/WebChargingScreen";
+import Initial from "../../WebApp/Pages/initial/Initial";
 
 const mobileRoutes = [
   { path: "/", component: Onboarding, exact: true },
