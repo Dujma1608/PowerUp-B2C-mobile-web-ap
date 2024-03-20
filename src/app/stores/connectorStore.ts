@@ -13,6 +13,7 @@ export default class ConnectorStore {
     makeAutoObservable(this);
   }
   setScannedConnector = (value: any) => (this.scannedConnector = value);
+  setWebScannedConnector = (value: any) => (this.webScannedConnector = value);
 
   getConnector = async (data: string) => {
     this.setLoading(true);

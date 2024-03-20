@@ -37,7 +37,6 @@ const LoginForm: React.FC<Props> = observer(({ setToast }) => {
     });
 
     return () => {
-      // Cleanup function to unsubscribe from history listener
       unlisten();
     };
   }, [history]);

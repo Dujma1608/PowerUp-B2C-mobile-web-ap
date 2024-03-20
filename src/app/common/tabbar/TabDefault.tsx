@@ -16,6 +16,7 @@ import Profile from "../../../pages/Profile/Profile";
 import { useStore } from "../../stores/store";
 import ChargingMapCircle from "../../../components/ChargingActive/ChargingMapCircle";
 import MainIcon from "../../../assets/images/MainButtonIcon.png";
+import BlurredScreen from "../../../components/Home/BlurredScreen/BlurredScreen";
 
 const TabDefault: React.FC = observer(() => {
   const history = useHistory();
@@ -25,9 +26,17 @@ const TabDefault: React.FC = observer(() => {
     BarcodeScanner.prepare();
     history.push("/camera");
   };
+  const handleBlurClick = () => {
+    regularStore.setIsFirstTimeUser(false);
+
+    localStorage.setItem("hasRegistered", "true");
+  };
 
   return (
     <>
+      {regularStore.isFirstTimeUser && (
+        <BlurredScreen handleBlur={handleBlurClick} isHome={false} />
+      )}
       <IonTabs>
         <IonRouterOutlet>
           <Route path="/app/home" render={() => <Home />} exact={true} />

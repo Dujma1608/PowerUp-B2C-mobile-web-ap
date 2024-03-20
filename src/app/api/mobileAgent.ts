@@ -14,7 +14,6 @@ import {
 } from "../models/profile";
 import { SessionHistory } from "../models/session";
 import { ChargerData, QRConnector } from "../models/connector";
-import { body } from "ionicons/icons";
 
 axios.defaults.baseURL = "https://api-test.power-up.green/api/B2C";
 

@@ -2,13 +2,31 @@ import { IonButton, IonIcon } from "@ionic/react";
 import { addSharp } from "ionicons/icons";
 import "./WebConfirmInfo.css";
 import { QRConnector } from "../../../app/models/connector";
+import { useHistory } from "react-router-dom";
+import { observer } from "mobx-react-lite";
+import { useState } from "react";
+import { useStore } from "../../../app/stores/store";
 
 interface Props {
   connector: QRConnector | null;
 }
 
-const WebConfirmInfo: React.FC<Props> = ({ connector }) => {
-  const handleStartCharging = () => {};
+const WebConfirmInfo: React.FC<Props> = observer(({ connector }) => {
+  const [isConnected, setIsConnected] = useState(true);
+  const history = useHistory();
+  const { webSessionStore, regularStore } = useStore();
+
+  const handleStartCharging = () => {
+    if (!isConnected) history.push("/not-connected");
+    else {
+      history.push("/connecting");
+
+      webSessionStore.createSession(1).then(() => {
+        regularStore.setIsCharging(true);
+        webSessionStore.createHubConnection();
+      });
+    }
+  };
 
   return (
     <>
@@ -50,6 +68,6 @@ const WebConfirmInfo: React.FC<Props> = ({ connector }) => {
       </div>
     </>
   );
-};
+});
 
 export default WebConfirmInfo;

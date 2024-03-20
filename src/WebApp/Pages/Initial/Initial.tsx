@@ -6,20 +6,19 @@ import { arrowForwardOutline } from "ionicons/icons";
 import { useEffect, useState } from "react";
 import { useHistory, useLocation } from "react-router-dom";
 import { useStore } from "../../../app/stores/store";
+import { observer } from "mobx-react-lite";
 
-const Initial: React.FC = () => {
+const Initial: React.FC = observer(() => {
   const [emailAlert, setEmailAlert] = useState(false);
   const [isErrorAlert, setIsErrorAlert] = useState(false);
   const [cpoApp, setCpoApp] = useState(true);
 
-  const { connectorStore } = useStore();
+  const { connectorStore, companyStore } = useStore();
   const history = useHistory();
 
   const location = useLocation();
-
   const params = new URLSearchParams(location.search);
   const qrParam = params.get("qr") as string;
-  console.log("QR parameter:", qrParam);
 
   if (emailAlert)
     setTimeout(() => {
@@ -50,10 +49,10 @@ const Initial: React.FC = () => {
 
   useEffect(() => {
     if (qrParam) {
-      console.log(qrParam);
       connectorStore.getWebConnector(qrParam);
     }
-  }, [connectorStore]);
+    companyStore.getCompanyMetadata();
+  }, [connectorStore, companyStore]);
 
   return (
     <IonPage className="background-container">
@@ -85,5 +84,5 @@ const Initial: React.FC = () => {
       </div>
     </IonPage>
   );
-};
+});
 export default Initial;

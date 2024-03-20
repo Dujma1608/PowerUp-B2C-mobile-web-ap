@@ -19,10 +19,11 @@ import DataProtection from "../../pages/Profile/T&C/DataProtection";
 import TabDefault from "../common/tabbar/TabDefault";
 import { Capacitor } from "@capacitor/core";
 import VerifyUser from "../../components/RegisterForm/VerifyUser";
-import Initial from "../../WebApp/Pages/Initial/Initial";
-import ConfirmInfoWeb from "../../WebApp/Pages/ConfirmInfo/ConfirmInfoWeb";
+import Initial from "../../WebApp/Pages/initial/Initial";
+import ConfirmInfoWeb from "../../WebApp/Pages/info/ConfirmInfoWeb";
 import ChargingScreen from "../../components/ChargingActive/ChargingScreen";
 import NotConnected from "../../components/Charging/NotConnected";
+import WebChargingScreen from "../../WebApp/Pages/active/WebChargingScreen";
 
 const mobileRoutes = [
   { path: "/", component: Onboarding, exact: true },
@@ -67,7 +68,8 @@ const webRoutes = [
     exact: true,
   },
   { path: "/connecting", component: Connecting, exact: true },
-  { path: "/charging", component: ChargingScreen, exact: true },
+  { path: "/not-connected", component: NotConnected, exact: true },
+  { path: "/charging", component: WebChargingScreen, exact: true },
   { path: "/charging/process", component: ProcessingPayment },
 ];
 
