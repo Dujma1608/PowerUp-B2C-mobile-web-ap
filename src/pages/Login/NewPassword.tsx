@@ -1,4 +1,10 @@
-import { IonButton, IonIcon, IonLabel, IonText } from "@ionic/react";
+import {
+  IonButton,
+  IonIcon,
+  IonLabel,
+  IonSpinner,
+  IonText,
+} from "@ionic/react";
 import "../../pages/Login/Login.css";
 import * as Yup from "yup";
 import { useRef, useState } from "react";
@@ -20,6 +26,8 @@ interface Props {
 
 const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
   const { userStore } = useStore();
+  const [submit, setSubmit] = useState(false);
+
   const validationSchema = Yup.object({
     newPassword: Yup.string()
       .min(8, "New password must be at least 8 characters long.")
@@ -48,7 +56,7 @@ const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
         newPasswordRepeated: "",
       }}
       onSubmit={(values, { setErrors }) => {
-        console.log(values);
+        setSubmit(true);
         userStore
           .resetPassword(values)
           .then(() => history.push("/app"))
@@ -60,7 +68,14 @@ const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
           });
       }}
     >
-      {({ values, handleChange, handleSubmit }) => (
+      {({
+        values,
+        handleChange,
+        handleSubmit,
+        isValid,
+        isSubmitting,
+        dirty,
+      }) => (
         <Form className="reset-form" autoComplete="off" onSubmit={handleSubmit}>
           <div>
             <BackArrow setClose={() => history.goBack()} />
@@ -95,8 +110,18 @@ const NewPassword: React.FC<Props> = observer(({ userEmail, goBack }) => {
                 handleChange={handleChange}
               />
             </div>
-            <IonButton className="reset-password-btn" type="submit">
-              <span>Reset Password</span>
+            <IonButton
+              className="register-button"
+              type="submit"
+              // disabled={
+              //   !isValid || !dirty || values.activationCode.length !== 6
+              // }
+            >
+              {isSubmitting && submit ? (
+                <IonSpinner className="register-spinner" name="crescent" />
+              ) : (
+                <span>Reset Password</span>
+              )}
             </IonButton>
           </div>
         </Form>

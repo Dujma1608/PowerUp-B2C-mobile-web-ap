@@ -17,7 +17,7 @@ const ChargingScreenFooter: React.FC<Props> = ({ session, price }) => {
         <div>
           <p className="font10 colorA6 w500 currentBill">Current Bill</p>
           <h2 className="font24 color021 w700 priceBill">
-            {session?.currency.currencyISO} {price}
+            {session?.currency.currencyISO} {price.toFixed(2)}
           </h2>
         </div>
         <button className="stop" id="open-sure-modal">

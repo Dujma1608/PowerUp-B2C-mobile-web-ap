@@ -1,5 +1,6 @@
 .footer-bill-container {
-    padding: 20px 0;
+    text-align: center;
+    padding: 25px 10px;
     display: flex;
     flex-direction: column;
     align-items: center;

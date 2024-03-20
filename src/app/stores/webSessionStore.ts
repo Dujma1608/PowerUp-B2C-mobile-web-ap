@@ -39,7 +39,14 @@ export default class WebSessionStore {
   createSession = async (connectorId: number) => {
     try {
       const session = await webAgent.Session.create(connectorId);
-      runInAction(() => (this.session = session));
+      runInAction(() => {
+        const jwt = session.jwt;
+        const [header, payload, signature] = jwt.split(".");
+
+        const decodedPayload = JSON.parse(atob(payload));
+        this.session = decodedPayload;
+        console.log("Session: ", decodedPayload);
+      });
     } catch (error) {
       console.log("Error creating session", error);
     }
@@ -59,7 +66,7 @@ export default class WebSessionStore {
     this.loading = state;
   };
 
-  createHubConnection() {
+  createWebHubConnection() {
     this.startTime = new Date();
     this.startTimer();
     this.connection = new signalR.HubConnectionBuilder()
@@ -78,7 +85,7 @@ export default class WebSessionStore {
       this.connection
         .start()
         .then(() => {
-          console.log("SignalR Connected", this.connection?.state);
+          console.log("Web SignalR Connected", this.connection?.state);
           this.subscribe(this.session?.id!);
         })
         .catch((error) => {

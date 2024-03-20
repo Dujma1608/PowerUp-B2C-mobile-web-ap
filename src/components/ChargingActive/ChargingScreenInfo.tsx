@@ -1,7 +1,10 @@
 import { observer } from "mobx-react-lite";
 import { useStore } from "../../app/stores/store";
 
-const ChargingScreenInfo: React.FC = observer(() => {
+interface Props {
+  energy: number | undefined;
+}
+const ChargingScreenInfo: React.FC<Props> = observer(({ energy }) => {
   const { sessionStore } = useStore();
   const { startTime } = sessionStore;
   const formattedStartTime = startTime?.toLocaleTimeString([], {
@@ -14,7 +17,7 @@ const ChargingScreenInfo: React.FC = observer(() => {
     <div className="charger-info-container">
       <div className="flex-alling">
         <p className="font10 colorA6 w500">Energy Charged</p>
-        <p className="font14 color3E w500">40kWh</p>
+        <p className="font14 color3E w500">{energy} kWh</p>
       </div>
       <div className="flex-alling">
         <p className="font10 colorA6 w500">Session Duration</p>

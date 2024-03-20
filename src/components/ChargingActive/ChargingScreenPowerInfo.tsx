@@ -3,16 +3,17 @@ import Icon from "../../assets/images/Charging/LightingIcon.png";
 
 interface Props {
   session: SessionResponse | null;
+  power: number | undefined;
 }
 
-const ChargingScreenPowerInfo: React.FC<Props> = ({ session }) => {
+const ChargingScreenPowerInfo: React.FC<Props> = ({ session, power }) => {
   return (
     <div className="info-active">
       <div className="icon-status">
         <img width={6} height={10} src={Icon} />
         <h3 className="f14-green w600">Connected</h3>
       </div>
-      <p className="power w700">100 kWh</p>
+      <p className="power w700">{power ?? 0} kW</p>
       <p className="price">
         Electricity Price:{" "}
         <strong className="text w500">
