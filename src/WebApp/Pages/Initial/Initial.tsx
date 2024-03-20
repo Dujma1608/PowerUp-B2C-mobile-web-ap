@@ -11,7 +11,7 @@ import { observer } from "mobx-react-lite";
 const Initial: React.FC = observer(() => {
   const [emailAlert, setEmailAlert] = useState(false);
   const [isErrorAlert, setIsErrorAlert] = useState(false);
-  const [cpoApp, setCpoApp] = useState(true);
+  const [cpoApp, setCpoApp] = useState(false);
 
   const { connectorStore, companyStore } = useStore();
   const history = useHistory();
