@@ -70,7 +70,7 @@ const webRoutes = [
   { path: "/not-connected", component: NotConnected, exact: true },
   { path: "/charging", component: WebChargingScreen, exact: true },
   { path: "/charging/process", component: ProcessingPayment },
-  { path: "/:qr", component: Initial, exact: true },
+  { path: "/", component: Initial, exact: true },
 ];
 
 const Routes: React.FC = () => {
