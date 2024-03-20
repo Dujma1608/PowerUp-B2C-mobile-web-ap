@@ -11,7 +11,7 @@ const ChargingBillFinalPrice: React.FC<Props> = observer(({ price }) => {
       <div style={{ width: "125px" }}>
         <p className="font10 w600 colorA6">Total Bill</p>
         <p className="font12 w600 color021" style={{ fontSize: "22px" }}>
-          {price} EUR
+          {price?.toFixed(2)} EUR
         </p>
       </div>
       <div className="completed-green-div">

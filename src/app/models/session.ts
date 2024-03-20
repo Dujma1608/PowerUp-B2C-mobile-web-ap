@@ -10,6 +10,7 @@ export interface Session {
   timeStart: Date | null;
   timeStop: Date | null;
   user: User;
+  currencyIso: string;
   connector: Connector;
 }
 
@@ -26,6 +27,7 @@ export interface SessionUpdate {
   currentPower: number;
   currentSoC: number;
   currentPrice: number;
+  energyConsumed: number;
 }
 export interface FinishedSessionInfo {
   address: string;

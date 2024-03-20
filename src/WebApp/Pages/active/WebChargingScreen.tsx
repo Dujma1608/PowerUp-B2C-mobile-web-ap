@@ -46,8 +46,11 @@ const WebChargingScreen: React.FC = observer(() => {
               }
               setPercentage={setPercentage}
             />
-            <ChargingScreenPowerInfo session={session} />
-            <ChargingScreenInfo />
+            <ChargingScreenPowerInfo
+              session={session}
+              power={sessionUpdates?.currentPower}
+            />
+            <ChargingScreenInfo energy={sessionUpdates?.energyConsumed} />
           </div>
           <ChargingScreenFooter
             session={session}

@@ -56,7 +56,7 @@ const mobileRoutes = [
   },
 ];
 const webRoutes = [
-  { path: "/:qr?", component: Initial, exact: true },
+  { path: "/:qr", component: Initial, exact: true },
   {
     path: "/terms",
     component: TermsAndConditions,
