@@ -20,11 +20,11 @@ const WebConfirmInfo: React.FC<Props> = observer(({ connector }) => {
     if (!isConnected) history.push("/not-connected");
     else {
       history.push("/connecting");
-      webSessionStore.createSession(1).then(() => {
-        regularStore.setIsCharging(true);
-        webSessionStore.createWebHubConnection();
-        console.log("Hello");
-      });
+      // webSessionStore.createSession(1).then(() => {
+      //   regularStore.setIsCharging(true);
+      //   webSessionStore.createWebHubConnection();
+      //   console.log("Hello");
+      // });
     }
   };
 
